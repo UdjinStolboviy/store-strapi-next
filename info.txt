@@ -69,6 +69,50 @@ NEXT_PUBLIC_STRAPI_API_URL=http://localhost:1337/api
 NEXT_PUBLIC_STRAPI_URL=http://localhost:1337
 
 
+Installation
+pkg update & pkg upgrade
+pkg install mariadb
+Run mariadb daemon
+mysqld
+Or use this
+
+mysqld_safe
+Create new user and password
+mysql
+use mysql;
+set password for 'new_user'@'localhost' = password('YOUR_ROOT_PASSWORD_HERE');
+flush privileges;
+quit;
+Login with new user
+mysql -u new_user -p
+And then input your password.
+
+SHOW DATABASES;
+USE mysql;
+SHOW TABLES;
+SELECT * FROM user;
+SELECT User FROM user;
+exit
+mysql
+create database strapi;
+show databases;
+use strapi;
+show tables;
+create table tblstudents(
+  studentno varchar(20) not null,
+  lastname varchar(50) not null,
+  firstname varchar(50) not null,
+  primary key(studentno)
+  );
+
+desc tblstudents;
+
+
+
+
+Спочатку нам потрібно знати IP-адресу комп’ютера, на якому розміщено веб-сайт (той, над яким ми працювали з самого початку). У терміналі на MAC і LINUX типу ifconfig |grep inet, на WINDOWSтипі ipconfig.
+
+Note! Every time you use mysql in termux, the mariadb daemon must be activated first
 
 This is typically due to some outdated cached packages
 
