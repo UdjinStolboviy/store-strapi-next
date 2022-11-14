@@ -87,11 +87,19 @@ Login with new user
 mysql -u new_user -p
 And then input your password.
 
+http://localhost:8080/
+
+
 SHOW DATABASES;
 USE mysql;
 SHOW TABLES;
 SELECT * FROM user;
 SELECT User FROM user;
+CREATE USER 'strapi'@localhost IDENTIFIED BY 'strapi';
+GRANT ALL PRIVILEGES ON *.* TO 'strapi'@localhost IDENTIFIED BY 'strapi';
+FLUSH PRIVILEGES;
+SHOW GRANTS FOR 'strapi'@localhost;
+DROP USER 'user1'@localhost;
 exit
 mysql
 create database strapi;
@@ -123,4 +131,15 @@ build
 node_modules
 package-lock.json
 yarn.lock
-Then reinstall your node_modules with npm i or yarn install and rebuild the admin with NODE_ENV=production yarn build or NODE_ENV=production npm run build
+
+
+docker ps
+docker exec -it backend-mariadb-1 mysql -u root -p
+docker inspect backend-mariadb-1
+
+docker exec -it your_container_name_or_id bash
+
+
+
+Then reinstall your node_modules with npm i or yarn install and rebuild the admin with NODE_ENV=production yarn 
+build or NODE_ENV=production npm run build
