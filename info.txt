@@ -68,6 +68,7 @@ module.exports = ({ env }) => ({
 NEXT_PUBLIC_STRAPI_API_URL=http://localhost:1337/api
 NEXT_PUBLIC_STRAPI_URL=http://localhost:1337
 
+ifconfig - показати api
 
 Installation
 pkg update & pkg upgrade
@@ -87,7 +88,20 @@ Login with new user
 mysql -u new_user -p
 And then input your password.
 
+mysqld --skip-grant-tables --general-log
+
 http://localhost:8080/
+cd ..
+cd usr/share
+ls
+pwd
+cd phpmyadmin
+php -S localhost:8080
+
+vi
+i
+:wa!
+:qa!
 
 
 SHOW DATABASES;
