@@ -131,6 +131,17 @@ desc tblstudents;
 
 
 
+pkg install libvips
+
+npm rebuild
+
+sudo npm cache clean -f
+sudo npm install -g n
+sudo n stable
+
+
+npm install --arch=x64 --platform=linux --target=16x sharp
+
 
 Спочатку нам потрібно знати IP-адресу комп’ютера, на якому розміщено веб-сайт (той, над яким ми працювали з самого початку). У терміналі на MAC і LINUX типу ifconfig |grep inet, на WINDOWSтипі ipconfig.
 
