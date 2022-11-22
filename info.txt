@@ -44,6 +44,8 @@ npm i react-redux -S
 npm run lint && npm test
 
 
+yarn install --network-timeout 600000
+
 
 npm test -- -u  (коли падають тести треба обновити цією командою)
 npm run build
