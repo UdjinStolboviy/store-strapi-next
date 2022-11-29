@@ -170,3 +170,266 @@ docker exec -it your_container_name_or_id bash
 
 Then reinstall your node_modules with npm i or yarn install and rebuild the admin with NODE_ENV=production yarn 
 build or NODE_ENV=production npm run build
+
+
+
+sudo reboot
+apt upgrade
+
+bash <(curl -s https://andronixos.sfo2.cdn.digitaloceanspaces.com/moddedosscripts/andronix.sh) -v 2 -h %2FDWzO9yr0hEPKL9lb5KmoaeUVEg%3D -k TFWTHVJXRWI3GUTOYN2B -e 1669739978 -p andronix_os.tar.xz
+
+
+./start-andronix.sh
+
+
+vncserver-stop
+1
+
+vncserver-stop
+5901
+
+exit
+
+./start-ubuntu20.sh
+
+vncserver-start
+
+
+
+git clone https://github.com/UdjinStolboviy/srtapy-md-next.git
+
+
+sudo apt install -y curl
+curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
+sudo apt install -y nodejs
+$ node --version
+
+
+
+hostname -I
+
+ifconfig -a
+
+netstat -plnt
+
+root@localhost:~/teststrapi# hostname -I          10.50.142.72 192.168.1.38
+
+ npm cache clean --force
+
+npm config set timeout 6000000
+yarn install --network-timeout 600000
+yarn develop
+
+
+sudo apt install build-essential
+
+
+sudo apt update
+sudo aptitude install mariadb-server
+sudo apt install mariadb-server
+sudo mysql_secure_installation
+p- 1111
+sudo service mysql start
+service --status-all
+
+sudo apt-get remove mysql-server mysql-client mysql-common
+ sudo apt-get purge mysql-server mysql-client mysql-common 
+sudo apt-get autoremove
+ sudo apt-get remove --purge mysql\*
+
+
+
+ps aux | grep mysql | grep -v grep
+
+
+sudo apt update
+
+sudo apt install curl
+
+curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add
+curl --compressed -o- -L https://yarnpkg.com/install.sh | bash
+
+curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+
+sudo apt-get update && sudo apt-get install yarn
+
+
+yarn --version
+
+sudo /usr/sbin/mysqld --skip-grant-tables --skip-networking &
+
+mysql -u root
+
+
+sudo mysql -u root -p
+mysql> USE mysql;
+SHOW DATABASES;
+USE mysql;
+SHOW TABLES;
+SELECT * FROM user;
+SELECT User FROM user;
+CREATE USER 'strapi'@localhost IDENTIFIED BY 'strapi';
+GRANT ALL PRIVILEGES ON *.* TO 'strapi'@localhost IDENTIFIED BY 'strapi';
+FLUSH PRIVILEGES;
+
+
+mysql> DROP DATABASE [database name];
+
+SHOW TABLES;
+
+SELECT * FROM user
+
+SELECT User FROM user
+
+
+rm -rf trip-pictures
+
+
+
+adminer
+sudo apt update  
+sudo apt upgrade  
+sudo apt install adminer
+sudo a2enconf adminer
+
+sudo a2enconf adminer.conf 
+
+## OR ##  
+sudo a2enconf adminer
+systemctl reload apache
+
+sudo systemctl reload apache2
+
+\# Adminer on Ubuntu 20.04 #
+Alias /adminer /etc/adminer
+ 
+<Directory /etc/adminer>
+Require all granted
+DirectoryIndex conf.php
+</Directory>
+https://your-server-name/adminer/  
+https://your-server-ip/adminer/ 
+
+sudo apt install gdebi-core wget
+wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+ 
+sudo gdebi google-chrome-stable_current_amd64.deb
+ 
+https://musaamin.web.id/install-strapi-headless-cms-ubuntu2004/
+
+
+service --status-all
+systemctl list-units
+
+pgrep mysql
+netstat -tnlp
+sudo kill 30882
+sudo kill -9 30882
+
+sudo service ufw stop
+To stop a service:
+sudo service apache2 start
+To stop a service:
+sudo service ufw restart
+To check the status of a service:
+sudo service ufw status
+
+sudo apt-get install aptitude 
+sudo aptitude install <package-name>
+
+$ sudo systemctl enable apache2
+$ sudo systemctl start apache2
+Now, enable and start MariaDB service through the commands below:
+$ sudo systemctl enable mariadb
+$ sudo systemctl start mariadb
+Run the command below to secure MariaDB installation.
+sudo nano /etc/apache2/ports.conf
+/etc/apache2/ports.conf
+
+"strapi-google-auth": "^0.1.2",
+   "strapi-plugin-comments": "^2.2.1",
+   "strapi-plugin-custom-links": "^0.2.1",
+   "strapi-plugin-entity-relationship-chart": "^4.1.0",
+   "strapi-plugin-fcm": "^1.0.4"
+
+sudo apt-get install --reinstall iptables
+sudo apt-get install --reinstall linux-modules-5.4.0-42-generic
+
+sudo apt-get purge --auto-remove nodejs
+cd ~
+ 
+curl -sL https://deb.nodesource.com/setup_14.x -o /tmp/nodesource_setup.sh
+
+nano /tmp/nodesource_setup.sh
+
+sudo bash /tmp/nodesource_setup.sh
+sudo apt install nodejs
+
+
+sudo aptitude install y-ppa-manager
+RUN curl -fsSL https://deb.nodesource.com/gpgkey/nodesource.gpg.key | apt-key add -
+RUN curl -fsSL https://deb.nodesource.com/setup_14.x | bash - \
+    && sudo aptitude install nodejs
+
+sudo apt-get install libcap2-bin
+sudo setcap cap_net_bind_service=+ep /usr/local/bin/node
+
+
+NODE_ENV=production yarn build
+NODE_ENV=production yarn start
+NODE_ENV=production pm2 start server.js --name api
+pm2 list
+pm2 logs api
+http://127.0.0.1:8082/admin
+# Fork mode
+pm2 start app.js --name my-api # Name process
+
+# Cluster mode
+pm2 start app.js -i 0        # Will start maximum processes with LB depending on available CPUs
+pm2 start app.js -i max      # Same as above, but deprecated.
+pm2 scale app +3             # Scales `app` up by 3 workers
+pm2 scale app 2              # Scales `app` up or down to 2 workers total
+
+# Listing
+
+pm2 list               # Display all processes status
+pm2 jlist              # Print process list in raw JSON
+pm2 prettylist         # Print process list in beautified JSON
+
+pm2 describe 0         # Display all information about a specific process
+
+pm2 monit              # Monitor all processes
+
+# Logs
+
+pm2 logs [--raw]       # Display all processes logs in streaming
+pm2 flush              # Empty all log files
+pm2 reloadLogs         # Reload all logs
+
+# Actions
+
+pm2 stop all           # Stop all processes
+pm2 restart all        # Restart all processes
+
+pm2 reload all         # Will 0s downtime reload (for NETWORKED apps)
+
+pm2 stop 0             # Stop specific process id
+pm2 restart 0          # Restart specific process id
+
+pm2 delete 0           # Will remove process from pm2 list
+pm2 delete all         # Will remove all processes from pm2 list
+
+# Misc
+
+pm2 reset <process>    # Reset meta data (restarted time...)
+pm2 updatePM2          # Update in memory pm2
+pm2 ping               # Ensure pm2 daemon has been launched
+pm2 sendSignal SIGUSR2 my-app # Send system signal to script
+pm2 start app.js --no-daemon
+pm2 start app.js --no-vizion
+pm2 start app.js --no-autorestart
+
+
+
+
