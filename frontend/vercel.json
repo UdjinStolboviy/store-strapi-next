@@ -3,7 +3,7 @@
     "public": true,
     "builds": [
         {
-            "src": "package.json",
+            "src": "frontend/package.json",
             "use": "@vercel/next",
             "config": {
                 "installCommand": "yarn set version berry && yarn plugin import workspace-tools && yarn config set nodeLinker node-modules && yarn install"
