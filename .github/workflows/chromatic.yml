@@ -27,8 +27,8 @@ jobs:
           fetch-depth: 0
 
       # Install deps
-      - name: Install npm deps
-        run: npm i
+      - name: Install yarn deps
+        run: yarn install
 
         # 👇 Adds Chromatic as a step in the workflow
       - name: Publish to Chromatic
