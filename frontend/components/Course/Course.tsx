@@ -40,7 +40,7 @@ export type Props = {
 
 export const Course: FC<Props> = ({ children, header, link, imageProps }) => (
   <Link legacyBehavior href={link} passHref>
-    <a>
+  
     <CourseLink>
       <Section>
         <h2>{header}</h2>
@@ -48,7 +48,7 @@ export const Course: FC<Props> = ({ children, header, link, imageProps }) => (
         {children}
       </Section>
     </CourseLink>
-    </a>
+    
   </Link>
 );
 

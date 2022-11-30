@@ -127,18 +127,18 @@ const CoursePage: NextPage<{
             />
           </ImageContainer>
           <Link href={link} passHref legacyBehavior>
-            <a>
+            
             <CustomLink>Enroll now!</CustomLink>
-            </a>
+           
           </Link>
           <div
             style={{ maxWidth: width }}
             dangerouslySetInnerHTML={{ __html: description }}
           />
           <Link href={link} passHref legacyBehavior>
-            <a>
+            
             <CustomLink>Enroll now!</CustomLink>
-            </a>
+            
           </Link>
           <h4>{new Date(publishedAt).toDateString()}</h4>
         </CenteredTile>

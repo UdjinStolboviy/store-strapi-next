@@ -76,20 +76,20 @@ export const Layout: FC = ({ children }) => {
     <ThemeProvider theme={theme}>
       <Wrapper>
         <Link href="/" passHref legacyBehavior>
-          <a>
+          
           <LogoLink>
             <StyledLogo size={3}>
               <span className="logo_short">C8X</span>
               <span className="logo_full">CoursesBox</span>
             </StyledLogo>
           </LogoLink>
-          </a>
+          
         </Link>
         <MainNav>
           <Link href={username ? "/user" : "/login"} passHref legacyBehavior>
-            <a>
+            
             <IconButton name={username ? "User" : "Login"} size={1} />
-            </a>
+            
           </Link>
           <IconButton
             name={!isDark ? "Moon" : "Sun"}

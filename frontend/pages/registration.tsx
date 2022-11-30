@@ -96,9 +96,9 @@ const Registration: NextPage = () => {
         <Button type="submit">Sign Up</Button>
         <h3>
           <Link href="/login" passHref legacyBehavior>
-            <a>
+          
             <StyledLink underline>Login</StyledLink>
-            </a>
+            
           </Link>
         </h3>
       </CenteredTile>

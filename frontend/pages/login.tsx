@@ -80,9 +80,9 @@ const Login: NextPage = () => {
         <Button type="submit">Sign In</Button>
         <h3>
           <Link href="/registration" passHref legacyBehavior>
-            <a>
+            
             <StyledLink underline>Create account</StyledLink>
-            </a>
+            
           </Link>
         </h3>
       </CenteredTile>

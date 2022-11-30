@@ -22,9 +22,9 @@ export default function Custom404() {
     <Wrapper>
       <Logo>404 - Page Not Found</Logo>
       <Link href="/" passHref legacyBehavior>
-        <a>
+       
         <CustomLink>Go Home</CustomLink>
-        </a>
+        
       </Link>
     </Wrapper>
   );
