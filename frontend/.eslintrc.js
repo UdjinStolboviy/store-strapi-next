@@ -44,5 +44,6 @@ module.exports = {
     "react-hooks/exhaustive-deps": 0,
     "@typescript-eslint/camelcase": 0,
     "react/display-name": "off",
+    "react/prop-types": "off",
   },
 };
