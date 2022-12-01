@@ -136,6 +136,7 @@ export class ApiService {
             {
                 method,
                 headers,
+                mode: 'no-cors',
                 body,
             },
             15000
@@ -145,7 +146,8 @@ export class ApiService {
             const resJson = await response.json();
             return resJson;
         } else {
-            throw await response.json();
+            console.log("response", response);
+            throw await response;
         }
     }
 
