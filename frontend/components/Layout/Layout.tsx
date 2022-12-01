@@ -79,8 +79,8 @@ export const Layout: FC = ({ children }) => {
           
           <LogoLink>
             <StyledLogo size={3}>
-              <span className="logo_short">C8X</span>
-              <span className="logo_full">CoursesBox</span>
+              <span className="logo_short">Fish</span>
+              <span className="logo_full">TropicalFish</span>
             </StyledLogo>
           </LogoLink>
           
