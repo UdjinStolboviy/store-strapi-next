@@ -9,8 +9,8 @@ import {
     IGetInstagramPosts,
 } from "./types";
 import qs from "qs";
-import { LoginData, RegistrationData } from "@/data-stores/TypesApp";
-import { clearUserInfoFromLocalStorage, setupUserInfoToLocalStorage } from "@/utils/utils";
+
+
 import { Course } from "@/types";
 
 const api_url = process.env.NEXT_PUBLIC_STRAPI_API_URL
@@ -85,29 +85,29 @@ export class ApiService {
         );
     }
 
-    public createLoginRequest = (
-        jwt: string | null,
-        loginData: LoginData | undefined
-    ) => {
-        if (jwt && !loginData) {
-            return fetch(`${api_url}/users/me`, {
-                method: "GET",
-                headers: {
-                    Authorization: `Bearer ${jwt}`,
-                },
-            });
-        }
-        if (loginData) {
-            return fetch(`${api_url}/auth/local`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(loginData),
-            });
-        }
-        throw { error: "Invalid login request" };
-    };
+    // public createLoginRequest = (
+    //     jwt: string | null,
+    //     loginData: LoginData | undefined
+    // ) => {
+    //     if (jwt && !loginData) {
+    //         return fetch(`${api_url}/users/me`, {
+    //             method: "GET",
+    //             headers: {
+    //                 Authorization: `Bearer ${jwt}`,
+    //             },
+    //         });
+    //     }
+    //     if (loginData) {
+    //         return fetch(`${api_url}/auth/local`, {
+    //             method: "POST",
+    //             headers: {
+    //                 "Content-Type": "application/json",
+    //             },
+    //             body: JSON.stringify(loginData),
+    //         });
+    //     }
+    //     throw { error: "Invalid login request" };
+    // };
 
 
 
@@ -123,10 +123,7 @@ export class ApiService {
         const requestHeaders = headerOptions || {};
 
         const headers: IFetchHeaders = {
-            mode: "no-cors",
-
             accept: "application/json",
-            'Access-Control-Allow-Origin': '*',
             ...requestHeaders,
         };
 

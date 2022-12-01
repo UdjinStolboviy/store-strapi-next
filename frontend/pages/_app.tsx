@@ -20,7 +20,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   console.log(posts, "posts");
   const getProduct = () => {
-    apiService.getProduct().then(({ data, meta }) => {
+    apiService.getProduct().then(({ data, meta }: any) => {
       setPosts(data);
       setMeta(meta);
     });

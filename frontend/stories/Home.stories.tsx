@@ -8,6 +8,4 @@ export default {
   component: Home,
 };
 
-export const HomePage = () => (
-  <Home courses={response.data as unknown as Course[]} />
-);
+export const HomePage = () => <Home />;
