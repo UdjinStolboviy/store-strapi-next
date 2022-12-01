@@ -16,7 +16,7 @@ export default [
     config: {
       enabled: true,
       headers: '*',
-      origin: ['http://localhost:8082', 'https://d743-88-18-250-46.eu.ngrok.io']
+      origin: ['http://localhost:8082', 'https://d743-88-18-250-46.eu.ngrok.io, https://fishkyiv.vercel.app, http://localhost:3000']
     }
   },
   'strapi::logger',
