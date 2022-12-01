@@ -1,185 +1,158 @@
-export { };
-// import { config } from "../../config";
-// import {
-//     IPosts,
-//     IGetPost,
-//     IGetVacancies,
-//     IGetFeedbacks,
-//     IQuery,
-//     IGetInstagramPosts,
-// } from "./types";
-// import qs from "qs";
-// import { LoginData, RegistrationData } from "@/data-stores/TypesApp";
-// import { clearUserInfoFromLocalStorage, setupUserInfoToLocalStorage } from "@/utils/utils";
 
-// type FetchMethod = "GET" | "POST" | "PATCH" | "PUT" | "DELETE";
 
-// interface IFetchHeaders {
-//     [key: string]: string;
-// }
+import {
+    IPosts,
+    IGetPost,
+    IGetVacancies,
+    IGetFeedbacks,
+    IQuery,
+    IGetInstagramPosts,
+} from "./types";
+import qs from "qs";
+import { LoginData, RegistrationData } from "@/data-stores/TypesApp";
+import { clearUserInfoFromLocalStorage, setupUserInfoToLocalStorage } from "@/utils/utils";
+import { Course } from "@/types";
 
-// const fetchWithTimeout = (
-//     url: RequestInfo,
-//     options: RequestInit,
-//     timeout: number
-// ): Promise<any> => {
-//     console.log("fetchWithTimeout", url);
-//     return Promise.race([
-//         fetch(url, options),
-//         new Promise((_, reject) =>
-//             setTimeout(() => reject(new Error("Timeout error")), timeout)
-//         ),
-//     ]);
-// };
+const api_url = process.env.NEXT_PUBLIC_STRAPI_API_URL
 
-// export class ApiService {
-//     public getVacancies(): Promise<IGetVacancies> {
-//         return this.makeRequest<IGetVacancies>(`${config().URL}/api/jobs`, "GET");
-//     }
+type FetchMethod = "GET" | "POST" | "PATCH" | "PUT" | "DELETE";
 
-//     public getFeedbacks(q?: IQuery): Promise<IGetFeedbacks> {
-//         const defaultQuery: IQuery = {
-//             pagination: {
-//                 page: 2,
-//                 pageSize: 3,
-//             },
-//             sort: ["publishedAt:desc"],
-//         };
-//         const query = q ? qs.stringify(q) : qs.stringify(defaultQuery);
-//         return this.makeRequest<IGetFeedbacks>(
-//             `${config().URL}/api/fecks?${query}`,
-//             "GET"
-//         );
-//     }
+interface IFetchHeaders {
+    [key: string]: string;
+}
 
-//     public getInstagramPosts(q?: IQuery): Promise<IGetInstagramPosts> {
-//         return this.makeRequest<IGetInstagramPosts>(
-//             `${config().baseURL}/inssts`,
-//             "GET"
-//         );
-//     }
+const fetchWithTimeout = (
+    url: RequestInfo,
+    options: RequestInit,
+    timeout: number
+): Promise<any> => {
+    console.log("fetchWithTimeout", url);
+    return Promise.race([
+        fetch(url, options),
+        new Promise((_, reject) =>
+            setTimeout(() => reject(new Error("Timeout error")), timeout)
+        ),
+    ]);
+};
 
-//     public getPost(id: string): Promise<IGetPost> {
-//         return this.makeRequest<IGetPost>(
-//             `${config().baseURL}/posts/${id}?populate=adminior.img,mainImg`,
-//             "GET"
-//         );
-//     }
+export class ApiService {
+    public getVacancies(): Promise<IGetVacancies> {
+        return this.makeRequest<IGetVacancies>(`${api_url}/api/jobs`, "GET");
+    }
 
-//     public getPosts(limit: number): Promise<IPosts> {
-//         return this.makeRequest<IPosts>(
-//             `${config().baseURL
-//             }/posts?populate=administrator,administrator.img,mainImpagination[limit]=${limit}`,
-//             "GET"
-//         );
-//     }
+    public getFeedbacks(q?: IQuery): Promise<IGetFeedbacks> {
+        const defaultQuery: IQuery = {
+            pagination: {
+                page: 2,
+                pageSize: 3,
+            },
+            sort: ["publishedAt:desc"],
+        };
+        const query = q ? qs.stringify(q) : qs.stringify(defaultQuery);
+        return this.makeRequest<IGetFeedbacks>(
+            `${api_url}/api/fecks?${query}`,
+            "GET"
+        );
+    }
 
-//     public createLoginRequest = (
-//         jwt: string | null,
-//         loginData: LoginData | undefined
-//     ) => {
-//         if (jwt && !loginData) {
-//             return fetch(`${config().baseURL}/users/me`, {
-//                 method: "GET",
-//                 headers: {
-//                     Authorization: `Bearer ${jwt}`,
-//                 },
-//             });
-//         }
-//         if (loginData) {
-//             return fetch(`${config().baseURL}/auth/local`, {
-//                 method: "POST",
-//                 headers: {
-//                     "Content-Type": "application/json",
-//                 },
-//                 body: JSON.stringify(loginData),
-//             });
-//         }
-//         throw { error: "Invalid login request" };
-//     };
+    public getInstagramPosts(q?: IQuery): Promise<IGetInstagramPosts> {
+        return this.makeRequest<IGetInstagramPosts>(
+            `${api_url}/inssts`,
+            "GET"
+        );
+    }
 
-//     public login = async (loginData: LoginData) => {
+    public getPost(id: string): Promise<IGetPost> {
+        return this.makeRequest<IGetPost>(
+            `${api_url}/posts/${id}?populate=adminior.img,mainImg`,
+            "GET"
+        );
+    }
 
-//         try {
-//             const jwt = localStorage.getItem("jwt");
-//             const response = await this.createLoginRequest(jwt, loginData);
-//             const data = await response.json();
-//             if (response.status < 200 || response.status >= 300) {
-//                 console.log('Invalid login request');
-//                 return
-//             }
-//             const result = data
-//             setupUserInfoToLocalStorage(result);
-//             return result;
-//         } catch (error) {
-//             console.log("error login", error);
-//         }
-//     }
+    public getPosts(limit: number): Promise<IPosts> {
+        return this.makeRequest<IPosts>(
+            `${api_url
+            }/posts?populate=administrator,administrator.img,mainImpagination[limit]=${limit}`,
+            "GET"
+        );
+    }
 
-//     private async makeRequest<TResponse>(
-//         url: string,
-//         method?: FetchMethod,
-//         requestBody?: object | FormData,
-//         headerOptions?: object
-//     ): Promise<TResponse> {
-//         const body = !(requestBody instanceof FormData)
-//             ? JSON.stringify(requestBody)
-//             : requestBody;
-//         const requestHeaders = headerOptions || {};
+    public getProduct(): Promise<Course[]> {
+        return this.makeRequest<Course[]>(
+            `${api_url
+            }/courses?populate=*`,
+            "GET"
+        );
+    }
 
-//         const headers: IFetchHeaders = {
-//             accept: "application/json",
-//             ...requestHeaders,
-//         };
-
-//         if (!(requestBody instanceof FormData)) {
-//             headers["Content-Type"] = "application/json";
-//         }
-
-//         const response = await fetchWithTimeout(
-//             url,
-//             {
-//                 method,
-//                 headers,
-//                 body,
-//             },
-//             15000
-//         );
-
-//         if (response.ok) {
-//             const resJson = await response.json();
-//             return resJson;
-//         } else {
-//             throw await response.json();
-//         }
-//     }
-
-//     public registration = async (registrationData: RegistrationData) => {
-//         try {
-//             const response = await fetch(`${config().baseURL}/auth/local/register`, {
-//                 method: "POST",
-//                 headers: {
-//                     "Content-Type": "application/json",
-//                 },
-//                 body: JSON.stringify(registrationData),
-//             });
-
-//             const result = await response.json();
-
-//             if (response.status < 200 || response.status >= 300) {
-//                 return console.log(response.statusText, "rejected-registration");
-//             }
-//             setupUserInfoToLocalStorage(result);
-//             return result;
-//         } catch (error) {
-//             return console.log(error, "rejected-registration");
-//         }
-//     }
+    public createLoginRequest = (
+        jwt: string | null,
+        loginData: LoginData | undefined
+    ) => {
+        if (jwt && !loginData) {
+            return fetch(`${api_url}/users/me`, {
+                method: "GET",
+                headers: {
+                    Authorization: `Bearer ${jwt}`,
+                },
+            });
+        }
+        if (loginData) {
+            return fetch(`${api_url}/auth/local`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(loginData),
+            });
+        }
+        throw { error: "Invalid login request" };
+    };
 
 
 
-//     logout = () => {
+    private async makeRequest<TResponse>(
+        url: string,
+        method?: FetchMethod,
+        requestBody?: object | FormData,
+        headerOptions?: object
+    ): Promise<TResponse> {
+        const body = !(requestBody instanceof FormData)
+            ? JSON.stringify(requestBody)
+            : requestBody;
+        const requestHeaders = headerOptions || {};
 
-//         return clearUserInfoFromLocalStorage();
-//     }
-// }
+        const headers: IFetchHeaders = {
+            mode: "no-cors",
+
+            accept: "application/json",
+            'Access-Control-Allow-Origin': '*',
+            ...requestHeaders,
+        };
+
+        if (!(requestBody instanceof FormData)) {
+            headers["Content-Type"] = "application/json";
+        }
+
+        const response = await fetchWithTimeout(
+            url,
+            {
+                method,
+                headers,
+                body,
+            },
+            15000
+        );
+
+        if (response.ok) {
+            const resJson = await response.json();
+            return resJson;
+        } else {
+            throw await response.json();
+        }
+    }
+
+
+
+
+}
