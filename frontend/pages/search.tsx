@@ -7,54 +7,17 @@ import qs from "qs";
 import { Course as CourseType, Response } from "@/types";
 
 import { Courses } from "@/components/Course";
+import { ApiService } from "@/services/api/apiServices";
 
 type CoursesResponce = Response<CourseType[]>;
-
-const fetchCourses = async (q: string) => {
-  const api_url = process.env.NEXT_PUBLIC_STRAPI_API_URL;
-
-  const query = qs.stringify(
-    {
-      populate: "*",
-      filters: {
-        $or: [
-          {
-            header: {
-              $containsi: q,
-            },
-          },
-          {
-            subtitle: {
-              $containsi: q,
-            },
-          },
-          {
-            description: {
-              $containsi: q,
-            },
-          },
-        ],
-      },
-    },
-    {
-      encodeValuesOnly: true,
-    }
-  );
-
-  const res = await fetch(`${api_url}/courses?${query}`, {
-    method: "GET",
-  });
-
-  const result: CoursesResponce = await res.json();
-
-  return result;
-};
+const strapi_url = process.env.NEXT_PUBLIC_STRAPI_URL;
 
 const Header = styled.h3`
   padding: 0 2vmin;
 `;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
+  const apiService = new ApiService();
   const q = (context?.query?.q as string) || null;
 
   if (!q) {
@@ -65,7 +28,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     };
   }
 
-  const { data, error }: CoursesResponce = await fetchCourses(q);
+  const { data, error }: CoursesResponce = await apiService.searchProduct(q);
 
   const status = error?.status;
 
@@ -93,31 +56,29 @@ const headerRender = (q: string, courses?: CourseType[], error?: string) => {
     : `No results for "${q}"... 😞`;
 };
 
-const strapi_url = process.env.NEXT_PUBLIC_STRAPI_URL;
-
 const Search: NextPage<{ courses: CourseType[]; error?: string }> = ({
   courses: ssrCourses,
   error: ssrError,
 }) => {
   const router = useRouter();
   const { q } = router.query;
-
+  const apiService = new ApiService();
   const [courses, setCourses] = useState<CourseType[] | undefined>(ssrCourses);
   const [error, setError] = useState<string | undefined>(ssrError);
 
   useEffect(() => {
-    const fetchData = async () => {
-      const { data, error }: CoursesResponce = await fetchCourses(String(q));
+    async () => {
+      const { data, error }: CoursesResponce = await apiService.searchProduct(
+        String(q)
+      );
 
       const status = error?.status;
 
       if (status && (status < 200 || status >= 300)) {
         setError(error.message);
       }
-
       setCourses(data);
     };
-    fetchData();
   }, [q]);
 
   return (

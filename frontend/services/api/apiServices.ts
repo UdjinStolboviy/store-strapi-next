@@ -9,9 +9,12 @@ import {
     IGetInstagramPosts,
 } from "./types";
 import qs from "qs";
-
+import { Course as CourseType, Response } from "@/types";
 
 import { Course } from "@/types";
+import { Any } from "@react-spring/types";
+
+type CoursesResponce = Response<CourseType[]>;
 
 const api_url = process.env.NEXT_PUBLIC_STRAPI_API_URL
 
@@ -80,6 +83,56 @@ export class ApiService {
         return this.makeRequest<IPosts>(`${api_url}/courses?populate=*`,
             "GET",
         );
+    }
+
+    public async searchProduct(q: string): Promise<CoursesResponce> {
+
+        const query = qs.stringify(
+            {
+                populate: "*",
+                filters: {
+                    $or: [
+                        {
+                            header: {
+                                $containsi: q,
+                            },
+                        },
+                        {
+                            subtitle: {
+                                $containsi: q,
+                            },
+                        },
+                        {
+                            description: {
+                                $containsi: q,
+                            },
+                        },
+                    ],
+                },
+            },
+            {
+                encodeValuesOnly: true,
+            }
+        );
+
+        const res = await fetch(`${api_url}/courses?${query}`, {
+            method: "GET",
+            // mode: 'no-cors',
+            headers: {
+                "Content-Type": "application/json"
+            },
+
+        });
+
+        if (res.statusText === 'OK') {
+            const result: CoursesResponce = res && await res.json();
+
+            return result;
+        } else {
+            return {} as CoursesResponce
+        }
+
+
     }
 
     // public createLoginRequest = (
