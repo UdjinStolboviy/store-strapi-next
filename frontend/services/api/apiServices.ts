@@ -26,7 +26,6 @@ const fetchWithTimeout = (
     options: RequestInit,
     timeout: number
 ): Promise<any> => {
-    console.log("fetchWithTimeout", url);
     return Promise.race([
         fetch(url, options),
         new Promise((_, reject) =>
@@ -77,11 +76,9 @@ export class ApiService {
         );
     }
 
-    public getProduct(): Promise<Course[]> {
-        return this.makeRequest<Course[]>(
-            `${api_url
-            }/courses?populate=*`,
-            "GET"
+    public getProduct(): Promise<any> {
+        return this.makeRequest<IPosts>(`${api_url}/courses?populate=*`,
+            "GET",
         );
     }
 
@@ -136,7 +133,6 @@ export class ApiService {
             {
                 method,
                 headers,
-                mode: 'no-cors',
                 body,
             },
             15000

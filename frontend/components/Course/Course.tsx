@@ -40,7 +40,6 @@ export type Props = {
 
 export const Course: FC<Props> = ({ children, header, link, imageProps }) => (
   <Link legacyBehavior href={link} passHref>
-  
     <CourseLink>
       <Section>
         <h2>{header}</h2>
@@ -48,7 +47,6 @@ export const Course: FC<Props> = ({ children, header, link, imageProps }) => (
         {children}
       </Section>
     </CourseLink>
-    
   </Link>
 );
 
@@ -59,12 +57,12 @@ export const Wrapper = styled.div`
   margin: 2vh 1vw;
 `;
 
-export const Courses: FC<{ courses: CourseType[]; strapi_url: string }> = ({
+export const Courses: FC<{ courses: any; strapi_url: string }> = ({
   courses,
   strapi_url,
 }) => (
   <Wrapper>
-    {courses?.map(
+    {courses?.data.map(
       ({
         id,
         attributes: {
