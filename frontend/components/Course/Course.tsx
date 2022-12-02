@@ -57,12 +57,12 @@ export const Wrapper = styled.div`
   margin: 2vh 1vw;
 `;
 
-export const Courses: FC<{ courses: any; strapi_url: string }> = ({
+export const Courses: FC<{ courses: CourseType[]; strapi_url: string }> = ({
   courses,
   strapi_url,
 }) => (
   <Wrapper>
-    {courses?.data.map(
+    {courses?.map(
       ({
         id,
         attributes: {

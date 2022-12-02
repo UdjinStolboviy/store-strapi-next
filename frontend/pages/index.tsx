@@ -25,7 +25,7 @@ const Home: NextPage = ({ posts }: any) => {
         <meta name="description" content="fish tropical for everyone" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Courses courses={posts} strapi_url={String(strapi_url)} />
+      <Courses courses={posts.data} strapi_url={String(strapi_url)} />
     </>
   );
 };
