@@ -2,32 +2,27 @@ import type { NextPage } from "next";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useSelector, useDispatch } from "react-redux";
-import styled from "@emotion/styled";
 import { useForm } from "react-hook-form";
 
 import { RootState, AppDispatch } from "@/store";
-import { selectUser, login } from "@/services/userSlice";
+import {
+  selectUser,
+  registration,
+  RegistrationData,
+} from "@/services/userSlice";
 
 import { CenteredTile } from "@/components/Tile";
 import { Input, ConditionalFeedback } from "@/components/Input";
 import { Button } from "@/components/Button";
 import { StyledLink } from "@/components/StyledLink";
+import StyledInputRegistration from "./styled-registration";
 
-const StyledInput = styled(Input)`
-  margin-bottom: 1rem;
-`;
-
-export type LoginForm = {
-  identifier: string;
-  password: string;
-};
-
-const Login: NextPage = () => {
+const Registration: NextPage = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<LoginForm>();
+  } = useForm<RegistrationData>();
   const router = useRouter();
 
   const { jwt, error } = useSelector<RootState, RootState["user"]>(selectUser);
@@ -37,52 +32,67 @@ const Login: NextPage = () => {
     router.push("/user");
   }
 
-  const onSubmit = (data: LoginForm) => {
-    dispatch(login(data));
+  const onSubmit = (data: RegistrationData) => {
+    dispatch(registration(data));
   };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <CenteredTile header="Login">
+      <CenteredTile header="Create an account">
         <h3>
           <ConditionalFeedback>{error?.message}</ConditionalFeedback>
         </h3>
-        <StyledInput
-          label="Identifier"
-          placeholder="username or email"
+        <StyledInputRegistration
+          label="username"
+          placeholder="username"
           feedback={
             <ConditionalFeedback>
-              {errors.identifier?.message}
+              {errors.username?.message}
             </ConditionalFeedback>
           }
-          height={8}
-          {...register("identifier", {
+          {...register("username", {
             required: "Required field!",
             minLength: { value: 6, message: "Min length 6!" },
+            pattern: {
+              value: /^[\w\d\s]+$/,
+              message: "Only letters, numbers and spaces!",
+            },
           })}
         />
-        <StyledInput
-          label="Password"
+        <StyledInputRegistration
+          label="email"
+          feedback={
+            <ConditionalFeedback>{errors.email?.message}</ConditionalFeedback>
+          }
+          placeholder="email"
+          type="email"
+          {...register("email", {
+            required: "Required field!",
+            pattern: {
+              value: /^\S+@\S+$/,
+              message: "Invalid email!",
+            },
+          })}
+        />
+        <StyledInputRegistration
+          label="password"
           type="password"
-          placeholder="password"
           role="textbox"
           feedback={
             <ConditionalFeedback>
               {errors.password?.message}
             </ConditionalFeedback>
           }
-          height={8}
+          placeholder="password"
           {...register("password", {
             required: "Required field!",
             minLength: { value: 8, message: "Min length 8!" },
           })}
         />
-        <Button type="submit">Sign In</Button>
+        <Button type="submit">Sign Up</Button>
         <h3>
-          <Link href="/registration" passHref legacyBehavior>
-            
-            <StyledLink underline>Create account</StyledLink>
-            
+          <Link href="/login" passHref legacyBehavior>
+            <StyledLink underline>Login</StyledLink>
           </Link>
         </h3>
       </CenteredTile>
@@ -90,4 +100,4 @@ const Login: NextPage = () => {
   );
 };
 
-export default Login;
+export default Registration;

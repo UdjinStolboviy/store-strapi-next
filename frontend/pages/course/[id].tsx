@@ -2,24 +2,12 @@ import type { NextPage, GetStaticPaths, GetStaticProps } from "next";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
-import styled from "@emotion/styled";
+
 import MarkdownIt from "markdown-it";
 
 import { Course as CourseType, Response } from "@/types";
 import { CenteredTile } from "@/components/Tile";
-import { StyledLink } from "@/components/StyledLink";
-
-const ImageContainer = styled.div<{ maxWidth: string }>`
-  position: relative;
-  width: 100%;
-  max-width: ${({ maxWidth }) => maxWidth};
-  height: 30vw;
-`;
-
-const CustomLink = styled(StyledLink)`
-  text-decoration: underline;
-  font-size: 2rem;
-`;
+import ImageContainerCourse, { CustomLinkCourse } from "./styled-course";
 
 type CourseResponce = Response<CourseType>;
 type CoursesResponce = Response<CourseType[]>;
@@ -118,27 +106,23 @@ const CoursePage: NextPage<{
           <link rel="icon" href="/favicon.ico" />
         </Head>
         <CenteredTile header={header}>
-          <ImageContainer maxWidth={`${width}px`}>
+          <ImageContainerCourse maxWidth={`${width}px`}>
             <Image
               layout="fill"
               alt={`Cover for ${header}`}
               src={`${strapi_url}${url}`}
               objectFit="contain"
             />
-          </ImageContainer>
+          </ImageContainerCourse>
           <Link href={link} passHref legacyBehavior>
-            
-            <CustomLink>Enroll now!</CustomLink>
-           
+            <CustomLinkCourse>Enroll now!</CustomLinkCourse>
           </Link>
           <div
             style={{ maxWidth: width }}
             dangerouslySetInnerHTML={{ __html: description }}
           />
           <Link href={link} passHref legacyBehavior>
-            
-            <CustomLink>Enroll now!</CustomLink>
-            
+            <CustomLinkCourse>Enroll now!</CustomLinkCourse>
           </Link>
           <h4>{new Date(publishedAt).toDateString()}</h4>
         </CenteredTile>

@@ -1,20 +1,15 @@
 import { useEffect, useState } from "react";
 import type { NextPage, GetServerSideProps } from "next";
 import { useRouter } from "next/router";
-import styled from "@emotion/styled";
-import qs from "qs";
 
 import { Course as CourseType, Response } from "@/types";
 
 import { Courses } from "@/components/Course";
 import { ApiService } from "@/services/api/apiServices";
+import HeaderSearch from "./styled-search";
 
 type CoursesResponce = Response<CourseType[]>;
 const strapi_url = process.env.NEXT_PUBLIC_STRAPI_URL;
-
-const Header = styled.h3`
-  padding: 0 2vmin;
-`;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const apiService = new ApiService();
@@ -83,7 +78,7 @@ const Search: NextPage<{ courses: CourseType[]; error?: string }> = ({
 
   return (
     <>
-      <Header>{headerRender(q as string, courses, error)}</Header>
+      <HeaderSearch>{headerRender(q as string, courses, error)}</HeaderSearch>
       {courses && <Courses courses={courses} strapi_url={String(strapi_url)} />}
     </>
   );
