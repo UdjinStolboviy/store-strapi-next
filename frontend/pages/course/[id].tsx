@@ -16,7 +16,7 @@ type CourseResponce = Response<CourseType>;
 type CoursesResponce = Response<CourseType[]>;
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  try{
+ 
    const apiService = new ApiService();
 
   const res = await apiService.getCurses();
@@ -28,7 +28,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   if (status && (status < 200 || status >= 300)) {
     return {
       paths: [],
-      fallback: true,
+      fallback: false,
     };
   }
 
@@ -36,19 +36,12 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
   return {
     paths,
-    fallback: true,
+    fallback: false,
   };
-  } catch (e) {
-    console.log(e);
-    return {
-      paths: [],
-      fallback: true,
-    };
-  }
 };
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  try{
+  
    const apiService = new ApiService();
 
   const id = context?.params?.id;
@@ -80,15 +73,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
       meta: meta,
     },
   };
-  } catch (e) {
-    console.log(e);
-    return {
-      props: {
-        course: {},
-        meta: {},
-      },
-    };
-  }
+
 };
 
 const strapi_url = process.env.NEXT_PUBLIC_STRAPI_URL;
@@ -97,10 +82,8 @@ const CoursePage: NextPage<{
   course: CourseType;
   meta: CourseResponce["meta"];
 }> = ({ course }) => {
-  const router = useRouter()
-    if (!router.isFallback && !course) {
-        return <ErrorPage statusCode={404} />
-    }
+  
+   
   if (course && course?.attributes) {
     const {
       attributes: {

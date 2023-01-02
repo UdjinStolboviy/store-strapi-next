@@ -19,10 +19,7 @@ export async function getStaticProps() {
 }
 
 const Home: NextPage = ({ posts }: any) => {
-   const router = useRouter()
-   if (!router.isFallback && !posts) {
-        return <ErrorPage statusCode={404} />
-    }
+   
   return (
     <>
       <Head>
