@@ -13,6 +13,7 @@ type CourseResponce = Response<CourseType>;
 type CoursesResponce = Response<CourseType[]>;
 
 export const getStaticPaths: GetStaticPaths = async () => {
+  try{
   const api_url = process.env.NEXT_PUBLIC_STRAPI_API_URL;
 
   const res = await fetch(`${api_url}/courses?populate=*`, {
@@ -36,9 +37,17 @@ export const getStaticPaths: GetStaticPaths = async () => {
     paths,
     fallback: true,
   };
+  } catch (e) {
+    console.log(e);
+    return {
+      paths: [],
+      fallback: true,
+    };
+  }
 };
 
 export const getStaticProps: GetStaticProps = async (context) => {
+  try{
   const api_url = process.env.NEXT_PUBLIC_STRAPI_API_URL;
 
   const id = context?.params?.id;
@@ -72,6 +81,15 @@ export const getStaticProps: GetStaticProps = async (context) => {
       meta: meta,
     },
   };
+  } catch (e) {
+    console.log(e);
+    return {
+      props: {
+        course: {},
+        meta: {},
+      },
+    };
+  }
 };
 
 const strapi_url = process.env.NEXT_PUBLIC_STRAPI_URL;
