@@ -24,7 +24,7 @@
     "babel-plugin-inline-react-svg": "^2.0.1",
     "fetch-instagram": "^1.0.0-alpha.3",
     "moment": "^2.29.3",
-    "next": "^13.0.5",
+    "next": "13.0.5",
     "next-videos": "^1.4.0",
     "qs": "^6.10.3",
     "react": "18.2.0",
