@@ -28,7 +28,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   if (status && (status < 200 || status >= 300)) {
     return {
       paths: [],
-      fallback: 'blocking',
+      fallback: true,
     };
   }
 
@@ -36,7 +36,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
   return {
     paths,
-    fallback: 'blocking',
+    fallback: true,
   };
 };
 
