@@ -4,6 +4,8 @@ import Head from "next/head";
 import { Course as CourseType, Response } from "@/types";
 import { Courses } from "@/components/Course";
 import { ApiService } from "@/services/api/apiServices";
+import { useRouter } from "next/router";
+import ErrorPage from 'next/error'
 
 const strapi_url = process.env.NEXT_PUBLIC_STRAPI_URL;
 export async function getStaticProps() {
@@ -17,7 +19,10 @@ export async function getStaticProps() {
 }
 
 const Home: NextPage = ({ posts }: any) => {
-  console.log("dddddd", posts);
+   const router = useRouter()
+   if (!router.isFallback && !posts) {
+        return <ErrorPage statusCode={404} />
+    }
   return (
     <>
       <Head>
