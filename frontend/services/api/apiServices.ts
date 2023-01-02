@@ -81,7 +81,7 @@ export class ApiService {
 
     public getCursesID(id: string): Promise<any> {
         return this.makeRequest<any>(
-            `${api_url} / courses / ${id} ? populate =*`,
+            `${api_url}/courses/${id}?populate=*`,
             "GET"
         );
     }
