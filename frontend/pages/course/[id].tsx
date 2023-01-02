@@ -8,6 +8,8 @@ import MarkdownIt from "markdown-it";
 import { Course as CourseType, Response } from "@/types";
 import { CenteredTile } from "@/components/Tile";
 import ImageContainerCourse, { CustomLinkCourse } from "./styled-course";
+import { useRouter } from "next/router";
+import ErrorPage from 'next/error'
 
 type CourseResponce = Response<CourseType>;
 type CoursesResponce = Response<CourseType[]>;
@@ -98,6 +100,10 @@ const CoursePage: NextPage<{
   course: CourseType;
   meta: CourseResponce["meta"];
 }> = ({ course }) => {
+  const router = useRouter()
+    if (!router.isFallback && !course) {
+        return <ErrorPage statusCode={404} />
+    }
   if (course && course?.attributes) {
     const {
       attributes: {
