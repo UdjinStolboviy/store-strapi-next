@@ -1,4 +1,4 @@
-import type { NextPage } from "next";
+
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
@@ -8,6 +8,7 @@ import { selectUser, logout } from "@/services/userSlice";
 
 import { CenteredTile } from "@/components/Tile";
 import { Button } from "@/components/Button";
+import { NextPage } from "next";
 
 const User: NextPage = () => {
   const router = useRouter();
