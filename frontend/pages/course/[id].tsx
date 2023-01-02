@@ -21,7 +21,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
   const res = await apiService.getCurses();
 
-  const response: CoursesResponce = await res.json();
+  const response: CoursesResponce =  res;
 
   const status = response?.error?.status;
 
@@ -55,7 +55,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
   const res = await apiService.getCursesID(id as string);
 
-  const { error, data, meta }: CourseResponce = await res.json();
+  const { error, data, meta }: CourseResponce = res;
 
   if (error && (error?.status < 200 || error?.status >= 300)) {
     return {
