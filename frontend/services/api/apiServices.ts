@@ -79,6 +79,19 @@ export class ApiService {
         );
     }
 
+    public getCursesID(id: string): Promise<any> {
+        return this.makeRequest<any>(
+            `${api_url} / courses / ${id} ? populate =*`,
+            "GET"
+        );
+    }
+    public getCurses(): Promise<any> {
+        return this.makeRequest<any>(
+            `${api_url}/courses?populate=*`,
+            "GET"
+        );
+    }
+
     public getProduct(): Promise<any> {
         return this.makeRequest<IPosts>(`${api_url}/courses?populate=*`,
             "GET",

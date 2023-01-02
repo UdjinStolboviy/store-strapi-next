@@ -10,17 +10,16 @@ import { CenteredTile } from "@/components/Tile";
 import ImageContainerCourse, { CustomLinkCourse } from "./styled-course";
 import { useRouter } from "next/router";
 import ErrorPage from 'next/error'
+import { ApiService } from "@/services/api/apiServices";
 
 type CourseResponce = Response<CourseType>;
 type CoursesResponce = Response<CourseType[]>;
 
 export const getStaticPaths: GetStaticPaths = async () => {
   try{
-  const api_url = process.env.NEXT_PUBLIC_STRAPI_API_URL;
+   const apiService = new ApiService();
 
-  const res = await fetch(`${api_url}/courses?populate=*`, {
-    method: "GET",
-  });
+  const res = await apiService.getCurses();
 
   const response: CoursesResponce = await res.json();
 
@@ -50,13 +49,11 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async (context) => {
   try{
-  const api_url = process.env.NEXT_PUBLIC_STRAPI_API_URL;
+   const apiService = new ApiService();
 
   const id = context?.params?.id;
 
-  const res = await fetch(`${api_url}/courses/${id}?populate=*`, {
-    method: "GET",
-  });
+  const res = await apiService.getCursesID(id as string);
 
   const { error, data, meta }: CourseResponce = await res.json();
 
