@@ -1,4 +1,4 @@
-import type { NextPage, GetStaticProps } from "next";
+import { NextPage, GetStaticProps } from "next";
 import Head from "next/head";
 
 import { Course as CourseType, Response } from "@/types";

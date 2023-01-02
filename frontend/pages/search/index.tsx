@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import type { NextPage, GetServerSideProps } from "next";
+import { NextPage, GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 
 import { Course as CourseType, Response } from "@/types";
