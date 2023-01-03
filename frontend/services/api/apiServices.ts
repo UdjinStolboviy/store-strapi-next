@@ -32,7 +32,7 @@ const fetchWithTimeout = (
     return Promise.race([
         fetch(url, options),
         new Promise((_, reject) =>
-            setTimeout(() => reject(new Error("Timeout error")), timeout)
+            setTimeout(() => reject(console.log('Erorr')), timeout)
         ),
     ]);
 };
