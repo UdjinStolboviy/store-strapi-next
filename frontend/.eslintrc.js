@@ -6,6 +6,7 @@ module.exports = {
     node: true,
   },
   extends: [
+    "next",
     "eslint:recommended",
     "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended",
@@ -45,5 +46,7 @@ module.exports = {
     "@typescript-eslint/camelcase": 0,
     "react/display-name": "off",
     "react/prop-types": "off",
+    "react/no-unescaped-entities": "off",
+    "@next/next/no-page-custom-font": "off",
   },
 };
