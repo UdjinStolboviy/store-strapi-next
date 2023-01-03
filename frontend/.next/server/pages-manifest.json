@@ -4,14 +4,14 @@
   "/404": "pages/404.html",
   "/404/styled-404": "pages/404/styled-404.html",
   "/course/styled-course": "pages/course/styled-course.html",
-  "/login/styled-login": "pages/login/styled-login.html",
   "/login": "pages/login.html",
+  "/login/styled-login": "pages/login/styled-login.html",
   "/registration": "pages/registration.html",
   "/registration/styled-registration": "pages/registration/styled-registration.html",
   "/search/styled-search": "pages/search/styled-search.html",
   "/user": "pages/user.html",
-  "/_error": "pages/_error.js",
-  "/search": "pages/search.js",
+  "/": "pages/index.js",
   "/course/[id]": "pages/course/[id].js",
-  "/": "pages/index.js"
+  "/search": "pages/search.js",
+  "/_error": "pages/_error.js"
 }
