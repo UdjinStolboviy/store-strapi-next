@@ -36,8 +36,8 @@ var external_markdown_it_default = /*#__PURE__*/__webpack_require__.n(external_m
 var Tile = __webpack_require__(4966);
 // EXTERNAL MODULE: ./pages/course/styled-course.tsx
 var styled_course = __webpack_require__(9275);
-// EXTERNAL MODULE: ./services/api/apiServices.ts
-var apiServices = __webpack_require__(4146);
+// EXTERNAL MODULE: ./api/apiServices.ts
+var apiServices = __webpack_require__(7854);
 ;// CONCATENATED MODULE: ./pages/course/[id].tsx
 
 
@@ -490,7 +490,7 @@ module.exports = require("react/jsx-runtime");
 var __webpack_require__ = require("../../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, [210,676,664,272,675,206,966,600], () => (__webpack_exec__(9801)));
+var __webpack_exports__ = __webpack_require__.X(0, [210,676,664,272,675,206,966,352], () => (__webpack_exec__(9801)));
 module.exports = __webpack_exports__;
 
 })();

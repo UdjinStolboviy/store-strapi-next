@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import { Course as CourseType, Response } from "@/types";
 
 import { Courses } from "@/components/Course";
-import { ApiService } from "@/services/api/apiServices";
+import { ApiService } from "@/api/apiServices";
 import HeaderSearch from "./styled-search";
 
 type CoursesResponce = Response<CourseType[]>;

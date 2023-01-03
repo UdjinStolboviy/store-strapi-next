@@ -18,14 +18,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(968);
 /* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(next_head__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _components_Course__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(1479);
-/* harmony import */ var _services_api_apiServices__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(4146);
+/* harmony import */ var _api_apiServices__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(7854);
 
 
 
 
 const strapi_url = "https://172b-88-19-238-70.eu.ngrok.io";
 async function getStaticProps() {
-    const apiServes = new _services_api_apiServices__WEBPACK_IMPORTED_MODULE_3__/* .ApiService */ .s();
+    const apiServes = new _api_apiServices__WEBPACK_IMPORTED_MODULE_3__/* .ApiService */ .s();
     const posts = await apiServes.getProduct();
     return {
         props: {
@@ -343,7 +343,7 @@ module.exports = require("react/jsx-runtime");
 var __webpack_require__ = require("../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, [210,676,664,272,675,206,600,479], () => (__webpack_exec__(4186)));
+var __webpack_exports__ = __webpack_require__.X(0, [210,676,664,272,675,206,352,479], () => (__webpack_exec__(4186)));
 module.exports = __webpack_exports__;
 
 })();

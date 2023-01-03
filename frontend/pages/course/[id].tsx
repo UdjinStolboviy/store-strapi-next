@@ -10,7 +10,7 @@ import { CenteredTile } from "@/components/Tile";
 import ImageContainerCourse, { CustomLinkCourse } from "./styled-course";
 import { useRouter } from "next/router";
 import ErrorPage from 'next/error'
-import { ApiService } from "@/services/api/apiServices";
+import { ApiService } from "@/api/apiServices";
 
 type CourseResponce = Response<CourseType>;
 type CoursesResponce = Response<CourseType[]>;

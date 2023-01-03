@@ -11,7 +11,7 @@
   "/search/styled-search": "pages/search/styled-search.html",
   "/user": "pages/user.html",
   "/_error": "pages/_error.js",
-  "/search": "pages/search.js",
   "/course/[id]": "pages/course/[id].js",
-  "/": "pages/index.js"
+  "/": "pages/index.js",
+  "/search": "pages/search.js"
 }

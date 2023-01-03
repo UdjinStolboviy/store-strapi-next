@@ -3,7 +3,7 @@ import Head from "next/head";
 
 import { Course as CourseType, Response } from "@/types";
 import { Courses } from "@/components/Course";
-import { ApiService } from "@/services/api/apiServices";
+import { ApiService } from "@/api/apiServices";
 import { useRouter } from "next/router";
 import ErrorPage from 'next/error'
 
