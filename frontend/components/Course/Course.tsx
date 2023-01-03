@@ -1,33 +1,8 @@
 import { FC } from "react";
 import Link from "next/link";
 import Image, { ImageProps } from "next/image";
-import styled from "@emotion/styled";
-
 import { Course as CourseType } from "@/types";
-
-import { boxShadow, borderRadius } from "@/components/styles";
-import { StyledLink } from "@/components/StyledLink";
-
-const Section = styled.section`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  padding: 2vmin;
-  background: ${({ theme }) => theme.background};
-  color: ${({ theme }) => theme.font.regular};
-  ${borderRadius};
-  ${({ theme }) =>
-    boxShadow(theme.components.shadow1, theme.components.shadow2)};
-`;
-
-const CourseLink = styled(StyledLink)`
-  display: flex;
-  width: 94vw;
-  @media (min-width: 900px) {
-    width: 46vw;
-  }
-`;
+import {  ProductLink, ProductStyled, Wrapper } from "./styles";
 
 export type Props = {
   /** Header string */
@@ -40,22 +15,16 @@ export type Props = {
 
 export const Course: FC<Props> = ({ children, header, link, imageProps }) => (
   <Link legacyBehavior href={link} passHref>
-    <CourseLink>
-      <Section>
-        <h2>{header}</h2>
+    <ProductLink>
+      <ProductStyled>
         <Image {...imageProps} alt={header} />
+         <h2>{header}</h2>
         {children}
-      </Section>
-    </CourseLink>
+      </ProductStyled>
+    </ProductLink>
   </Link>
 );
 
-export const Wrapper = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2vw;
-  margin: 2vh 1vw;
-`;
 
 export const Courses: FC<{ courses: CourseType[]; strapi_url: string }> = ({
   courses,

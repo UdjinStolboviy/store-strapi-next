@@ -15,7 +15,7 @@ export const boxShadow = (
 };
 
 export const borderRadius = css`
-  border-radius: 1rem;
+  border-radius: 2rem;
 `;
 
 export const transition = () =>
