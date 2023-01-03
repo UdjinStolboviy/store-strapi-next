@@ -1,7 +1,8 @@
-import { Html, Head, Main, NextScript } from "next/document";
+
 import { Global } from "@emotion/react";
 
 import { GlobalStyles } from "@/styles/global";
+import { Head, Html, Main, NextScript } from "next/dist/pages/_document";
 
 export default function Document() {
   const setInitialTheme = `
