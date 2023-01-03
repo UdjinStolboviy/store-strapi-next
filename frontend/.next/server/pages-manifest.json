@@ -12,6 +12,6 @@
   "/user": "pages/user.html",
   "/": "pages/index.js",
   "/course/[id]": "pages/course/[id].js",
-  "/search": "pages/search.js",
-  "/_error": "pages/_error.js"
+  "/_error": "pages/_error.js",
+  "/search": "pages/search.js"
 }
