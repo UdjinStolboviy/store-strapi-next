@@ -9,12 +9,12 @@ import {
     IGetInstagramPosts,
 } from "./types";
 import qs from "qs";
-import { Course as CourseType, Response } from "@/types";
+import { Product as ProductType, Response } from "@/types";
 
-import { Course } from "@/types";
+
 import { Any } from "@react-spring/types";
 
-type CoursesResponce = Response<CourseType[]>;
+type ProductsResponce = Response<ProductType[]>;
 
 const api_url = process.env.NEXT_PUBLIC_STRAPI_API_URL
 
@@ -38,67 +38,27 @@ const fetchWithTimeout = (
 };
 
 export class ApiService {
-    public getVacancies(): Promise<IGetVacancies> {
-        return this.makeRequest<IGetVacancies>(`${api_url}/api/jobs`, "GET");
-    }
 
-    public getFeedbacks(q?: IQuery): Promise<IGetFeedbacks> {
-        const defaultQuery: IQuery = {
-            pagination: {
-                page: 2,
-                pageSize: 3,
-            },
-            sort: ["publishedAt:desc"],
-        };
-        const query = q ? qs.stringify(q) : qs.stringify(defaultQuery);
-        return this.makeRequest<IGetFeedbacks>(
-            `${api_url}/api/fecks?${query}`,
-            "GET"
-        );
-    }
-
-    public getInstagramPosts(q?: IQuery): Promise<IGetInstagramPosts> {
-        return this.makeRequest<IGetInstagramPosts>(
-            `${api_url}/inssts`,
-            "GET"
-        );
-    }
-
-    public getPost(id: string): Promise<IGetPost> {
-        return this.makeRequest<IGetPost>(
-            `${api_url}/posts/${id}?populate=adminior.img,mainImg`,
-            "GET"
-        );
-    }
-
-    public getPosts(limit: number): Promise<IPosts> {
-        return this.makeRequest<IPosts>(
-            `${api_url
-            }/posts?populate=administrator,administrator.img,mainImpagination[limit]=${limit}`,
-            "GET"
-        );
-    }
-
-    public getCursesID(id: string): Promise<any> {
+    public getProductsID(id: string): Promise<any> {
         return this.makeRequest<any>(
-            `${api_url}/courses/${id}?populate=*`,
+            `${api_url}/products/${id}?populate=*`,
             "GET"
         );
     }
-    public getCurses(): Promise<any> {
+    public getProducts(): Promise<any> {
         return this.makeRequest<any>(
-            `${api_url}/courses?populate=*`,
+            `${api_url}/products?populate=*`,
             "GET"
         );
     }
 
     public getProduct(): Promise<any> {
-        return this.makeRequest<IPosts>(`${api_url}/courses?populate=*`,
+        return this.makeRequest<IPosts>(`${api_url}/products?populate=*`,
             "GET",
         );
     }
 
-    public async searchProduct(q: string): Promise<CoursesResponce> {
+    public async searchProduct(q: string): Promise<ProductsResponce> {
 
         const query = qs.stringify(
             {
@@ -128,7 +88,7 @@ export class ApiService {
             }
         );
 
-        const res = await fetch(`${api_url}/courses?${query}`, {
+        const res = await fetch(`${api_url}/products?${query}`, {
             method: "GET",
             // mode: 'no-cors',
             headers: {
@@ -138,11 +98,11 @@ export class ApiService {
         });
 
         if (res.statusText === 'OK') {
-            const result: CoursesResponce = res && await res.json();
+            const result: ProductsResponce = res && await res.json();
 
             return result;
         } else {
-            return {} as CoursesResponce
+            return {} as ProductsResponce
         }
 
 

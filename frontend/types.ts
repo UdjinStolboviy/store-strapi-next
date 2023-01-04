@@ -43,7 +43,7 @@ export type Image = Data<
   }
 >;
 
-export type Course = Data<{
+export type Product = Data<{
   header: string;
   link: string;
   subtitle: string;
@@ -53,4 +53,8 @@ export type Course = Data<{
   cover: {
     data: Image;
   };
+  slug: string;
+  size: number;
+  price: number;
+  availableProd: number;
 }>;

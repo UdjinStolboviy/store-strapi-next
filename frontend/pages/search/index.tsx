@@ -2,13 +2,14 @@ import { useEffect, useState } from "react";
 import { NextPage, GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 
-import { Course as CourseType, Response } from "@/types";
+import { Product as ProductType, Response } from "@/types";
 
-import { Courses } from "@/components/Course";
 import { ApiService } from "@/api/apiServices";
 import HeaderSearch from "./styled-search";
+import { Products } from "@/components/Product/Product";
 
-type CoursesResponce = Response<CourseType[]>;
+
+type ProductsResponce = Response<ProductType[]>;
 const strapi_url = process.env.NEXT_PUBLIC_STRAPI_URL;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
@@ -18,12 +19,12 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   if (!q) {
     return {
       props: {
-        courses: [],
+       products: [],
       },
     };
   }
 
-  const { data, error }: CoursesResponce = await apiService.searchProduct(q);
+  const { data, error }: ProductsResponce = await apiService.searchProduct(q);
 
   const status = error?.status;
 
@@ -37,33 +38,33 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   return {
     props: {
-      courses: data,
+      products: data,
     },
   };
 };
 
-const headerRender = (q: string, courses?: CourseType[], error?: string) => {
+const headerRender = (q: string, products?: ProductType[], error?: string) => {
   if (error) {
     return error;
   }
-  return courses && Boolean(courses.length)
+  return products && Boolean(products.length)
     ? `Search results for "${q}"`
     : `No results for "${q}"... 😞`;
 };
 
-const Search: NextPage<{ courses: CourseType[]; error?: string }> = ({
-  courses: ssrCourses,
+const Search: NextPage<{ products: ProductType[]; error?: string }> = ({
+  products: ssrProducts,
   error: ssrError,
 }) => {
   const router = useRouter();
   const { q } = router.query;
   const apiService = new ApiService();
-  const [courses, setCourses] = useState<CourseType[] | undefined>(ssrCourses);
+  const [products, setProducts] = useState<ProductType[] | undefined>(ssrProducts);
   const [error, setError] = useState<string | undefined>(ssrError);
 
   useEffect(() => {
     async () => {
-      const { data, error }: CoursesResponce = await apiService.searchProduct(
+      const { data, error }: ProductsResponce = await apiService.searchProduct(
         String(q)
       );
 
@@ -72,14 +73,14 @@ const Search: NextPage<{ courses: CourseType[]; error?: string }> = ({
       if (status && (status < 200 || status >= 300)) {
         setError(error.message);
       }
-      setCourses(data);
+      setProducts(data);
     };
   }, [q]);
 
   return (
     <>
-      <HeaderSearch>{headerRender(q as string, courses, error)}</HeaderSearch>
-      {courses && <Courses courses={courses} strapi_url={String(strapi_url)} />}
+      <HeaderSearch>{headerRender(q as string, products, error)}</HeaderSearch>
+      {products && <Products products={products} strapi_url={String(strapi_url)} />}
     </>
   );
 };

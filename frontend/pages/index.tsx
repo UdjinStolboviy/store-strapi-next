@@ -1,8 +1,8 @@
 import { NextPage, GetStaticProps } from "next";
 import Head from "next/head";
 
-import { Course as CourseType, Response } from "@/types";
-import { Courses } from "@/components/Course";
+
+import { Products } from "@/components/Product";
 import { ApiService } from "@/api/apiServices";
 import { useRouter } from "next/router";
 import ErrorPage from 'next/error'
@@ -27,7 +27,7 @@ const Home: NextPage = ({ posts }: any) => {
         <meta name="description" content="fish tropical for everyone" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Courses courses={posts.data} strapi_url={String(strapi_url)} />
+      <Products products={posts.data} strapi_url={String(strapi_url)} />
     </>
   );
 };
