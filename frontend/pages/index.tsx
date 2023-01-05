@@ -1,27 +1,34 @@
 import { NextPage, GetStaticProps } from "next";
 import Head from "next/head";
 
-
 import { Products } from "@/components/Product";
 import { ApiService } from "@/api/apiServices";
 import { useRouter } from "next/router";
-import ErrorPage from 'next/error'
+import ErrorPage from "next/error";
 
 const strapi_url = process.env.NEXT_PUBLIC_STRAPI_URL;
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const apiServes = new ApiService();
   const posts = await apiServes.getProduct();
-  
+
+  const status = posts?.error?.status;
+
+  if (status && (status < 200 || status >= 300)) {
+    return {
+      props: {
+        posts: [],
+      },
+    };
+  }
+
   return {
     props: {
       posts,
     },
-    fallback: true,
   };
 }
 
 const Home: NextPage = ({ posts }: any) => {
-   
   return (
     <>
       <Head>
