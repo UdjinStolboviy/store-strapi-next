@@ -2,29 +2,60 @@ import { FC } from "react";
 import Link from "next/link";
 import Image, { ImageProps } from "next/image";
 import { Product as ProductType } from "@/types";
-import {  ProductLink, ProductStyled, Wrapper } from "./styles";
+import { ProductLink, ProductStyled, Wrapper } from "./styles";
+import { IconButton } from "../IconButton";
 
-export type Props = {
+export type ProductProps = {
   /** Header string */
   header: string;
   /** Link address */
   link: string;
   /** Image props */
   imageProps: ImageProps;
+  /** Subtitle string */
+  subtitle: string;
 };
 
-export const Product: FC<Props> = ({ children, header, link, imageProps }) => (
-  <Link legacyBehavior href={link} passHref>
-    <ProductLink>
-      <ProductStyled>
+export const Product: FC<ProductProps> = ({
+  children,
+  header,
+  link,
+  imageProps,
+  subtitle,
+}) => (
+  <ProductStyled>
+    <Link legacyBehavior href={link} passHref>
+      <ProductLink>
         <Image {...imageProps} alt={header} />
-         <h2>{header}</h2>
-        {children}
-      </ProductStyled>
-    </ProductLink>
-  </Link>
+      </ProductLink>
+    </Link>
+    <div className="wrapperDescriptionProduct">
+      <h3>{header}</h3>
+      <h4>{subtitle}</h4>
+      {/* <time dateTime={publishedAt}>
+              {new Date(publishedAt).toDateString()}
+            </time> */}
+    </div>
+    <div className="wrapperButtonProduct">
+      <IconButton
+        name={"LinkProduct"}
+        size={1.5}
+        onClick={() => console.log("onPressCar")}
+      />
+      <IconButton
+        name={"InProduct"}
+        size={1.5}
+        onClick={() => console.log("onPressCar")}
+      />
+      <IconButton
+        name={"AddProduct"}
+        size={1.5}
+        onClick={() => console.log("onPressCar")}
+      />
+    </div>
+    {children}
+  </ProductStyled>
 );
-
 
 export const Products: FC<{ products: ProductType[]; strapi_url: string }> = ({
   products,
@@ -53,18 +84,14 @@ export const Products: FC<{ products: ProductType[]; strapi_url: string }> = ({
           key={id}
           header={header}
           link={`/product/${id}`}
+          subtitle={subtitle}
           imageProps={{
             width,
             height,
             alt: `Cover for ${header}`,
             src: `${strapi_url}${url}`,
           }}
-        >
-          <h3>{subtitle}</h3>
-          <time dateTime={publishedAt}>
-            {new Date(publishedAt).toDateString()}
-          </time>
-        </Product>
+        ></Product>
       )
     )}
   </Wrapper>

@@ -7,8 +7,8 @@ import { StyledLink } from "../StyledLink";
 export const ProductStyled = styled.section`
   display: flex;
   flex-direction: column;
-  /* align-items: center;
-  justify-content: space-between; */
+  align-items: center;
+  justify-content: space-between;
   padding: 10px;
   margin: 10px 10px;
   width: 100%;
@@ -18,9 +18,30 @@ export const ProductStyled = styled.section`
   ${({ theme }) =>
     boxShadow(theme.components.shadow1, theme.components.shadow2)};
   img {
-    width: 150px;
+    width: 100px;
     height: 100%;
     border-radius: 10px;
+  }
+  @media screen and (min-width: 320px) and (max-width: 770px) {
+    width: 100%;
+    .wrapperDescriptionProduct {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .wrapperButtonProduct {
+      width: 70%;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      margin: 10px 0px;
+    }
+    img {
+      width: 100%;
+      height: 100%;
+    }
   }
 `;
 

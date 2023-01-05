@@ -126,26 +126,89 @@ const Cart = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
+const Cart2 = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" {...props}>
+    <path
+      d="M5.24211 4.80975H18.2524C20.4616 4.80975 22.2524 6.60061 22.2524 8.80975V12.9522C22.2524 15.1613 20.4616 16.9522 18.2524 16.9522H10.7685C8.83212 16.9522 7.1738 15.5652 6.8315 13.6593L5.24211 4.80975ZM5.24211 4.80975L4.60064 2.92743C4.46259 2.52234 4.08206 2.25 3.65409 2.25H1.75281"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+    />
+    <path
+      d="M11 20.5H11.01"
+      stroke="currentColor"
+      strokeWidth="3"
+      strokeLinecap="round"
+    />
+    <path
+      d="M19 20.5H19.01"
+      stroke="currentColor"
+      strokeWidth="3"
+      strokeLinecap="round"
+    />
+  </svg>
+);
+
 const AddProduct = (props: React.SVGProps<SVGSVGElement>) => (
   <svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" {...props}>
     <path
-      d="M4 12C4 7.58172 7.58172 4 12 4V4C16.4183 4 20 7.58172 20 12V17.0909C20 17.9375 20 18.3608 19.8739 18.6989C19.6712 19.2425 19.2425 19.6712 18.6989 19.8739C18.3608 20 17.9375 20 17.0909 20H12C7.58172 20 4 16.4183 4 12V12Z"
+      d="M5.24207 4.80975H18.2524C20.4615 4.80975 22.2524 6.60061 22.2524 8.80975V12.9522C22.2524 15.1613 20.4615 16.9522 18.2524 16.9522H10.7685C8.83209 16.9522 7.17377 15.5652 6.83147 13.6593L5.24207 4.80975ZM5.24207 4.80975L4.60061 2.92743C4.46256 2.52234 4.08203 2.25 3.65406 2.25H1.75278"
       stroke="currentColor"
-      strokeWidth="2"
+      strokeWidth="1.5"
+      strokeLinecap="round"
     />
     <path
-      d="M9 12L15 12"
+      d="M14.25 8.56067L14.25 13.5154"
       stroke="currentColor"
-      strokeWidth="2"
+      strokeWidth="1.5"
       strokeLinecap="round"
-      strokeLinejoin="round"
     />
     <path
-      d="M12 9L12 15"
+      d="M16.7274 11.038L11.7726 11.038"
       stroke="currentColor"
-      strokeWidth="2"
+      strokeWidth="1.5"
       strokeLinecap="round"
-      strokeLinejoin="round"
+    />
+    <path
+      d="M11 20.5H11.01"
+      stroke="currentColor"
+      strokeWidth="3"
+      strokeLinecap="round"
+    />
+    <path
+      d="M19 20.5H19.01"
+      stroke="currentColor"
+      strokeWidth="3"
+      strokeLinecap="round"
+    />
+  </svg>
+);
+
+const CancelCart = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" {...props}>
+    <path
+      d="M5.24211 4.80975H18.2524C20.4616 4.80975 22.2524 6.60061 22.2524 8.80975V12.9522C22.2524 15.1613 20.4616 16.9522 18.2524 16.9522H10.7685C8.83212 16.9522 7.1738 15.5652 6.8315 13.6593L5.24211 4.80975ZM5.24211 4.80975L4.60064 2.92743C4.46259 2.52234 4.08206 2.25 3.65409 2.25H1.75281"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+    />
+    <path
+      d="M11.7999 11H16.7999"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+    />
+    <path
+      d="M11 20.5H11.01"
+      stroke="currentColor"
+      strokeWidth="3"
+      strokeLinecap="round"
+    />
+    <path
+      d="M19 20.5H19.01"
+      stroke="currentColor"
+      strokeWidth="3"
+      strokeLinecap="round"
     />
   </svg>
 );
@@ -154,6 +217,47 @@ const CancelProduct = (props: React.SVGProps<SVGSVGElement>) => (
   <svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" {...props}>
     <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="2" />
     <path d="M7.5 12H16.5" stroke="currentColor" strokeWidth="2" />
+  </svg>
+);
+
+const InProduct = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" {...props}>
+    <path
+      d="M3 9V15C3 17.8284 3 19.2426 3.87868 20.1213C4.75736 21 6.17157 21 9 21H15C17.8284 21 19.2426 21 20.1213 20.1213C21 19.2426 21 17.8284 21 15V9C21 6.17157 21 4.75736 20.1213 3.87868C19.2426 3 17.8284 3 15 3H9"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+    />
+    <path
+      d="M15 15V16H16V15H15ZM7.70711 6.29289C7.31658 5.90237 6.68342 5.90237 6.29289 6.29289C5.90237 6.68342 5.90237 7.31658 6.29289 7.70711L7.70711 6.29289ZM14 8V15H16V8H14ZM15 14H8V16H15V14ZM15.7071 14.2929L7.70711 6.29289L6.29289 7.70711L14.2929 15.7071L15.7071 14.2929Z"
+      fill="currentColor"
+    />
+  </svg>
+);
+
+const LinkProduct = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" {...props}>
+    <path
+      d="M10 16H7C4.79086 16 3 14.2091 3 12V12C3 9.79086 4.79086 8 7 8H10"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M16 12H8"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M14 16H17C19.2091 16 21 14.2091 21 12V12C21 9.79086 19.2091 8 17 8H14"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
   </svg>
 );
 
@@ -168,4 +272,8 @@ export const Icons = {
   Cart,
   AddProduct,
   CancelProduct,
+  InProduct,
+  LinkProduct,
+  Cart2,
+  CancelCart,
 };
