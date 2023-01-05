@@ -7,28 +7,31 @@ import { useRouter } from "next/router";
 import ErrorPage from "next/error";
 
 const strapi_url = process.env.NEXT_PUBLIC_STRAPI_URL;
-export async function getServerSideProps() {
-  const apiServes = new ApiService();
-  const posts = await apiServes.getProduct();
 
-  const status = posts?.error?.status;
+export async function getStaticProps() {
+  const apiServes = new ApiService();
+  const products = await apiServes.getProduct();
+
+  const status = products?.error?.status;
 
   if (status && (status < 200 || status >= 300)) {
     return {
       props: {
-        posts: [],
+        products: [],
       },
+      revalidate: 10,
     };
   }
 
   return {
     props: {
-      posts,
+      products,
     },
+    revalidate: 10,
   };
 }
 
-const Home: NextPage = ({ posts }: any) => {
+const Home: NextPage = ({ products }: any) => {
   return (
     <>
       <Head>
@@ -36,7 +39,7 @@ const Home: NextPage = ({ posts }: any) => {
         <meta name="description" content="fish tropical for everyone" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Products products={posts.data} strapi_url={String(strapi_url)} />
+      <Products products={products.data} strapi_url={String(strapi_url)} />
     </>
   );
 };
