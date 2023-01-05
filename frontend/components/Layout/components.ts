@@ -10,6 +10,8 @@ export const Wrapper = styled.div`
   color: ${({ theme }) => theme.font.regular};
   background-color: ${({ theme }) => theme.background};
   padding: 0.5rem;
+ // border: 4px solid #000;
+  
   grid-template-areas:
     "header  nav"
     "search  search"
@@ -73,6 +75,7 @@ export const Content = styled.main`
   grid-area: content;
   min-height: 84vh;
   margin-top: 1rem;
+  margin-bottom: 5rem;
 `;
 
 export const Footer = styled.footer`
