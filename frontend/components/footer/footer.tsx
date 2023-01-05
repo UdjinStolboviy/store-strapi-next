@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/legacy/image";
 
 // Styles
-import { FooterStyled, StyleEmail, StyleSocialList } from "./styles";
+import { FooterStyled, StyleEmail } from "./styles";
 import { imageLoader } from "../ImageLoader";
 import Link from "next/link";
 import { IconButton } from "../IconButton";
