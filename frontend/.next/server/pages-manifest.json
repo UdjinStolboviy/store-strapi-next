@@ -1,17 +1,6 @@
 {
-  "/_document": "pages/_document.js",
-  "/404/styled-404": "pages/404/styled-404.html",
-  "/404": "pages/404.html",
-  "/login": "pages/login.html",
-  "/login/styled-login": "pages/login/styled-login.html",
-  "/product/styled-product": "pages/product/styled-product.html",
-  "/registration": "pages/registration.html",
-  "/registration/styled-registration": "pages/registration/styled-registration.html",
-  "/search/styled-search": "pages/search/styled-search.html",
-  "/user": "pages/user.html",
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
-  "/": "pages/index.js",
-  "/search": "pages/search.js",
-  "/product/[id]": "pages/product/[id].js"
+  "/_document": "pages/_document.js",
+  "/": "pages/index.js"
 }

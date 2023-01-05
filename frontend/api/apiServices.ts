@@ -32,7 +32,7 @@ const fetchWithTimeout = (
     return Promise.race([
         fetch(url, options),
         new Promise((_, reject) =>
-            setTimeout(() => reject(console.log('Erorr')), timeout)
+            setTimeout(() => reject(console.log('Erorr', url, options)), timeout)
         ),
     ]);
 };
@@ -90,7 +90,7 @@ export class ApiService {
 
         const res = await fetch(`${api_url}/products?${query}`, {
             method: "GET",
-            // mode: 'no-cors',
+            // // mode: 'no-cors',
             headers: {
                 "Content-Type": "application/json"
             },
