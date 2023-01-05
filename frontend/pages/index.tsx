@@ -11,10 +11,12 @@ const strapi_url = process.env.NEXT_PUBLIC_STRAPI_URL;
 export async function getStaticProps() {
   const apiServes = new ApiService();
   const posts = await apiServes.getProduct();
+  
   return {
     props: {
       posts,
     },
+    fallback: true,
   };
 }
 
