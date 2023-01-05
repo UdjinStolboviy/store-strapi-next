@@ -92,7 +92,13 @@ export const Layout: FC = ({ children }) => {
             size={1.5}
             onClick={toggleDark}
           />
-          <IconButton name={"Basket"} size={1.5} onClick={toggleDark} />
+          <Link href={"/cart"} passHref legacyBehavior>
+            <IconButton
+              name={"Cart"}
+              size={1.5}
+              onClick={() => console.log("onPressCar")}
+            />
+          </Link>
         </MainNav>
         <SearchInput
           icon="Search"

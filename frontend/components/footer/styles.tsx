@@ -5,7 +5,14 @@ import styled from "@emotion/styled";
 
 export const FooterStyled = styled.footer`
   grid-area: footer;
-  padding: 30px 96px 30px 96px;
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  width: 100%;
+  transform: translate(-50%, -50%);
+  overflow-x: hidden;
+  padding: 10px 20px 10px 20px;
+  align-items: center;
   border-radius: 90px;
   border: 0.5px solid ${({ theme }) => theme.components.shadow2};
   background: ${({ theme }) => theme.background};

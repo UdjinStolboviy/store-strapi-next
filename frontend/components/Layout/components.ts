@@ -18,10 +18,10 @@ export const Wrapper = styled.div`
   nav {
     flex-direction: row;
     justify-content: flex-end;
-    gap: 5vmin;
+    gap: 2vmin;
   }
   @media (min-width: 500px) {
-    grid-template-columns: 1fr 3fr;
+    grid-template-columns: 1fr 2fr;
   }
   @media (min-width: 960px) {
     grid-template-columns: 1fr 4fr 2fr;

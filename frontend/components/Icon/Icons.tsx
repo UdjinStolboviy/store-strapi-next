@@ -98,7 +98,7 @@ const Login = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
-const Basket = (props: React.SVGProps<SVGSVGElement>) => (
+const Cart = (props: React.SVGProps<SVGSVGElement>) => (
   <svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" {...props}>
     <path
       d="M8 8L8 7C8 4.79086 9.79086 3 12 3V3C14.2091 3 16 4.79086 16 7L16 8"
@@ -126,4 +126,46 @@ const Basket = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
-export const Icons = { User, Moon, Sun, Home, Settings, Search, Login, Basket };
+const AddProduct = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" {...props}>
+    <path
+      d="M4 12C4 7.58172 7.58172 4 12 4V4C16.4183 4 20 7.58172 20 12V17.0909C20 17.9375 20 18.3608 19.8739 18.6989C19.6712 19.2425 19.2425 19.6712 18.6989 19.8739C18.3608 20 17.9375 20 17.0909 20H12C7.58172 20 4 16.4183 4 12V12Z"
+      stroke="currentColor"
+      strokeWidth="2"
+    />
+    <path
+      d="M9 12L15 12"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M12 9L12 15"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+);
+
+const CancelProduct = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" {...props}>
+    <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="2" />
+    <path d="M7.5 12H16.5" stroke="currentColor" strokeWidth="2" />
+  </svg>
+);
+
+export const Icons = {
+  User,
+  Moon,
+  Sun,
+  Home,
+  Settings,
+  Search,
+  Login,
+  Cart,
+  AddProduct,
+  CancelProduct,
+};

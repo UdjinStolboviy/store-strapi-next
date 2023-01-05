@@ -122,7 +122,7 @@ export const response = {
                   mime: "image/jpeg",
                   path: null,
                   width: 1000,
-                  height: 460,
+                  height: 300,
                   size: 43.97,
                   url: "/covers/ts_cover.jpg",
                 },

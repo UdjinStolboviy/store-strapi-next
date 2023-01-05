@@ -4,21 +4,30 @@ import Image from "next/legacy/image";
 // Styles
 import { FooterStyled, StyleEmail, StyleSocialList } from "./styles";
 import { imageLoader } from "../ImageLoader";
+import Link from "next/link";
+import { IconButton } from "../IconButton";
 
-const socialLinks = [
-  {
-    link: "https://www.im/",
-    src: "/images/instagram.svg",
-  },
-  {
-    link: "https://www.facebook.com/de",
-    src: "/images/facebook.svg",
-  },
-];
+// const socialLinks = [
+//   {
+//     link: "https://www.im/",
+//     src: "/images/instagram.svg",
+//   },
+//   {
+//     link: "https://www.facebook.com/de",
+//     src: "/images/facebook.svg",
+//   },
+// ];
 
 const Footer = () => (
   <FooterStyled>
-    <div>
+    <Link href={"/cart"} passHref legacyBehavior>
+      <IconButton
+        name={"Cart"}
+        size={1.5}
+        onClick={() => console.log("onPressCar")}
+      />
+    </Link>
+    {/* <div>
       <nav>
         <StyleEmail>
           <a
@@ -68,7 +77,7 @@ const Footer = () => (
           </li>
         </ul>
       </div>
-    </div>
+    </div> */}
   </FooterStyled>
 );
 export default Footer;
