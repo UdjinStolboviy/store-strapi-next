@@ -34,7 +34,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       },
     };
   }
-  console.log("q", data, error);
+
   return {
     props: {
       products: data,
