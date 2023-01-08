@@ -22,7 +22,7 @@ export const ProductStyled = styled.section`
     height: 100%;
     border-radius: 10px;
   }
-  @media screen and (min-width: 320px) and (max-width: 770px) {
+  @media screen and (min-width: 320px) and (max-width: 768px) {
     width: 100%;
     .wrapperDescriptionProduct {
       display: flex;
@@ -31,16 +31,49 @@ export const ProductStyled = styled.section`
       justify-content: center;
     }
     .wrapperButtonProduct {
-      width: 70%;
+      width: 100%;
       display: flex;
       flex-direction: row;
       align-items: center;
       justify-content: space-between;
       margin: 10px 0px;
     }
+    .wrapperInput {
+      // margin: 10px;
+    }
     img {
       width: 100%;
       height: 100%;
+    }
+  }
+  @media screen and (min-width: 768px) {
+    max-width: 760px;
+    flex-direction: row;
+    max-height: 100px;
+    align-items: center;
+    justify-content: space-around;
+
+    .wrapperDescriptionProduct {
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .wrapperButtonProduct {
+      width: 300px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+    }
+    .wrapperInput {
+      margin: 5px;
+    }
+    img {
+      width: 90%;
+      max-height: 100px;
+      border-radius: 20px;
     }
   }
 `;
@@ -48,8 +81,8 @@ export const ProductStyled = styled.section`
 export const ProductLink = styled(StyledLink)`
   display: flex;
   width: 100%;
-  @media (min-width: 900px) {
-    width: 100%;
+  @media (min-width: 768px) {
+    width: 40%;
   }
 `;
 

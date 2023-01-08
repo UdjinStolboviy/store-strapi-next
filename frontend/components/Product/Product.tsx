@@ -4,6 +4,7 @@ import Image, { ImageProps } from "next/image";
 import { Product as ProductType } from "@/types";
 import { ProductLink, ProductStyled, Wrapper } from "./styles";
 import { IconButton } from "../IconButton";
+import { Input } from "../Input/Input";
 
 export type ProductProps = {
   /** Header string */
@@ -36,17 +37,24 @@ export const Product: FC<ProductProps> = ({
               {new Date(publishedAt).toDateString()}
             </time> */}
     </div>
+
     <div className="wrapperButtonProduct">
       <IconButton
         name={"LinkProduct"}
         size={1.5}
         onClick={() => console.log("onPressCar")}
       />
-      <IconButton
-        name={"InProduct"}
-        size={1.5}
-        onClick={() => console.log("onPressCar")}
-      />
+      <Link legacyBehavior href={link} passHref>
+        <IconButton
+          name={"InProduct"}
+          size={1.5}
+          onClick={() => console.log("onPressCar")}
+        />
+      </Link>
+      <div className="wrapperInput">
+        <Input placeholder={"шт"} width={7} height={4} />
+      </div>
+
       <IconButton
         name={"AddProduct"}
         size={1.5}
