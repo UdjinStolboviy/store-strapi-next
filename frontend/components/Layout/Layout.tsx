@@ -18,7 +18,9 @@ import {
   SearchInput,
   Content,
 } from "./components";
-import Footer from "../footer/footer";
+import Footer from "../footer/FooterMobile";
+import FooterMobile from "../footer/FooterMobile";
+import FooterDesktop from "../footer/FooterDeskstop";
 
 const useIsomorphicLayoutEffect =
   typeof window !== "undefined" ? useLayoutEffect : useEffect;
@@ -107,7 +109,8 @@ export const Layout: FC = ({ children }) => {
           onChange={searchChange}
         />
         <Content>{children}</Content>
-        <Footer />
+        <FooterMobile />
+        <FooterDesktop />
       </Wrapper>
     </ThemeProvider>
   );

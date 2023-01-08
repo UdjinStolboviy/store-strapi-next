@@ -2,13 +2,13 @@ import React from "react";
 import Image from "next/legacy/image";
 
 // Styles
-import { FooterStyled, StyleEmail } from "./styles";
+import { FooterMobileStyled, StyleEmail } from "./styles";
 import { imageLoader } from "../ImageLoader";
 import Link from "next/link";
 import { IconButton } from "../IconButton";
 
-const Footer = () => (
-  <FooterStyled>
+const FooterMobile = () => (
+  <FooterMobileStyled>
     <Link href={"/cart"} passHref legacyBehavior>
       <IconButton
         name={"Cart"}
@@ -16,6 +16,6 @@ const Footer = () => (
         onClick={() => console.log("onPressCar")}
       />
     </Link>
-  </FooterStyled>
+  </FooterMobileStyled>
 );
-export default Footer;
+export default FooterMobile;
