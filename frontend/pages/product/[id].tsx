@@ -89,7 +89,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
   }
 };
 
-const strapi_url = "https://e227-88-18-255-33.eu.ngrok.io";
+const strapi_url = process.env.NEXT_PUBLIC_STRAPI_URL;
 
 const ProductPage: NextPage<{
   product: ProductType;
