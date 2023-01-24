@@ -9,35 +9,35 @@ import { Product as ProductType, Response } from "@/types";
 import { CenteredTile } from "@/components/Tile";
 import ImageContainerProduct, { CustomLinkProduct } from "./styled-product";
 import { useRouter } from "next/router";
-import ErrorPage from 'next/error'
+import ErrorPage from "next/error";
 import { ApiService } from "@/api/apiServices";
 
 type ProductResponce = Response<ProductType>;
 type ProductsResponce = Response<ProductType[]>;
 
 export const getStaticPaths: GetStaticPaths = async () => {
- try {
-   const apiService = new ApiService();
+  try {
+    const apiService = new ApiService();
 
-  const res = await apiService.getProducts();
+    const res = await apiService.getProducts();
 
-  const response: ProductsResponce =  res;
+    const response: ProductsResponce = res;
 
-  const status = response?.error?.status;
+    const status = response?.error?.status;
 
-  if (status && (status < 200 || status >= 300)) {
+    if (status && (status < 200 || status >= 300)) {
+      return {
+        paths: [],
+        fallback: true,
+      };
+    }
+
+    const paths = response.data.map(({ id }) => `/product/${id}`);
+
     return {
-      paths: [],
+      paths,
       fallback: true,
     };
-  }
-
-  const paths = response.data.map(({ id }) => `/product/${id}`);
-
-  return {
-    paths,
-    fallback: true,
-  };
   } catch (error) {
     return {
       paths: [],
@@ -48,37 +48,37 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async (context) => {
   try {
-   const apiService = new ApiService();
+    const apiService = new ApiService();
 
-  const id = context?.params?.id;
+    const id = context?.params?.id;
 
-  const res = await apiService.getProductsID(id as string);
+    const res = await apiService.getProductsID(id as string);
 
-  const { error, data, meta }: ProductResponce = res;
+    const { error, data, meta }: ProductResponce = res;
 
-  if (error && (error?.status < 200 || error?.status >= 300)) {
+    if (error && (error?.status < 200 || error?.status >= 300)) {
+      return {
+        props: {
+          product: {},
+          meta: {},
+        },
+      };
+    }
+
+    const md = new MarkdownIt();
+
     return {
       props: {
-        product: {},
-        meta: {},
+        product: {
+          ...data,
+          attributes: {
+            ...data.attributes,
+            description: md.render(data.attributes.description),
+          },
+        },
+        meta: meta,
       },
     };
-  }
-
-  const md = new MarkdownIt();
-
-  return {
-    props: {
-      product: {
-        ...data,
-        attributes: {
-          ...data.attributes,
-          description: md.render(data.attributes.description),
-        },
-      },
-      meta: meta,
-    },
-  };
   } catch (error) {
     return {
       props: {
@@ -89,14 +89,12 @@ export const getStaticProps: GetStaticProps = async (context) => {
   }
 };
 
-const strapi_url = process.env.NEXT_PUBLIC_STRAPI_URL;
+const strapi_url = "https://e227-88-18-255-33.eu.ngrok.io";
 
 const ProductPage: NextPage<{
   product: ProductType;
-  meta:  ProductResponce["meta"];
+  meta: ProductResponce["meta"];
 }> = ({ product }) => {
-  
-   
   if (product && product?.attributes) {
     const {
       attributes: {
