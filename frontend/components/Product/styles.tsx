@@ -47,21 +47,21 @@ export const ProductStyled = styled.section`
     }
   }
   @media screen and (min-width: 768px) {
-    max-width: 760px;
+    max-width: 1000px;
     flex-direction: row;
     max-height: 100px;
     align-items: center;
     justify-content: space-around;
 
     .wrapperDescriptionProduct {
-      width: 50%;
+      width: 30%;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
     }
     .wrapperButtonProduct {
-      width: 300px;
+      width: 600px;
       display: flex;
       flex-direction: row;
       align-items: center;

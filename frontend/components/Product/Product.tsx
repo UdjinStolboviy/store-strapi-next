@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import Link from "next/link";
 import Image, { ImageProps } from "next/image";
 import { Product as ProductType } from "@/types";
@@ -23,47 +23,73 @@ export const Product: FC<ProductProps> = ({
   link,
   imageProps,
   subtitle,
-}) => (
-  <ProductStyled>
-    <Link legacyBehavior href={link} passHref>
-      <ProductLink>
-        <Image {...imageProps} alt={header} />
-      </ProductLink>
-    </Link>
-    <div className="wrapperDescriptionProduct">
-      <h3>{header}</h3>
-      <h4>{subtitle}</h4>
-      {/* <time dateTime={publishedAt}>
+}) => {
+  const [valueProduct, setValueProduct] = useState("");
+  const minusProduct = () => {
+    if (Number(valueProduct) > 0) {
+      const value = Number(valueProduct) - 1;
+      setValueProduct(value.toString());
+    }
+  };
+  const plusProduct = () => {
+    const value = Number(valueProduct) + 1;
+    setValueProduct(value.toString());
+  };
+  const onChangeProduct = (e: any) => {
+    if (e.target.value === "") {
+      setValueProduct("");
+    }
+    e.target.value && setValueProduct(e.target.value);
+  };
+  return (
+    <ProductStyled>
+      <Link legacyBehavior href={link} passHref>
+        <ProductLink>
+          <Image {...imageProps} alt={header} />
+        </ProductLink>
+      </Link>
+      <div className="wrapperDescriptionProduct">
+        <h3>{header}</h3>
+        <h4>{subtitle}</h4>
+        {/* <time dateTime={publishedAt}>
               {new Date(publishedAt).toDateString()}
             </time> */}
-    </div>
+      </div>
 
-    <div className="wrapperButtonProduct">
-      <IconButton
-        name={"LinkProduct"}
-        size={1.5}
-        onClick={() => console.log("onPressCar")}
-      />
-      <Link legacyBehavior href={link} passHref>
+      <div className="wrapperButtonProduct">
         <IconButton
-          name={"InProduct"}
+          name={"LinkProduct"}
           size={1.5}
           onClick={() => console.log("onPressCar")}
         />
-      </Link>
-      <div className="wrapperInput">
-        <Input placeholder={"шт"} width={7} height={4} />
+        <Link legacyBehavior href={link} passHref>
+          <IconButton
+            name={"InProduct"}
+            size={1.5}
+            onClick={() => console.log("onPressCar")}
+          />
+        </Link>
+        <IconButton name={"MinusProduct"} size={1.5} onClick={minusProduct} />
+        <div className="wrapperInput">
+          <Input
+            placeholder={"шт"}
+            width={7}
+            height={4}
+            value={valueProduct ? valueProduct : ""}
+            onChange={onChangeProduct}
+          />
+        </div>
+        <IconButton name={"PluseProduct"} size={1.5} onClick={plusProduct} />
+        <IconButton
+          name={"AddProduct"}
+          size={1.5}
+          onClick={() => console.log("onPressCar")}
+        />
       </div>
-
-      <IconButton
-        name={"AddProduct"}
-        size={1.5}
-        onClick={() => console.log("onPressCar")}
-      />
-    </div>
-    {children}
-  </ProductStyled>
-);
+      {children}
+    </ProductStyled>
+  );
+};
 
 export const Products: FC<{ products: ProductType[]; strapi_url: string }> = ({
   products,
