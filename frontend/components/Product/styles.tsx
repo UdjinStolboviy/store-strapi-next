@@ -49,7 +49,7 @@ export const ProductStyled = styled.section`
   @media screen and (min-width: 768px) {
     max-width: 1000px;
     flex-direction: row;
-    max-height: 100px;
+    max-height: 120px;
     align-items: center;
     justify-content: space-around;
 

@@ -15,6 +15,8 @@ export type ProductProps = {
   imageProps: ImageProps;
   /** Subtitle string */
   subtitle: string;
+  /** Product object */
+  product: ProductType;
 };
 
 export const Product: FC<ProductProps> = ({
@@ -23,8 +25,10 @@ export const Product: FC<ProductProps> = ({
   link,
   imageProps,
   subtitle,
+  product,
 }) => {
   const [valueProduct, setValueProduct] = useState("");
+  const [productValue, setProductValue] = useState<ProductType>(product);
   const minusProduct = () => {
     if (Number(valueProduct) > 0) {
       const value = Number(valueProduct) - 1;
@@ -49,11 +53,12 @@ export const Product: FC<ProductProps> = ({
         </ProductLink>
       </Link>
       <div className="wrapperDescriptionProduct">
-        <h3>{header}</h3>
+        <h4>{header}</h4>
         <h4>{subtitle}</h4>
-        {/* <time dateTime={publishedAt}>
-              {new Date(publishedAt).toDateString()}
-            </time> */}
+        <h4>{`1 шт = ${product.attributes.price} грн`}</h4>
+        <h4>{`${valueProduct} шт = ${
+          product.attributes.price * Number(valueProduct)
+        } грн`}</h4>
       </div>
 
       <div className="wrapperButtonProduct">
@@ -96,37 +101,20 @@ export const Products: FC<{ products: ProductType[]; strapi_url: string }> = ({
   strapi_url,
 }) => (
   <Wrapper>
-    {products?.map(
-      ({
-        id,
-        attributes: {
-          header,
-          subtitle,
-          publishedAt,
-          cover: {
-            data: {
-              attributes: {
-                formats: {
-                  medium: { url, width, height },
-                },
-              },
-            },
-          },
-        },
-      }) => (
-        <Product
-          key={id}
-          header={header}
-          link={`/product/${id}`}
-          subtitle={subtitle}
-          imageProps={{
-            width,
-            height,
-            alt: `Cover for ${header}`,
-            src: `${strapi_url}${url}`,
-          }}
-        ></Product>
-      )
-    )}
+    {products?.map((product: ProductType) => (
+      <Product
+        key={product.id}
+        header={product.attributes.header}
+        link={`/product/${product.id}`}
+        subtitle={product.attributes.subtitle}
+        product={product}
+        imageProps={{
+          width: product.attributes.cover.data.attributes.formats.large.width,
+          height: product.attributes.cover.data.attributes.formats.large.height,
+          alt: `Cover for ${product.attributes.header}`,
+          src: `${strapi_url}${product.attributes.cover.data.attributes.formats.large.url}`,
+        }}
+      />
+    ))}
   </Wrapper>
 );
