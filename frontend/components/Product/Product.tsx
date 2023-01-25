@@ -45,6 +45,16 @@ export const Product: FC<ProductProps> = ({
     }
     e.target.value && setValueProduct(e.target.value);
   };
+  const showeAllPrice = () => {
+    if (valueProduct) {
+      return (
+        <h4>{`${valueProduct} шт = ${
+          product.attributes.price * Number(valueProduct)
+        } грн`}</h4>
+      );
+    }
+    return null;
+  };
   return (
     <ProductStyled>
       <Link legacyBehavior href={link} passHref>
@@ -56,9 +66,7 @@ export const Product: FC<ProductProps> = ({
         <h4>{header}</h4>
         <h4>{subtitle}</h4>
         <h4>{`1 шт = ${product.attributes.price} грн`}</h4>
-        <h4>{`${valueProduct} шт = ${
-          product.attributes.price * Number(valueProduct)
-        } грн`}</h4>
+        {showeAllPrice()}
       </div>
 
       <div className="wrapperButtonProduct">
