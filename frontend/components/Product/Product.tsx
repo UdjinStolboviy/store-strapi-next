@@ -107,22 +107,25 @@ export const Product: FC<ProductProps> = ({
 export const Products: FC<{ products: ProductType[]; strapi_url: string }> = ({
   products,
   strapi_url,
-}) => (
-  <Wrapper>
-    {products?.map((product: ProductType) => (
-      <Product
-        key={product.id}
-        header={product.attributes.header}
-        link={`/product/${product.id}`}
-        subtitle={product.attributes.subtitle}
-        product={product}
-        imageProps={{
-          width: product.attributes.cover.data.attributes.formats.large.width,
-          height: product.attributes.cover.data.attributes.formats.large.height,
-          alt: `Cover for ${product.attributes.header}`,
-          src: `${strapi_url}${product.attributes.cover.data.attributes.formats.large.url}`,
-        }}
-      />
-    ))}
-  </Wrapper>
-);
+}) => {
+  return (
+    <Wrapper>
+      {products.map((product: ProductType) => (
+        <Product
+          key={product.id}
+          header={product.attributes.header}
+          link={`/product/${product.id}`}
+          subtitle={product.attributes.subtitle}
+          product={product}
+          imageProps={{
+            width: product.attributes.cover.data.attributes.formats.small.width,
+            height:
+              product.attributes.cover.data.attributes.formats.small.height,
+            alt: `Cover for ${product.attributes.header}`,
+            src: `${strapi_url}${product.attributes.cover.data.attributes.formats.small.url}`,
+          }}
+        />
+      ))}
+    </Wrapper>
+  );
+};
