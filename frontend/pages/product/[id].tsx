@@ -106,7 +106,7 @@ const ProductPage: NextPage<{
           data: {
             attributes: {
               formats: {
-                large: { url, width },
+                medium: { url, width },
               },
             },
           },

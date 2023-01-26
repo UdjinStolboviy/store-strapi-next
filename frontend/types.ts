@@ -36,7 +36,6 @@ export type Image = Data<
   ImageFormats & {
     formats: {
       thumbnail: ImageFormats;
-      large: ImageFormats;
       medium: ImageFormats;
       small: ImageFormats;
     };
