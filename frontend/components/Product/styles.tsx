@@ -20,7 +20,7 @@ export const ProductStyled = styled.section`
   img {
     width: 100px;
     height: 100%;
-    border-radius: 10px;
+    border-radius: 30px;
   }
   @media screen and (min-width: 320px) and (max-width: 768px) {
     width: 100%;
@@ -54,14 +54,15 @@ export const ProductStyled = styled.section`
     justify-content: space-around;
 
     .wrapperDescriptionProduct {
-      width: 30%;
+      width: 50%;
+      margin-left: 10px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
     }
     .wrapperButtonProduct {
-      width: 600px;
+      width: 60%;
       display: flex;
       flex-direction: row;
       align-items: center;
@@ -71,7 +72,7 @@ export const ProductStyled = styled.section`
       margin: 5px;
     }
     img {
-      width: 90%;
+      width: 100%;
       max-height: 100px;
       border-radius: 20px;
     }
