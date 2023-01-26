@@ -104,11 +104,7 @@ const ProductPage: NextPage<{
         publishedAt,
         cover: {
           data: {
-            attributes: {
-              formats: {
-                medium: { url, width },
-              },
-            },
+            attributes: { url, width, height },
           },
         },
       },
@@ -130,16 +126,16 @@ const ProductPage: NextPage<{
             />
           </ImageContainerProduct>
           <Link href={link} passHref legacyBehavior>
-            <CustomLinkProduct>Enroll now!</CustomLinkProduct>
+            <CustomLinkProduct>
+              Це посилання на стороній ресурс для детального ознайомлення з цім
+              продуктом
+            </CustomLinkProduct>
           </Link>
           <div
             style={{ maxWidth: width }}
             dangerouslySetInnerHTML={{ __html: description }}
           />
-          <Link href={link} passHref legacyBehavior>
-            <CustomLinkProduct>Enroll now!</CustomLinkProduct>
-          </Link>
-          <h4>{new Date(publishedAt).toDateString()}</h4>
+          <h2>{new Date(publishedAt).toDateString()}</h2>
         </CenteredTile>
       </>
     );
