@@ -95,17 +95,17 @@ const setupCartToLocalStorage = (result: CartPayload) => {
 
 };
 
-export const addCart = createAsyncThunk<CartPayload, LoginData | undefined>(
-    "cart/add",
-    async (loginData, { rejectWithValue }) => {
-        try {
+// export const addCart = createAsyncThunk<CartPayload, LoginData | undefined>(
+//     "cart/add",
+//     async (loginData, { rejectWithValue }) => {
+//         try {
 
 
-            setupCartToLocalStorage(result);
-            return result;
-        } catch (error) {
-            clearUserInfoFromLocalStorage();
-            return rejectWithValue(error);
-        }
-    }
-);
+//             setupCartToLocalStorage(result);
+//             return result;
+//         } catch (error) {
+//             clearUserInfoFromLocalStorage();
+//             return rejectWithValue(error);
+//         }
+//     }
+// );

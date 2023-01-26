@@ -65,7 +65,7 @@ export const Product: FC<ProductProps> = ({
       <div className="wrapperDescriptionProduct">
         <h4>{header}</h4>
         <h4>{subtitle}</h4>
-        <h4>{`1 шт = ${product.attributes.price} грн`}</h4>
+        <h4>{`${product.attributes.price} грн / шт`}</h4>
         {showeAllPrice()}
       </div>
 
