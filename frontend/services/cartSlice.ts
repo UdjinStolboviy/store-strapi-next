@@ -29,9 +29,9 @@ export type RegistrationData = {
     password: string;
 };
 
-export const clearCart = createAsyncThunk("cart/clear", async () =>
-    clearCartLocalStorage()
-);
+// export const clearCart = createAsyncThunk("cart/clear", async () =>
+//     clearCartLocalStorage()
+// );
 
 type CartPayload = { cart: Product[], infoUser: string };
 
@@ -43,42 +43,57 @@ export const initialState: CartState = {
 export const cartSlice = createSlice({
     name: "cart",
     initialState,
-    reducers: {},
-    extraReducers: (builder) => {
-
-        builder.addCase(clearCart.fulfilled, () => initialState);
-
-
-        builder
-            .addMatcher<PayloadAction<CartPayload>>(
-                (action) => /\/(login|registration)\/fulfilled$/.test(action.type),
-                (state, { payload }) => {
-                    state.requestState = "fulfilled";
-                    state.cart = payload.cart;
-                    state.infoUser = payload.infoUser;
-                    state.error = undefined;
-                }
-            )
-            .addMatcher(
-                (action) => action.type.endsWith("/pending"),
-                (state) => {
-                    state.requestState = "pending";
-                }
-            )
-            .addMatcher(
-                (action) => action.type.endsWith("/rejected"),
-                (state, { payload }) => {
-                    const payloadError = (payload as { error: SerializedError })?.error;
-                    state.error = payloadError;
-                    state.requestState = "rejected";
-                }
-            );
+    reducers: {
+        addCart: (state, action) => {
+            state.cart = [...state.cart, action.payload];
+            state.infoUser = action.payload.infoUser;
+        }
     },
 });
 
-export const { actions, reducer } = cartSlice;
+// export const cartSlice = createSlice({
+//     name: "cart",
+//     initialState,
+//     reducers: {},
+//     extraReducers: (builder) => {
 
-export const selectCart = ({ cart }: RootState) => cart;
+//         builder.addCase(clearCart.fulfilled, () => initialState);
+
+
+//         builder
+//             .addMatcher<PayloadAction<CartPayload>>(
+//                 (action) => /\/(login|registration)\/fulfilled$/.test(action.type),
+//                 (state, { payload }) => {
+//                     state.requestState = "fulfilled";
+//                     state.cart = payload.cart;
+//                     state.infoUser = payload.infoUser;
+//                     state.error = undefined;
+//                 }
+//             )
+//             .addMatcher(
+//                 (action) => action.type.endsWith("/pending"),
+//                 (state) => {
+//                     state.requestState = "pending";
+//                 }
+//             )
+//             .addMatcher(
+//                 (action) => action.type.endsWith("/rejected"),
+//                 (state, { payload }) => {
+//                     const payloadError = (payload as { error: SerializedError })?.error;
+//                     state.error = payloadError;
+//                     state.requestState = "rejected";
+//                 }
+//             );
+//     },
+// });
+
+//export const { actions, reducer } = cartSlice;
+
+//export const selectCart = ({ cart }: RootState) => cart;
+
+export const { addCart } = cartSlice.actions;
+
+export default cartSlice.reducer;
 
 const api_url = process.env.NEXT_PUBLIC_STRAPI_API_URL;
 

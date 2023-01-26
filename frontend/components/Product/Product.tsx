@@ -5,6 +5,9 @@ import { Product as ProductType } from "@/types";
 import { ProductLink, ProductStyled, Wrapper } from "./styles";
 import { IconButton } from "../IconButton";
 import { Input } from "../Input/Input";
+import { AppDispatch } from "@/store";
+import { useDispatch } from "react-redux";
+import { addCart } from "@/services/cartSlice";
 
 export type ProductProps = {
   /** Header string */
@@ -29,6 +32,19 @@ export const Product: FC<ProductProps> = ({
 }) => {
   const [valueProduct, setValueProduct] = useState("");
   const [productValue, setProductValue] = useState<ProductType>(product);
+
+  const dispatch = useDispatch<AppDispatch>();
+
+  const handleAddToCart = () => {
+    if (productValue) {
+      const product = {
+        ...productValue,
+        quantity: Number(valueProduct),
+      };
+      dispatch(addCart(product));
+    }
+  };
+
   const minusProduct = () => {
     if (Number(valueProduct) > 0) {
       const value = Number(valueProduct) - 1;
@@ -96,11 +112,7 @@ export const Product: FC<ProductProps> = ({
           />
         </div>
         <IconButton name={"PluseProduct"} size={1.5} onClick={plusProduct} />
-        <IconButton
-          name={"AddProduct"}
-          size={1.5}
-          onClick={() => console.log("onPressCar")}
-        />
+        <IconButton name={"AddProduct"} size={1.5} onClick={handleAddToCart} />
       </div>
       {children}
     </ProductStyled>
