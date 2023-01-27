@@ -11,7 +11,8 @@ export const Wrapper = styled.div`
   background-color: ${({ theme }) => theme.background};
   padding: 0.5rem;
  // border: 4px solid #000;
-  
+
+
   grid-template-areas:
     "header  nav"
     "search  search"
@@ -37,6 +38,18 @@ export const Wrapper = styled.div`
 export const LogoLink = styled(StyledLink)`
   padding-right: 1vw;
 `;
+
+export const StyledBottomIndicator = styled.div`
+  display: 'absolute';
+  top: 0;
+  width: 30;
+   &.bobbleIndicator {
+    display: 'absolute';
+    top: 0;
+    width: 30;
+    height: 30;
+  }
+  `;
 
 export const StyledLogo = styled(Logo)`
   grid-area: header;

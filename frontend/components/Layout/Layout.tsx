@@ -17,6 +17,7 @@ import {
   MainNav,
   SearchInput,
   Content,
+  StyledBottomIndicator,
 } from "./components";
 import Footer from "../footer/FooterMobile";
 import FooterMobile from "../footer/FooterMobile";
@@ -33,6 +34,7 @@ export const Layout: FC = ({ children }) => {
   const { username } = useSelector<RootState, RootState["user"]>(selectUser);
   const [isDark, setIsDark] = useState(true);
   const dispatch = useDispatch<AppDispatch>();
+  const dataCart = useSelector((state: RootState) => state.cart.cart);
 
   const toggleDark = () => {
     localStorage.setItem("theme", isDark ? "light" : "dark");
@@ -95,11 +97,18 @@ export const Layout: FC = ({ children }) => {
             onClick={toggleDark}
           />
           <Link href={"/cart"} passHref legacyBehavior>
-            <IconButton
-              name={"Cart"}
-              size={1.5}
-              onClick={() => console.log("onPressCar")}
-            />
+            <StyledBottomIndicator>
+              <div className="bobbleIndicator">
+                {dataCart.length > 0 && (
+                  <span className="bobble">{dataCart.length}</span>
+                )}
+              </div>
+              <IconButton
+                name={"Cart"}
+                size={1.5}
+                onClick={() => console.log("onPressCar")}
+              />
+            </StyledBottomIndicator>
           </Link>
         </MainNav>
         <SearchInput
