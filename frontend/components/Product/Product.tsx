@@ -1,13 +1,13 @@
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import Link from "next/link";
 import Image, { ImageProps } from "next/image";
 import { Product as ProductType } from "@/types";
 import { ProductLink, ProductStyled, Wrapper } from "./styles";
 import { IconButton } from "../IconButton";
 import { Input } from "../Input/Input";
-import { AppDispatch } from "@/store";
-import { useDispatch } from "react-redux";
-import { addCart } from "@/services/cartSlice";
+import { AppDispatch, RootState } from "@/store";
+import { useDispatch, useSelector } from "react-redux";
+import { addCart, removeProduct } from "@/services/cartSlice";
 
 export type ProductProps = {
   /** Header string */
@@ -20,6 +20,8 @@ export type ProductProps = {
   subtitle: string;
   /** Product object */
   product: ProductType;
+
+  showRemoveToCart?: boolean;
 };
 
 export const Product: FC<ProductProps> = ({
@@ -29,6 +31,7 @@ export const Product: FC<ProductProps> = ({
   imageProps,
   subtitle,
   product,
+  showRemoveToCart,
 }) => {
   const [valueProduct, setValueProduct] = useState("");
   const [productValue, setProductValue] = useState<ProductType>(product);
@@ -43,6 +46,31 @@ export const Product: FC<ProductProps> = ({
       };
       dispatch(addCart(product));
     }
+  };
+
+  const handleRemoveFromCart = () => {
+    if (productValue) {
+      const product = {
+        ...productValue,
+        quantity: Number(valueProduct),
+      };
+      dispatch(removeProduct(product));
+    }
+  };
+
+  const viewRemoveToCart = () => {
+    if (showRemoveToCart) {
+      return (
+        <IconButton
+          name={"CancelCart"}
+          size={1.5}
+          onClick={handleRemoveFromCart}
+        />
+      );
+    }
+    return (
+      <IconButton name={"AddProduct"} size={1.5} onClick={handleAddToCart} />
+    );
   };
 
   const minusProduct = () => {
@@ -112,7 +140,7 @@ export const Product: FC<ProductProps> = ({
           />
         </div>
         <IconButton name={"PluseProduct"} size={1.5} onClick={plusProduct} />
-        <IconButton name={"AddProduct"} size={1.5} onClick={handleAddToCart} />
+        {viewRemoveToCart()}
       </div>
       {children}
     </ProductStyled>

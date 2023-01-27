@@ -26,6 +26,7 @@ const Cart: NextPage = () => {
           link={`/product/${product.id}`}
           subtitle={product.attributes.subtitle}
           product={product}
+          showRemoveToCart
           imageProps={{
             width: product.attributes.cover.data.attributes.formats.small.width,
             height:

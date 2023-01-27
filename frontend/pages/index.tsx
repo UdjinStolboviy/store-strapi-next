@@ -5,6 +5,9 @@ import { Products } from "@/components/Product";
 import { ApiService } from "@/api/apiServices";
 import { useRouter } from "next/router";
 import ErrorPage from "next/error";
+import { RootState } from "@/store";
+import { useSelector } from "react-redux";
+import { Product as ProductType, Response } from "@/types";
 
 const strapi_url = process.env.NEXT_PUBLIC_STRAPI_URL;
 
@@ -32,6 +35,23 @@ export async function getStaticProps() {
 }
 
 const Home: NextPage = ({ products }: any) => {
+  const dataCart = useSelector((state: RootState) => state.cart.cart);
+
+  const filterProductsAddCart = (products: ProductType[]) => {
+    const resultSort: ProductType[] = [];
+    if (dataCart.length === 0) {
+      return products;
+    }
+    products.forEach((product) => {
+      const check = dataCart.find(
+        (item: ProductType) => item.id === product.id
+      );
+      if (!check) {
+        resultSort.push(product);
+      }
+    });
+    return resultSort;
+  };
   return (
     <>
       <Head>
@@ -39,7 +59,10 @@ const Home: NextPage = ({ products }: any) => {
         <meta name="description" content="fish tropical for everyone" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Products products={products.data} strapi_url={String(strapi_url)} />
+      <Products
+        products={filterProductsAddCart(products.data)}
+        strapi_url={String(strapi_url)}
+      />
     </>
   );
 };

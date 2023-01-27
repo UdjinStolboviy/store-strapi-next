@@ -7,6 +7,8 @@ import { Product as ProductType, Response } from "@/types";
 import { ApiService } from "@/api/apiServices";
 import HeaderSearch from "./styled-search";
 import { Products } from "@/components/Product/Product";
+import { useSelector } from "react-redux";
+import { RootState } from "@/store";
 
 type ProductsResponce = Response<ProductType[]>;
 const strapi_url = process.env.NEXT_PUBLIC_STRAPI_URL;
@@ -66,12 +68,32 @@ const Search: NextPage<{ products: ProductType[]; error?: string }> = ({
     setProducts(ssrProducts);
     setError(ssrError);
   }, [q]);
+  const dataCart = useSelector((state: RootState) => state.cart.cart);
+
+  const filterProductsAddCart = (products: ProductType[]) => {
+    const resultSort: ProductType[] = [];
+    if (dataCart.length === 0) {
+      return products;
+    }
+    products.forEach((product) => {
+      const check = dataCart.find(
+        (item: ProductType) => item.id === product.id
+      );
+      if (!check) {
+        resultSort.push(product);
+      }
+    });
+    return resultSort;
+  };
 
   return (
     <>
       <HeaderSearch>{headerRender(q as string, products, error)}</HeaderSearch>
       {products && (
-        <Products products={products} strapi_url={String(strapi_url)} />
+        <Products
+          products={filterProductsAddCart(products)}
+          strapi_url={String(strapi_url)}
+        />
       )}
     </>
   );
