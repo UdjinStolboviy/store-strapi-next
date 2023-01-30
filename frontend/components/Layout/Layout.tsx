@@ -34,7 +34,16 @@ export const Layout: FC = ({ children }) => {
   const { username } = useSelector<RootState, RootState["user"]>(selectUser);
   const [isDark, setIsDark] = useState(true);
   const dispatch = useDispatch<AppDispatch>();
-  const dataCart = useSelector((state: RootState) => state.cart.cart);
+
+  // const startAnimation = () => {
+  //   const indicator = document.querySelector(".bobble");
+  //   indicator?.classList.add("pulse");
+  //   indicator?.classList.add("animated");
+  // };
+  const dataCart = useSelector((state: RootState) => {
+    // startAnimation();
+    return state.cart.cart;
+  });
 
   const toggleDark = () => {
     localStorage.setItem("theme", isDark ? "light" : "dark");
@@ -96,20 +105,19 @@ export const Layout: FC = ({ children }) => {
             size={1.5}
             onClick={toggleDark}
           />
+
           <Link href={"/cart"} passHref legacyBehavior>
-            <StyledBottomIndicator>
-              <div className="bobbleIndicator">
-                {dataCart.length > 0 && (
-                  <span className="bobble">{dataCart.length}</span>
-                )}
-              </div>
-              <IconButton
-                name={"Cart"}
-                size={1.5}
-                onClick={() => console.log("onPressCar")}
-              />
-            </StyledBottomIndicator>
+            <IconButton
+              name={"Cart"}
+              size={1.5}
+              onClick={() => console.log("onPressCar")}
+            />
           </Link>
+          <StyledBottomIndicator>
+            {dataCart.length > 0 && (
+              <span className="bobble">{dataCart.length}</span>
+            )}
+          </StyledBottomIndicator>
         </MainNav>
         <SearchInput
           icon="Search"

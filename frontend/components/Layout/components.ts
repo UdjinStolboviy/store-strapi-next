@@ -40,15 +40,26 @@ export const LogoLink = styled(StyledLink)`
 `;
 
 export const StyledBottomIndicator = styled.div`
-  display: 'absolute';
-  top: 0;
-  width: 30;
-   &.bobbleIndicator {
-    display: 'absolute';
-    top: 0;
-    width: 30;
-    height: 30;
-  }
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 3px;
+    right: 20px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #0CB3A1;
+    & span {
+      width: 30;
+      height: 30;
+      color: #fff;
+      font-weight: 700;
+      font-size: 1rem;
+      text-align: center;
+      line-height: 30px;
+    }
+  
   `;
 
 export const StyledLogo = styled(Logo)`
