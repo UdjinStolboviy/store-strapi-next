@@ -1,3 +1,12 @@
+vncserver-start
+sudo service mysql start
+sudo yarn start
+./ngrok
+./ngrok http 8082
+yarn install --network-timeout 600000
+-------------------------------------
+
+
 npm cache clean -f
 
 npx create-next-app --ts
