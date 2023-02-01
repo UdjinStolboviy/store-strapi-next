@@ -21,6 +21,8 @@ export type ProductProps = {
   /** Product object */
   product: ProductType;
 
+  quantity?: number;
+
   showRemoveToCart?: boolean;
 };
 
@@ -135,7 +137,7 @@ export const Product: FC<ProductProps> = ({
             placeholder={"шт"}
             width={7}
             height={4}
-            value={valueProduct ? valueProduct : ""}
+            value={valueProduct ? valueProduct : productValue.quantity}
             onChange={onChangeProduct}
           />
         </div>
@@ -160,6 +162,7 @@ export const Products: FC<{ products: ProductType[]; strapi_url: string }> = ({
           link={`/product/${product.id}`}
           subtitle={product.attributes.subtitle}
           product={product}
+          quantity={product.quantity ? product.quantity : ""}
           imageProps={{
             width: product.attributes.cover.data.attributes.formats.small.width,
             height:

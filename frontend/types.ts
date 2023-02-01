@@ -5,6 +5,7 @@ export type Response<D = null> = {
 };
 
 export type Data<A = Record<string, unknown>> = {
+  quantity: any;
   id: number;
   attributes: A;
 };
@@ -56,4 +57,5 @@ export type Product = Data<{
   size: number;
   price: number;
   availableProd: number;
+  quantity?: number;
 }>;

@@ -45,7 +45,6 @@ export const StyledBottomIndicator = styled.div`
     justify-content: center;
     align-items: center;
     top: 3px;
-    right: 20px;
     width: 30px;
     height: 30px;
     border-radius: 50%;

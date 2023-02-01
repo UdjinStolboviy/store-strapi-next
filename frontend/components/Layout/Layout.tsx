@@ -113,11 +113,11 @@ export const Layout: FC = ({ children }) => {
               onClick={() => console.log("onPressCar")}
             />
           </Link>
-          <StyledBottomIndicator>
-            {dataCart.length > 0 && (
+          {dataCart.length > 0 && (
+            <StyledBottomIndicator>
               <span className="bobble">{dataCart.length}</span>
-            )}
-          </StyledBottomIndicator>
+            </StyledBottomIndicator>
+          )}
         </MainNav>
         <SearchInput
           icon="Search"
@@ -126,7 +126,7 @@ export const Layout: FC = ({ children }) => {
           onChange={searchChange}
         />
         <Content>{children}</Content>
-        <FooterMobile />
+        <FooterMobile dataCart={dataCart} />
         <FooterDesktop />
       </Wrapper>
     </ThemeProvider>
