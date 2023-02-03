@@ -4,11 +4,12 @@ import StyleGuide from "@/styles/style-guide";
 import styled from "@emotion/styled";
 
 export const FooterMobileStyled = styled.footer`
+  display: flex;
   grid-area: footer;
   position: fixed;
   bottom: 0;
   left: 50%;
-  width: 95%;
+  flax-direction: row;
   transform: translate(-50%, 0%);
   padding: 10px 10px 10px 10px;
   border-radius: 90px;
@@ -16,7 +17,7 @@ export const FooterMobileStyled = styled.footer`
   background: ${({ theme }) => theme.background};
   ${({ theme }) =>
     boxShadow(theme.components.shadow1, theme.components.shadow2)};
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 769px) {
     display: none;
   }
 `;

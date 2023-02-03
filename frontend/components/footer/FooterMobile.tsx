@@ -11,9 +11,17 @@ import { Product } from "@/types";
 
 interface IFooterMobileProps {
   dataCart: Product[];
+  username: string;
+  isDark: boolean;
+  toggleDark: () => void;
 }
 
-const FooterMobile = ({ dataCart }: IFooterMobileProps) => (
+const FooterMobile = ({
+  dataCart,
+  username,
+  isDark,
+  toggleDark,
+}: IFooterMobileProps) => (
   <FooterMobileStyled>
     <Link href={"/cart"} passHref legacyBehavior>
       <div>
@@ -28,6 +36,20 @@ const FooterMobile = ({ dataCart }: IFooterMobileProps) => (
           </StyledBottomIndicator>
         )}
       </div>
+    </Link>
+    <Link href={username ? "/user" : "/login"} passHref legacyBehavior>
+      <IconButton name={username ? "User" : "Login"} size={1.5} />
+    </Link>
+    <IconButton
+      name={!isDark ? "Moon" : "Sun"}
+      size={1.5}
+      onClick={() => toggleDark()}
+    />
+    <Link href={"/"} passHref legacyBehavior>
+      <IconButton name={"Home"} size={1.5} />
+    </Link>
+    <Link href={"/"} passHref legacyBehavior>
+      <IconButton name={"Message"} size={1.5} />
     </Link>
   </FooterMobileStyled>
 );

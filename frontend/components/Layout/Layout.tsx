@@ -126,7 +126,12 @@ export const Layout: FC = ({ children }) => {
           onChange={searchChange}
         />
         <Content>{children}</Content>
-        <FooterMobile dataCart={dataCart} />
+        <FooterMobile
+          dataCart={dataCart}
+          isDark={isDark}
+          username={username}
+          toggleDark={() => toggleDark()}
+        />
         <FooterDesktop />
       </Wrapper>
     </ThemeProvider>

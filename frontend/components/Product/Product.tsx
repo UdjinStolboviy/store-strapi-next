@@ -35,8 +35,10 @@ export const Product: FC<ProductProps> = ({
   product,
   showRemoveToCart,
 }) => {
-  const [valueProduct, setValueProduct] = useState("");
   const [productValue, setProductValue] = useState<ProductType>(product);
+  const [valueProduct, setValueProduct] = useState(
+    productValue.quantity ? productValue.quantity.toString() : ""
+  );
 
   const dispatch = useDispatch<AppDispatch>();
 
@@ -94,9 +96,9 @@ export const Product: FC<ProductProps> = ({
   const showeAllPrice = () => {
     if (valueProduct) {
       return (
-        <h4>{`${valueProduct} шт = ${
+        <h3>{`${valueProduct} шт = ${
           product.attributes.price * Number(valueProduct)
-        } грн`}</h4>
+        } грн`}</h3>
       );
     }
     return null;
@@ -109,12 +111,12 @@ export const Product: FC<ProductProps> = ({
         </ProductLink>
       </Link>
       <div className="wrapperDescriptionProduct">
-        <h4>{header}</h4>
-        <h4>{subtitle}</h4>
+        <h3>{header}</h3>
+        <h3>{subtitle}</h3>
       </div>
 
       <div className="wrapperDescriptionProduct">
-        <h4>{`${product.attributes.price} грн / шт`}</h4>
+        <h3>{`${product.attributes.price} грн / шт`}</h3>
         {showeAllPrice()}
       </div>
 
