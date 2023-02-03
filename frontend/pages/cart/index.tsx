@@ -5,8 +5,10 @@ import { useSelector, useDispatch } from "react-redux";
 import { RootState, AppDispatch } from "@/store";
 import { selectUser, login } from "@/services/userSlice";
 import StyledCart from "./styled-cart";
+import { ApiService } from "@/api/apiServices";
 import { Product as ProductType } from "@/types";
 import { Product } from "@/components/Product";
+import { SecondaryButton } from "@/components/Button/Button";
 
 export type LoginForm = {
   identifier: string;
@@ -16,6 +18,35 @@ const strapi_url = process.env.NEXT_PUBLIC_STRAPI_URL;
 const Cart: NextPage = () => {
   const dataCart = useSelector((state: RootState) => state.cart.cart);
   const dispatch = useDispatch<AppDispatch>();
+  const apiService = new ApiService();
+
+  const sentMesegTelegram = () => {
+    const deteil = {
+      text: "fsdfdsf",
+      parse_mode: "kjdfksjdfk",
+      chat_id: "sdsjfkdfj",
+    };
+    // await apiService.sendNotification(deteil);
+  };
+
+  const getBotUpdates = () =>
+    fetch("https://api.telegram.org/bot{token}/getUpdates").then((response) =>
+      response.json()
+    );
+
+  const getUserTelegramId = async (uniqueString) => {
+    const { result } = await getBotUpdates();
+
+    const messageUpdates = result.filter(
+      ({ message }) => message?.text !== undefined
+    );
+
+    const userUpdate = messageUpdates.find(
+      ({ message }) => message.text === `/start ${uniqueString}`
+    );
+
+    return userUpdate.message.from.id;
+  };
 
   return (
     <StyledCart>
@@ -36,6 +67,10 @@ const Cart: NextPage = () => {
           }}
         />
       ))}
+
+      <SecondaryButton onClick={() => console.log("hdhdh")}>
+        {"створити заказ"}
+      </SecondaryButton>
     </StyledCart>
   );
 };
