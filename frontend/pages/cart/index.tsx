@@ -21,12 +21,16 @@ const Cart: NextPage = () => {
   const apiService = new ApiService();
 
   const sentMesegTelegram = () => {
-    const deteil = {
-      text: "fsdfdsf",
-      parse_mode: "kjdfksjdfk",
-      chat_id: "sdsjfkdfj",
-    };
-    // await apiService.sendNotification(deteil);
+    try {
+      const deteil = {
+        text: "fsdfdsf",
+        parse_mode: "kjdfksjdfk",
+        chat_id: "sdsjfkdfj",
+      };
+      // await apiService.sendNotification(deteil);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const getBotUpdates = () =>
