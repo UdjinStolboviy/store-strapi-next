@@ -20,14 +20,15 @@ const Cart: NextPage = () => {
   const dispatch = useDispatch<AppDispatch>();
   const apiService = new ApiService();
 
-  const sentMesegTelegram = () => {
+  const sentMesegTelegram = async () => {
     try {
+      console.log("dataCart", dataCart);
       const deteil = {
-        text: "fsdfdsf",
-        parse_mode: "kjdfksjdfk",
-        chat_id: "sdsjfkdfj",
+        text: "Hahahaahah!",
+        parse_mode: "html",
+        chat_id: "428707575",
       };
-      // await apiService.sendNotification(deteil);
+      const respons = await apiService.sendNotification(deteil);
     } catch (error) {
       console.log(error);
     }
@@ -72,7 +73,7 @@ const Cart: NextPage = () => {
         />
       ))}
 
-      <SecondaryButton onClick={() => console.log("hdhdh")}>
+      <SecondaryButton onClick={() => sentMesegTelegram()}>
         {"створити заказ"}
       </SecondaryButton>
     </StyledCart>
