@@ -38,15 +38,15 @@ const Cart: NextPage = () => {
       response.json()
     );
 
-  const getUserTelegramId = async (uniqueString) => {
+  const getUserTelegramId = async (uniqueString: string) => {
     const { result } = await getBotUpdates();
 
     const messageUpdates = result.filter(
-      ({ message }) => message?.text !== undefined
+      ({ message }: any) => message?.text !== undefined
     );
 
     const userUpdate = messageUpdates.find(
-      ({ message }) => message.text === `/start ${uniqueString}`
+      ({ message }: any) => message.text === `/start ${uniqueString}`
     );
 
     return userUpdate.message.from.id;
