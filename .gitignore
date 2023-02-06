@@ -23,7 +23,6 @@ frontend/.gitignore
 
 frontend/.nextignore
 
-frontend/next.config.js
 
 frontend/README.md
 
