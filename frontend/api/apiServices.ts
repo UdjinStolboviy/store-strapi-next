@@ -17,8 +17,8 @@ import { Any } from "@react-spring/types";
 type ProductsResponce = Response<ProductType[]>;
 
 const api_url = process.env.NEXT_PUBLIC_STRAPI_API_URL
-const telegramBotKey = process.env.TELEGRAM_BOT_TOKEN;
-const chat_id = process.env.TELEGRAM_USER_ID;
+const telegram_bot_key = process.env.TELEGRAM_BOT_TOKEN_URL
+const chat_id = process.env.TELEGRAM_USER_ID
 
 type FetchMethod = "GET" | "POST" | "PATCH" | "PUT" | "DELETE";
 
@@ -40,7 +40,6 @@ const fetchWithTimeout = (
 };
 
 export class ApiService {
-
     public getProductsID(id: string): Promise<any> {
         return this.makeRequest<any>(
             `${api_url}/products/${id}?populate=*`,
@@ -61,9 +60,10 @@ export class ApiService {
     }
 
     public sendNotification(details: any): Promise<any> {
-        const endpoint = `https://api.telegram.org/bot${telegramBotKey}/sendMessage`;
-        return this.makeRequest<any>(endpoint,
-            "POST", details
+        return this.makeRequest<any>(
+            `https://api.telegram.org/bot${telegram_bot_key}/sendMessage`,
+            "POST",
+            details,
         );
     }
 
