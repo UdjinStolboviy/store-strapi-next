@@ -11,6 +11,7 @@ import { Product } from "@/components/Product";
 import { SecondaryButton, PrimaryButton } from "@/components/Button/Button";
 import React from "react";
 import { TextArea } from "@/components/TextArea";
+import { IOrder } from "@/api/types";
 
 export type LoginForm = {
   identifier: string;
@@ -32,6 +33,28 @@ const Cart: NextPage = () => {
       } = ${item.quantity * item.attributes.price} \n`;
     })
     .join("")}Данні для звязку\n${dataInputArea}`;
+
+  const onOrder = async () => {
+    const orderId = "OID" + Math.floor(1000000 * Math.random());
+    try {
+      const deteil: IOrder = {
+        orderid: orderId,
+        name: "string",
+        email: "jdjfjfjd@dhfhf.jfd",
+        products: JSON.stringify(dataCart),
+        address: dataInputArea,
+        phone: "string",
+        transaction: "string",
+        amount: dataCart.length,
+        status: "string",
+        text_order: textOrder,
+        date_created: new Date().getTime().toString(),
+      };
+      const respons = await apiService.setOrder(deteil);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const sentMesegTelegram = async () => {
     try {
@@ -97,7 +120,12 @@ const Cart: NextPage = () => {
         />
       </div>
       <div className="order">
-        <PrimaryButton onClick={() => sentMesegTelegram()}>
+        <PrimaryButton
+          onClick={() => {
+            sentMesegTelegram();
+            onOrder();
+          }}
+        >
           {"створити заказ"}
         </PrimaryButton>
       </div>

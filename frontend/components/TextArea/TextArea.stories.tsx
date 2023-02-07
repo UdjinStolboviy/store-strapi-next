@@ -2,7 +2,7 @@ import { ComponentStoryObj, ComponentMeta } from "@storybook/react";
 import { expect } from "@storybook/jest";
 import { screen, userEvent } from "@storybook/testing-library";
 
-import { Input } from "./TextArea";
+import { Input } from "../Input";
 import { Feedback } from "./Feedback";
 
 export default {

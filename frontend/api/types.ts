@@ -3,6 +3,20 @@ export interface IPosts {
     meta: IMeta;
 }
 
+export interface IOrder {
+    orderid: string;
+    name: string;
+    email: string;
+    products: string;
+    address: string;
+    phone: string;
+    transaction: string;
+    amount: number;
+    status: string;
+    text_order: string;
+    date_created: string;
+}
+
 export interface IGetPost {
     data: IPost;
     meta: object;

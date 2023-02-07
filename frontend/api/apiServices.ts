@@ -7,6 +7,7 @@ import {
     IGetFeedbacks,
     IQuery,
     IGetInstagramPosts,
+    IOrder,
 } from "./types";
 import qs from "qs";
 import { Product as ProductType, Response } from "@/types";
@@ -67,6 +68,23 @@ export class ApiService {
             details,
         );
     }
+
+    public setOrder(body: IOrder): Promise<any> {
+        return this.makeRequest<any>(`${api_url}/orders`,
+            "POST",
+            {
+                data: body
+            }
+        );
+    }
+
+    // public setOrder(body: IOrder): Promise<any> {
+    //     const rawResponse = fetch(`${api_url}/orders/pretransaction`, {
+    //         method: 'POST',
+    //         body: JSON.stringify(body)
+    //     });
+    //     return rawResponse
+    // }
 
     public async searchProduct(q: string): Promise<ProductsResponce> {
 
