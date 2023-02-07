@@ -8,7 +8,9 @@ import StyledCart from "./styled-cart";
 import { ApiService } from "@/api/apiServices";
 import { Product as ProductType } from "@/types";
 import { Product } from "@/components/Product";
-import { SecondaryButton } from "@/components/Button/Button";
+import { SecondaryButton, PrimaryButton } from "@/components/Button/Button";
+import React from "react";
+import { TextArea } from "@/components/TextArea";
 
 export type LoginForm = {
   identifier: string;
@@ -19,12 +21,23 @@ const Cart: NextPage = () => {
   const dataCart = useSelector((state: RootState) => state.cart.cart);
   const dispatch = useDispatch<AppDispatch>();
   const apiService = new ApiService();
+  const [dataInputArea, setDataInputArea] = React.useState<string>("");
+
+  console.log("dataInputArea", dataCart);
+
+  const textOrder = `Замовлення \n${dataCart
+    .map((item: ProductType) => {
+      return `${item.attributes.header} - ${item.quantity}*${
+        item.attributes.price
+      } = ${item.quantity * item.attributes.price} \n`;
+    })
+    .join("")}Данні для звязку\n${dataInputArea}`;
 
   const sentMesegTelegram = async () => {
     try {
       console.log("dataCart", dataCart);
       const deteil = {
-        text: "Hahahaahah!",
+        text: textOrder,
         parse_mode: "html",
         chat_id: "428707575",
       };
@@ -72,10 +85,22 @@ const Cart: NextPage = () => {
           }}
         />
       ))}
-
-      <SecondaryButton onClick={() => sentMesegTelegram()}>
-        {"створити заказ"}
-      </SecondaryButton>
+      <div className="info-order">
+        <TextArea
+          placeholder={"*Будь ласка залиште тут данні як з вами звязатися..."}
+          width={"25"}
+          height={"15"}
+          cols={33}
+          rows={5}
+          autoComplete="on"
+          onChange={(item) => setDataInputArea(item.target.value)}
+        />
+      </div>
+      <div className="order">
+        <PrimaryButton onClick={() => sentMesegTelegram()}>
+          {"створити заказ"}
+        </PrimaryButton>
+      </div>
     </StyledCart>
   );
 };
