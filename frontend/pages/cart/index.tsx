@@ -12,6 +12,7 @@ import { SecondaryButton, PrimaryButton } from "@/components/Button/Button";
 import React from "react";
 import { TextArea } from "@/components/TextArea";
 import { IOrder } from "@/api/types";
+import moment from "moment";
 
 export type LoginForm = {
   identifier: string;
@@ -23,24 +24,36 @@ const Cart: NextPage = () => {
   const dispatch = useDispatch<AppDispatch>();
   const apiService = new ApiService();
   const [dataInputArea, setDataInputArea] = React.useState<string>("");
+  const orderId = "TFS" + Math.floor(1000000 * Math.random());
+  const dateOrder = moment().format("DD.MM.YYYY HH:mm");
 
   console.log("dataInputArea", dataCart);
 
-  const textOrder = `Замовлення \n${dataCart
+  const textOrder = `Замовлення ${orderId} 
+Час створення ${dateOrder}
+  \n${dataCart
     .map((item: ProductType) => {
-      return `${item.attributes.header} - ${item.quantity}*${
+      return `${item.attributes.header} - ${item.quantity}(шт)*${
         item.attributes.price
-      } = ${item.quantity * item.attributes.price} \n`;
+      } грн = ${item.quantity * item.attributes.price} грн\n`;
     })
-    .join("")}Данні для звязку\n${dataInputArea}`;
+    .join("")}
+Всього: ${dataCart
+    .reduce(
+      (acc: number, item: ProductType) =>
+        acc + item.quantity * item.attributes.price,
+      0
+    )
+    .toFixed(2)} грн
+    \n
+Данні для звязку:\n${dataInputArea}`;
 
   const onOrder = async () => {
-    const orderId = "OID" + Math.floor(1000000 * Math.random());
     try {
       const deteil: IOrder = {
         orderid: orderId,
         name: "string",
-        email: "jdjfjfjd@dhfhf.jfd",
+        email: "vlad@gmail.com",
         products: JSON.stringify(dataCart),
         address: dataInputArea,
         phone: "string",
@@ -48,7 +61,7 @@ const Cart: NextPage = () => {
         amount: dataCart.length,
         status: "string",
         text_order: textOrder,
-        date_created: new Date().getTime().toString(),
+        date_created: dateOrder,
       };
       const respons = await apiService.setOrder(deteil);
     } catch (error) {
