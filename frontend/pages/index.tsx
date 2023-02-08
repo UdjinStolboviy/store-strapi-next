@@ -14,13 +14,15 @@ const strapi_url = process.env.NEXT_PUBLIC_STRAPI_URL;
 export async function getStaticProps() {
   const apiServes = new ApiService();
   const products = await apiServes.getProduct();
+  const abouts = await apiServes.getAbout();
 
-  const status = products?.error?.status;
+  const status = products?.error?.status && abouts?.error?.status;
 
   if (status && (status < 200 || status >= 300)) {
     return {
       props: {
         products: [],
+        abouts: [],
       },
       revalidate: 10,
     };
@@ -29,13 +31,15 @@ export async function getStaticProps() {
   return {
     props: {
       products,
+      abouts,
     },
     revalidate: 60,
   };
 }
 
-const Home: NextPage = ({ products }: any) => {
+const Home: NextPage = ({ products, abouts }: any) => {
   const dataCart = useSelector((state: RootState) => state.cart.cart);
+  console.log(abouts);
 
   const filterProductsAddCart = (products: ProductType[]) => {
     const resultSort: ProductType[] = [];

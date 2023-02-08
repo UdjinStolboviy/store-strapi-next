@@ -7,10 +7,11 @@ import {
     IGetFeedbacks,
     IQuery,
     IGetInstagramPosts,
+    IAbouts,
     IOrder,
 } from "./types";
 import qs from "qs";
-import { Product as ProductType, Response } from "@/types";
+import { IAbout, Product as ProductType, Response } from "@/types";
 
 
 import { Any } from "@react-spring/types";
@@ -60,6 +61,11 @@ export class ApiService {
         );
     }
 
+    public getAbout(): Promise<any> {
+        return this.makeRequest<IAbouts>(`${api_url}/abouts?populate=*`,
+            "GET",
+        );
+    }
     public sendNotification(details: any): Promise<any> {
         console.log('details', process.env.TZ)
         return this.makeRequest<any>(

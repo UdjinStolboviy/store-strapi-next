@@ -1,7 +1,15 @@
+import { IAbout } from "@/types";
+
 export interface IPosts {
     data: IPost[];
     meta: IMeta;
 }
+
+export interface IAbouts {
+    data: IAbout[];
+    meta: IMeta;
+}
+
 
 export interface IOrder {
     orderid: string;

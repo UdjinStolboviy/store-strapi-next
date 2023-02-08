@@ -9,7 +9,7 @@ import { ApiService } from "@/api/apiServices";
 import { Product as ProductType } from "@/types";
 import { Product } from "@/components/Product";
 import { SecondaryButton, PrimaryButton } from "@/components/Button/Button";
-import React from "react";
+import React, { useEffect } from "react";
 import { TextArea } from "@/components/TextArea";
 import { IOrder } from "@/api/types";
 import moment from "moment";
@@ -23,15 +23,25 @@ const Cart: NextPage = () => {
   const dataCart = useSelector((state: RootState) => state.cart.cart);
   const dispatch = useDispatch<AppDispatch>();
   const apiService = new ApiService();
-  const [dataInputArea, setDataInputArea] = React.useState<string>("");
+  const [dataInputArea, setDataInputArea] = React.useState<string | null>("");
   const orderId = "TFS" + Math.floor(1000000 * Math.random());
   const dateOrder = moment().format("DD.MM.YYYY HH:mm");
-  const infoOrderLocal = localStorage.getItem("info_order");
 
-  console.log("dataInputArea", infoOrderLocal);
+  //console.log("dataInputArea", infoOrderLocal);
+
+  useEffect(() => {
+    if (localStorage.getItem("info")) {
+      setDataInputArea(localStorage.getItem("info"));
+    }
+  }, []);
 
   const submitOrder = () => {
+    if (dataInputArea === "") {
+      alert("Будь ласка залиште данні для звязку");
+      return;
+    }
     sentMessageTelegram();
+    setupInfoToLocalStorage(dataInputArea ? dataInputArea : "");
     onOrder();
   };
 
@@ -61,7 +71,7 @@ const Cart: NextPage = () => {
         name: "string",
         email: "vlad@gmail.com",
         products: JSON.stringify(dataCart),
-        address: dataInputArea,
+        address: dataInputArea ? dataInputArea : "",
         phone: "string",
         transaction: "string",
         amount: dataCart.length,
@@ -90,11 +100,11 @@ const Cart: NextPage = () => {
   };
 
   const clearInfoLocalStorage = () => {
-    localStorage.removeItem("info_order");
+    localStorage.removeItem("info");
   };
 
   const setupInfoToLocalStorage = (result: string) => {
-    localStorage.setItem("info_order", result);
+    localStorage.setItem("info", result);
   };
 
   const getBotUpdates = () =>
@@ -143,7 +153,7 @@ const Cart: NextPage = () => {
           cols={33}
           rows={5}
           autoComplete="on"
-          value={infoOrderLocal}
+          value={dataInputArea ? dataInputArea : ""}
           onChange={(item) => setDataInputArea(item.target.value)}
         />
       </div>

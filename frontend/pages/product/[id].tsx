@@ -127,8 +127,7 @@ const ProductPage: NextPage<{
           </ImageContainerProduct>
           <Link href={link} passHref legacyBehavior>
             <CustomLinkProduct>
-              Це посилання на стороній ресурс для детального ознайомлення з цім
-              продуктом
+              Це посилання на стороній ресурс для детальної інформації
             </CustomLinkProduct>
           </Link>
           <div

@@ -43,6 +43,19 @@ export type Image = Data<
   }
 >;
 
+export interface IAbout {
+  email: string;
+  logo: {
+    data: Image;
+  };
+  phone1: string;
+  phone2: string;
+  description_company: string;
+  address: string;
+  link_instogram: string;
+  link_fb: string;
+}
+
 export type Product = Data<{
   header: string;
   link: string;
