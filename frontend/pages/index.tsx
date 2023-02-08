@@ -5,11 +5,16 @@ import { Products } from "@/components/Product";
 import { ApiService } from "@/api/apiServices";
 import { useRouter } from "next/router";
 import ErrorPage from "next/error";
-import { RootState } from "@/store";
-import { useSelector } from "react-redux";
+import { AppDispatch, RootState } from "@/store";
+import { useDispatch, useSelector } from "react-redux";
 import { Product as ProductType, Response } from "@/types";
+import { useEffect, useLayoutEffect } from "react";
+import { addAbout } from "@/services/aboutSlice";
 
 const strapi_url = process.env.NEXT_PUBLIC_STRAPI_URL;
+
+const useIsomorphicEffect =
+  typeof window !== "undefined" ? useLayoutEffect : useEffect;
 
 export async function getStaticProps() {
   const apiServes = new ApiService();
@@ -36,10 +41,17 @@ export async function getStaticProps() {
     revalidate: 60,
   };
 }
-
+let showe = false;
 const Home: NextPage = ({ products, abouts }: any) => {
   const dataCart = useSelector((state: RootState) => state.cart.cart);
-  console.log(abouts);
+  const dispatch = useDispatch<AppDispatch>();
+
+  useIsomorphicEffect(() => {
+    if (abouts.data && !showe) {
+      dispatch(addAbout(abouts.data));
+      showe = true;
+    }
+  }, []);
 
   const filterProductsAddCart = (products: ProductType[]) => {
     const resultSort: ProductType[] = [];
