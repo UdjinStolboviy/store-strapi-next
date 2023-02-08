@@ -26,8 +26,14 @@ const Cart: NextPage = () => {
   const [dataInputArea, setDataInputArea] = React.useState<string>("");
   const orderId = "TFS" + Math.floor(1000000 * Math.random());
   const dateOrder = moment().format("DD.MM.YYYY HH:mm");
+  const infoOrderLocal = localStorage.getItem("info_order");
 
-  console.log("dataInputArea", dataCart);
+  console.log("dataInputArea", infoOrderLocal);
+
+  const submitOrder = () => {
+    sentMessageTelegram();
+    onOrder();
+  };
 
   const textOrder = `Замовлення ${orderId} 
 Час створення ${dateOrder}
@@ -69,7 +75,7 @@ const Cart: NextPage = () => {
     }
   };
 
-  const sentMesegTelegram = async () => {
+  const sentMessageTelegram = async () => {
     try {
       console.log("dataCart", dataCart);
       const deteil = {
@@ -81,6 +87,14 @@ const Cart: NextPage = () => {
     } catch (error) {
       console.log(error);
     }
+  };
+
+  const clearInfoLocalStorage = () => {
+    localStorage.removeItem("info_order");
+  };
+
+  const setupInfoToLocalStorage = (result: string) => {
+    localStorage.setItem("info_order", result);
   };
 
   const getBotUpdates = () =>
@@ -129,16 +143,12 @@ const Cart: NextPage = () => {
           cols={33}
           rows={5}
           autoComplete="on"
+          value={infoOrderLocal}
           onChange={(item) => setDataInputArea(item.target.value)}
         />
       </div>
       <div className="order">
-        <PrimaryButton
-          onClick={() => {
-            sentMesegTelegram();
-            onOrder();
-          }}
-        >
+        <PrimaryButton onClick={() => submitOrder()}>
           {"створити заказ"}
         </PrimaryButton>
       </div>
