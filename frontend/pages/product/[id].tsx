@@ -62,6 +62,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
           product: {},
           meta: {},
         },
+        revalidate: 60,
       };
     }
 
@@ -78,6 +79,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
         },
         meta: meta,
       },
+      revalidate: 60,
     };
   } catch (error) {
     return {
@@ -85,6 +87,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
         product: {},
         meta: {},
       },
+      revalidate: 60,
     };
   }
 };

@@ -2,18 +2,49 @@ import { NextPage, GetStaticPaths, GetStaticProps } from "next";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
-
-import MarkdownIt from "markdown-it";
-
-import { Product as ProductType, Response } from "@/types";
+import { useDispatch, useSelector } from "react-redux";
+import { IAbout } from "@/types";
 import { CenteredTile } from "@/components/Tile";
-import WrapperAbout, {ImageContainerAbout}from "./styled-about";
+import { AppDispatch, RootState } from "@/store";
+import { ApiService } from "@/api/apiServices";
+import WrapperAbout, { ImageContainerAbout } from "./styled-about";
 import "animate.css";
 const strapi_url = process.env.NEXT_PUBLIC_STRAPI_URL;
 
-const AboutPage: NextPage = () => {
-  const width = '500';
-  
+export async function getStaticProps() {
+  const apiServes = new ApiService();
+  const abouts = await apiServes.getAbout();
+
+  const status = abouts?.error?.status;
+
+  if (status && (status < 200 || status >= 300)) {
+    return {
+      props: {
+        abouts: [],
+      },
+      revalidate: 10,
+    };
+  }
+
+  return {
+    props: {
+      abouts,
+    },
+    revalidate: 60,
+  };
+}
+
+const AboutPage: NextPage = ({ abouts }: any) => {
+  const dataAbout: IAbout = abouts.data[0].attributes;
+  const width = dataAbout.logo.data.attributes.width;
+
+  const url = dataAbout.logo.data.attributes.url;
+  console.log("dataAbout", url);
+
+  if (!dataAbout) {
+    return <div></div>;
+  }
+
   return (
     <div className="animate__animated animate__fadeIn">
       <Head>
@@ -31,6 +62,8 @@ const AboutPage: NextPage = () => {
               objectFit="contain"
             />
           </ImageContainerAbout>
+          <a href={`tel:${dataAbout.phone1}`}>{dataAbout.phone1}</a>
+          <a href={`tel:${dataAbout.phone2}`}>{dataAbout.phone2}</a>
         </WrapperAbout>
       </CenteredTile>
     </div>

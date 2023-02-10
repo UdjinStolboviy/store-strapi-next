@@ -171,10 +171,10 @@ export class ApiService {
     private async makeRequest<TResponse>(
         url: string,
         method?: FetchMethod,
-        requestBody?: object | FormData,
+        requestBody?: object,
         headerOptions?: object
     ): Promise<TResponse> {
-        const body = !(requestBody instanceof FormData)
+        const body = !(requestBody)
             ? JSON.stringify(requestBody)
             : requestBody;
         const requestHeaders = headerOptions || {};
@@ -184,7 +184,7 @@ export class ApiService {
             ...requestHeaders,
         };
 
-        if (!(requestBody instanceof FormData)) {
+        if (!(requestBody)) {
             headers["Content-Type"] = "application/json";
         }
 
