@@ -5,6 +5,9 @@ import { AppDispatch, RootState } from "@/store";
 import { useDispatch, useSelector } from "react-redux";
 import { FooterDesktopStyled, StyleEmail, StyleSocialList } from "./styles";
 import { imageLoader } from "../ImageLoader";
+import "animate.css";
+import moment from "moment";
+import Link from "next/link";
 
 const FooterDesktop = () => {
   const dataAbout: any = useSelector((state: RootState) => {
@@ -35,9 +38,11 @@ const FooterDesktop = () => {
     },
   ];
 
+  const yearNow = moment().format("YYYY");
+
   return (
     <FooterDesktopStyled>
-      <div>
+      <div className="animate__animated animate__fadeIn">
         <nav>
           <StyleEmail>
             <a
@@ -70,25 +75,17 @@ const FooterDesktop = () => {
           </StyleSocialList>
         </nav>
         <div className="footer-wrapper-privacy ">
-          <p>©udjin 2011 — 2022</p>
+          <p>{`©TropicalFishStore 2022 —  ${yearNow}`}</p>
           <ul className="footer-privacy">
             <li>
-              <a
-                href={"https://de.com/privacy-policy/"}
-                target="_blank"
-                rel="noreferrer"
-              >
-                Адресса и контакти
-              </a>
+              <Link href="/about" passHref rel="noreferrer">
+                Адресса і контакти
+              </Link>
             </li>
             <li>
-              <a
-                href={"https://.com/terms-of-use/"}
-                target="_blank"
-                rel="noreferrer"
-              >
+              <Link href="/about" passHref rel="noreferrer">
                 Більше про нас
-              </a>
+              </Link>
             </li>
           </ul>
         </div>

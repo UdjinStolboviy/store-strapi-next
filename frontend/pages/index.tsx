@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Product as ProductType, Response } from "@/types";
 import { useEffect, useLayoutEffect } from "react";
 import { addAbout } from "@/services/aboutSlice";
+import "animate.css";
 
 const strapi_url = process.env.NEXT_PUBLIC_STRAPI_URL;
 
@@ -69,7 +70,7 @@ const Home: NextPage = ({ products, abouts }: any) => {
     return resultSort;
   };
   return (
-    <>
+    <div className="animate__animated animate__fadeIn">
       <Head>
         <title>FishStore</title>
         <meta name="description" content="fish tropical for everyone" />
@@ -79,7 +80,7 @@ const Home: NextPage = ({ products, abouts }: any) => {
         products={filterProductsAddCart(products.data)}
         strapi_url={String(strapi_url)}
       />
-    </>
+    </div>
   );
 };
 
