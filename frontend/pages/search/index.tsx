@@ -7,7 +7,8 @@ import { Product as ProductType, Response } from "@/types";
 import { ApiService } from "@/api/apiServices";
 import HeaderSearch from "./styled-search";
 import { Products } from "@/components/Product/Product";
-
+import { useSelector } from "react-redux";
+import { RootState } from "@/store";
 
 type ProductsResponce = Response<ProductType[]>;
 const strapi_url = process.env.NEXT_PUBLIC_STRAPI_URL;
@@ -19,7 +20,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   if (!q) {
     return {
       props: {
-       products: [],
+        products: [],
       },
     };
   }
@@ -58,29 +59,42 @@ const Search: NextPage<{ products: ProductType[]; error?: string }> = ({
 }) => {
   const router = useRouter();
   const { q } = router.query;
-  const apiService = new ApiService();
-  const [products, setProducts] = useState<ProductType[] | undefined>(ssrProducts);
+  const [products, setProducts] = useState<ProductType[] | undefined>(
+    ssrProducts
+  );
   const [error, setError] = useState<string | undefined>(ssrError);
 
   useEffect(() => {
-    async () => {
-      const { data, error }: ProductsResponce = await apiService.searchProduct(
-        String(q)
-      );
-
-      const status = error?.status;
-
-      if (status && (status < 200 || status >= 300)) {
-        setError(error.message);
-      }
-      setProducts(data);
-    };
+    setProducts(ssrProducts);
+    setError(ssrError);
   }, [q]);
+  const dataCart = useSelector((state: RootState) => state.cart.cart);
+
+  const filterProductsAddCart = (products: ProductType[]) => {
+    const resultSort: ProductType[] = [];
+    if (dataCart.length === 0) {
+      return products;
+    }
+    products.forEach((product) => {
+      const check = dataCart.find(
+        (item: ProductType) => item.id === product.id
+      );
+      if (!check) {
+        resultSort.push(product);
+      }
+    });
+    return resultSort;
+  };
 
   return (
     <>
       <HeaderSearch>{headerRender(q as string, products, error)}</HeaderSearch>
-      {products && <Products products={products} strapi_url={String(strapi_url)} />}
+      {products && (
+        <Products
+          products={filterProductsAddCart(products)}
+          strapi_url={String(strapi_url)}
+        />
+      )}
     </>
   );
 };

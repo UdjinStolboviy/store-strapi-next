@@ -17,8 +17,11 @@ import {
   MainNav,
   SearchInput,
   Content,
+  StyledBottomIndicator,
 } from "./components";
-import Footer from "../footer/footer";
+import Footer from "../footer/FooterMobile";
+import FooterMobile from "../footer/FooterMobile";
+import FooterDesktop from "../footer/FooterDeskstop";
 
 const useIsomorphicLayoutEffect =
   typeof window !== "undefined" ? useLayoutEffect : useEffect;
@@ -31,6 +34,16 @@ export const Layout: FC = ({ children }) => {
   const { username } = useSelector<RootState, RootState["user"]>(selectUser);
   const [isDark, setIsDark] = useState(true);
   const dispatch = useDispatch<AppDispatch>();
+
+  // const startAnimation = () => {
+  //   const indicator = document.querySelector(".bobble");
+  //   indicator?.classList.add("pulse");
+  //   indicator?.classList.add("animated");
+  // };
+  const dataCart = useSelector((state: RootState) => {
+    // startAnimation();
+    return state.cart.cart;
+  });
 
   const toggleDark = () => {
     localStorage.setItem("theme", isDark ? "light" : "dark");
@@ -76,26 +89,35 @@ export const Layout: FC = ({ children }) => {
     <ThemeProvider theme={theme}>
       <Wrapper>
         <Link href="/" passHref legacyBehavior>
-          
           <LogoLink>
             <StyledLogo size={3}>
               <span className="logo_short">Fish</span>
               <span className="logo_full">TropicalFish</span>
             </StyledLogo>
           </LogoLink>
-          
         </Link>
         <MainNav>
           <Link href={username ? "/user" : "/login"} passHref legacyBehavior>
-            
-            <IconButton name={username ? "User" : "Login"} size={1} />
-            
+            <IconButton name={username ? "User" : "Login"} size={1.5} />
           </Link>
           <IconButton
             name={!isDark ? "Moon" : "Sun"}
-            size={1}
+            size={1.5}
             onClick={toggleDark}
           />
+
+          <Link href={"/cart"} passHref legacyBehavior>
+            <IconButton
+              name={"Cart"}
+              size={1.5}
+              onClick={() => console.log("onPressCar")}
+            />
+          </Link>
+          {dataCart.length > 0 && (
+            <StyledBottomIndicator>
+              <span className="bobble">{dataCart.length}</span>
+            </StyledBottomIndicator>
+          )}
         </MainNav>
         <SearchInput
           icon="Search"
@@ -104,7 +126,13 @@ export const Layout: FC = ({ children }) => {
           onChange={searchChange}
         />
         <Content>{children}</Content>
-        <Footer />
+        <FooterMobile
+          dataCart={dataCart}
+          isDark={isDark}
+          username={username}
+          toggleDark={() => toggleDark()}
+        />
+        <FooterDesktop />
       </Wrapper>
     </ThemeProvider>
   );

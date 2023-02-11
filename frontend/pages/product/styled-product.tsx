@@ -5,7 +5,7 @@ const ImageContainerProduct = styled.div<{ maxWidth: string }>`
   position: relative;
   width: 100%;
   max-width: ${({ maxWidth }) => maxWidth};
-  height: 30vw;
+  height: 500px;
 `;
 
 export const CustomLinkProduct = styled(StyledLink)`

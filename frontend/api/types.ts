@@ -1,6 +1,28 @@
+import { IAbout } from "@/types";
+
 export interface IPosts {
     data: IPost[];
     meta: IMeta;
+}
+
+export interface IAbouts {
+    data: IAbout[];
+    meta: IMeta;
+}
+
+
+export interface IOrder {
+    orderid: string;
+    name: string;
+    email: string;
+    products: string;
+    address: string;
+    phone: string;
+    transaction: string;
+    amount: number;
+    status: string;
+    text_order: string;
+    date_created: string;
 }
 
 export interface IGetPost {

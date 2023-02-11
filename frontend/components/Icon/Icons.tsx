@@ -46,6 +46,25 @@ const Home = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
+const Message = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg viewBox="0 0 24 24" fill="none" height="1em" width="1em" {...props}>
+    <rect
+      x="4"
+      y="6"
+      width="16"
+      height="12"
+      rx="2"
+      stroke="currentColor"
+      strokeWidth="2"
+    />
+    <path
+      d="M4 9L11.1056 12.5528C11.6686 12.8343 12.3314 12.8343 12.8944 12.5528L20 9"
+      stroke="currentColor"
+      strokeWidth="2"
+    />
+  </svg>
+);
+
 const Settings = (props: React.SVGProps<SVGSVGElement>) => (
   <svg
     viewBox="0 0 512 512"
@@ -98,4 +117,245 @@ const Login = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
-export const Icons = { User, Moon, Sun, Home, Settings, Search, Login };
+const Cart = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" {...props}>
+    <path
+      d="M8 8L8 7C8 4.79086 9.79086 3 12 3V3C14.2091 3 16 4.79086 16 7L16 8"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+    />
+    <path
+      d="M15 14V12"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+    />
+    <path
+      d="M9 14V12"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+    />
+    <path
+      d="M4 12C4 10.1144 4 9.17157 4.58579 8.58579C5.17157 8 6.11438 8 8 8H16C17.8856 8 18.8284 8 19.4142 8.58579C20 9.17157 20 10.1144 20 12V13C20 16.7712 20 18.6569 18.8284 19.8284C17.6569 21 15.7712 21 12 21V21C8.22876 21 6.34315 21 5.17157 19.8284C4 18.6569 4 16.7712 4 13V12Z"
+      stroke="currentColor"
+      strokeWidth="2"
+    />
+  </svg>
+);
+
+const Cart2 = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" {...props}>
+    <path
+      d="M5.24211 4.80975H18.2524C20.4616 4.80975 22.2524 6.60061 22.2524 8.80975V12.9522C22.2524 15.1613 20.4616 16.9522 18.2524 16.9522H10.7685C8.83212 16.9522 7.1738 15.5652 6.8315 13.6593L5.24211 4.80975ZM5.24211 4.80975L4.60064 2.92743C4.46259 2.52234 4.08206 2.25 3.65409 2.25H1.75281"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+    />
+    <path
+      d="M11 20.5H11.01"
+      stroke="currentColor"
+      strokeWidth="3"
+      strokeLinecap="round"
+    />
+    <path
+      d="M19 20.5H19.01"
+      stroke="currentColor"
+      strokeWidth="3"
+      strokeLinecap="round"
+    />
+  </svg>
+);
+
+const AddProduct = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" {...props}>
+    <path
+      d="M5.24207 4.80975H18.2524C20.4615 4.80975 22.2524 6.60061 22.2524 8.80975V12.9522C22.2524 15.1613 20.4615 16.9522 18.2524 16.9522H10.7685C8.83209 16.9522 7.17377 15.5652 6.83147 13.6593L5.24207 4.80975ZM5.24207 4.80975L4.60061 2.92743C4.46256 2.52234 4.08203 2.25 3.65406 2.25H1.75278"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+    />
+    <path
+      d="M14.25 8.56067L14.25 13.5154"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+    />
+    <path
+      d="M16.7274 11.038L11.7726 11.038"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+    />
+    <path
+      d="M11 20.5H11.01"
+      stroke="currentColor"
+      strokeWidth="3"
+      strokeLinecap="round"
+    />
+    <path
+      d="M19 20.5H19.01"
+      stroke="currentColor"
+      strokeWidth="3"
+      strokeLinecap="round"
+    />
+  </svg>
+);
+
+const CancelCart = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" {...props}>
+    <path
+      d="M5.24211 4.80975H18.2524C20.4616 4.80975 22.2524 6.60061 22.2524 8.80975V12.9522C22.2524 15.1613 20.4616 16.9522 18.2524 16.9522H10.7685C8.83212 16.9522 7.1738 15.5652 6.8315 13.6593L5.24211 4.80975ZM5.24211 4.80975L4.60064 2.92743C4.46259 2.52234 4.08206 2.25 3.65409 2.25H1.75281"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+    />
+    <path
+      d="M11.7999 11H16.7999"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+    />
+    <path
+      d="M11 20.5H11.01"
+      stroke="currentColor"
+      strokeWidth="3"
+      strokeLinecap="round"
+    />
+    <path
+      d="M19 20.5H19.01"
+      stroke="currentColor"
+      strokeWidth="3"
+      strokeLinecap="round"
+    />
+  </svg>
+);
+
+const CancelProduct = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" {...props}>
+    <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="2" />
+    <path d="M7.5 12H16.5" stroke="currentColor" strokeWidth="2" />
+  </svg>
+);
+
+const InProduct = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" {...props}>
+    <path
+      d="M3 9V15C3 17.8284 3 19.2426 3.87868 20.1213C4.75736 21 6.17157 21 9 21H15C17.8284 21 19.2426 21 20.1213 20.1213C21 19.2426 21 17.8284 21 15V9C21 6.17157 21 4.75736 20.1213 3.87868C19.2426 3 17.8284 3 15 3H9"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+    />
+    <path
+      d="M15 15V16H16V15H15ZM7.70711 6.29289C7.31658 5.90237 6.68342 5.90237 6.29289 6.29289C5.90237 6.68342 5.90237 7.31658 6.29289 7.70711L7.70711 6.29289ZM14 8V15H16V8H14ZM15 14H8V16H15V14ZM15.7071 14.2929L7.70711 6.29289L6.29289 7.70711L14.2929 15.7071L15.7071 14.2929Z"
+      fill="currentColor"
+    />
+  </svg>
+);
+
+const LinkProduct = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" {...props}>
+    <path
+      d="M10 16H7C4.79086 16 3 14.2091 3 12V12C3 9.79086 4.79086 8 7 8H10"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M16 12H8"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M14 16H17C19.2091 16 21 14.2091 21 12V12C21 9.79086 19.2091 8 17 8H14"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+);
+
+const PluseProduct = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="1em"
+    height="1em"
+    viewBox="0 0 24 24"
+    fill="none"
+    {...props}
+  >
+    <path
+      d="M12 6L12 18"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+    />
+    <path
+      d="M18 12L6 12"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+    />
+  </svg>
+);
+
+const MinusProduct = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="1em"
+    height="1em"
+    viewBox="0 0 24 24"
+    fill="none"
+    {...props}
+  >
+    <path
+      d="M18 12L6 12"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+    />
+  </svg>
+);
+
+const Phone = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="1em"
+    height="1em"
+    viewBox="0 0 36 36"
+    fill="none"
+    {...props}
+  >
+    <circle cx="18" cy="18" r="18" fill="#34C759" />
+    <path
+      d="M14.11 21.8819C14.8867 22.6586 15.7066 23.3598 16.5696 23.9854C17.4326 24.6111 18.2956 25.1073 19.1586 25.4741C20.0216 25.8409 20.8387 26.0243 21.61 26.0243C22.1332 26.0243 22.6214 25.9299 23.0744 25.7411C23.5275 25.5523 23.9374 25.2557 24.3042 24.8511C24.52 24.6138 24.6899 24.3576 24.8139 24.0825C24.938 23.8128 25 23.5405 25 23.2654C25 23.0604 24.9595 22.8662 24.8786 22.6828C24.7977 22.4941 24.6602 22.3323 24.466 22.1974L21.9822 20.4337C21.7934 20.3042 21.6181 20.2071 21.4563 20.1424C21.2945 20.0777 21.1408 20.0453 20.9951 20.0453C20.8118 20.0453 20.6338 20.0965 20.4612 20.199C20.2886 20.2961 20.1106 20.4364 19.9272 20.6197L19.3528 21.1861C19.2718 21.2724 19.1694 21.3155 19.0453 21.3155C18.9806 21.3155 18.9186 21.3047 18.8592 21.2832C18.8053 21.2616 18.7594 21.2427 18.7217 21.2265C18.4682 21.0917 18.1446 20.8598 17.7508 20.5307C17.3571 20.1963 16.9606 19.8296 16.5615 19.4304C16.1677 19.0313 15.8037 18.6348 15.4693 18.2411C15.1348 17.8474 14.9029 17.5264 14.7735 17.2783C14.7519 17.2352 14.7303 17.1866 14.7087 17.1327C14.6926 17.0734 14.6845 17.014 14.6845 16.9547C14.6845 16.836 14.7249 16.7362 14.8058 16.6553L15.3803 16.0647C15.5583 15.8813 15.6985 15.7033 15.801 15.5307C15.9035 15.3581 15.9547 15.1802 15.9547 14.9968C15.9547 14.8511 15.9196 14.6974 15.8495 14.5356C15.7848 14.3738 15.685 14.1985 15.5502 14.0097L13.8107 11.5583C13.6704 11.3641 13.5032 11.2238 13.3091 11.1375C13.1149 11.0458 12.9099 11 12.6942 11C12.1386 11 11.6181 11.2346 11.1327 11.7039C10.7389 12.0814 10.4504 12.4995 10.267 12.9579C10.089 13.411 10 13.8964 10 14.4142C10 15.1909 10.1807 16.0081 10.5421 16.8657C10.9035 17.7179 11.3943 18.5728 12.0146 19.4304C12.6348 20.288 13.3333 21.1052 14.11 21.8819Z"
+      fill="currentColor"
+    />
+  </svg>
+);
+
+export const Icons = {
+  User,
+  Moon,
+  Sun,
+  Home,
+  Settings,
+  Search,
+  Login,
+  Cart,
+  AddProduct,
+  CancelProduct,
+  InProduct,
+  LinkProduct,
+  Cart2,
+  CancelCart,
+  PluseProduct,
+  MinusProduct,
+  Message,
+  Phone,
+};

@@ -5,6 +5,7 @@ export type Response<D = null> = {
 };
 
 export type Data<A = Record<string, unknown>> = {
+  quantity: any;
   id: number;
   attributes: A;
 };
@@ -36,12 +37,24 @@ export type Image = Data<
   ImageFormats & {
     formats: {
       thumbnail: ImageFormats;
-      large: ImageFormats;
       medium: ImageFormats;
       small: ImageFormats;
     };
   }
 >;
+
+export interface IAbout {
+  email: string;
+  logo: {
+    data: Image;
+  };
+  phone1: string;
+  phone2: string;
+  description_company: string;
+  address: string;
+  link_instogram: string;
+  link_fb: string;
+}
 
 export type Product = Data<{
   header: string;
@@ -57,4 +70,5 @@ export type Product = Data<{
   size: number;
   price: number;
   availableProd: number;
+  quantity?: number;
 }>;

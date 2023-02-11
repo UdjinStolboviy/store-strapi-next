@@ -7,9 +7,11 @@ import {
     IGetFeedbacks,
     IQuery,
     IGetInstagramPosts,
+    IAbouts,
+    IOrder,
 } from "./types";
 import qs from "qs";
-import { Product as ProductType, Response } from "@/types";
+import { IAbout, Product as ProductType, Response } from "@/types";
 
 
 import { Any } from "@react-spring/types";
@@ -17,6 +19,8 @@ import { Any } from "@react-spring/types";
 type ProductsResponce = Response<ProductType[]>;
 
 const api_url = process.env.NEXT_PUBLIC_STRAPI_API_URL
+const AAHv2b = "5871846479:AAHv2bidoQhKbpNXzF11O-gzBkTnRKe-Ud4"
+const chat_id = ''
 
 type FetchMethod = "GET" | "POST" | "PATCH" | "PUT" | "DELETE";
 
@@ -32,13 +36,12 @@ const fetchWithTimeout = (
     return Promise.race([
         fetch(url, options),
         new Promise((_, reject) =>
-            setTimeout(() => reject(console.log('Erorr')), timeout)
+            setTimeout(() => reject(console.log('Erorr', url, options)), timeout)
         ),
     ]);
 };
 
 export class ApiService {
-
     public getProductsID(id: string): Promise<any> {
         return this.makeRequest<any>(
             `${api_url}/products/${id}?populate=*`,
@@ -57,6 +60,37 @@ export class ApiService {
             "GET",
         );
     }
+
+    public getAbout(): Promise<any> {
+        return this.makeRequest<IAbouts>(`${api_url}/abouts?populate=*`,
+            "GET",
+        );
+    }
+    public sendNotification(details: any): Promise<any> {
+        console.log('details', details)
+        return this.makeRequest<any>(
+            `https://api.telegram.org/bot${AAHv2b}/sendMessage`,
+            "POST",
+            details,
+        );
+    }
+
+    public setOrder(body: IOrder): Promise<any> {
+        return this.makeRequest<any>(`${api_url}/orders`,
+            "POST",
+            {
+                data: body
+            }
+        );
+    }
+
+    // public setOrder(body: IOrder): Promise<any> {
+    //     const rawResponse = fetch(`${api_url}/orders/pretransaction`, {
+    //         method: 'POST',
+    //         body: JSON.stringify(body)
+    //     });
+    //     return rawResponse
+    // }
 
     public async searchProduct(q: string): Promise<ProductsResponce> {
 
@@ -90,7 +124,7 @@ export class ApiService {
 
         const res = await fetch(`${api_url}/products?${query}`, {
             method: "GET",
-            // mode: 'no-cors',
+            // // mode: 'no-cors',
             headers: {
                 "Content-Type": "application/json"
             },

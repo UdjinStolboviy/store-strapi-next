@@ -10,6 +10,9 @@ export const Wrapper = styled.div`
   color: ${({ theme }) => theme.font.regular};
   background-color: ${({ theme }) => theme.background};
   padding: 0.5rem;
+ // border: 4px solid #000;
+
+
   grid-template-areas:
     "header  nav"
     "search  search"
@@ -18,10 +21,10 @@ export const Wrapper = styled.div`
   nav {
     flex-direction: row;
     justify-content: flex-end;
-    gap: 5vmin;
+    gap: 2vmin;
   }
   @media (min-width: 500px) {
-    grid-template-columns: 1fr 3fr;
+    grid-template-columns: 1fr 2fr;
   }
   @media (min-width: 960px) {
     grid-template-columns: 1fr 4fr 2fr;
@@ -35,6 +38,28 @@ export const Wrapper = styled.div`
 export const LogoLink = styled(StyledLink)`
   padding-right: 1vw;
 `;
+
+export const StyledBottomIndicator = styled.div`
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 3px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #0CB3A1;
+    & span {
+      width: 30;
+      height: 30;
+      color: #fff;
+      font-weight: 700;
+      font-size: 1rem;
+      text-align: center;
+      line-height: 30px;
+    }
+  
+  `;
 
 export const StyledLogo = styled(Logo)`
   grid-area: header;
@@ -71,8 +96,8 @@ export const SearchInput = styled(Input)`
 
 export const Content = styled.main`
   grid-area: content;
-  min-height: 84vh;
   margin-top: 1rem;
+  margin-bottom: 5rem;
 `;
 
 export const Footer = styled.footer`

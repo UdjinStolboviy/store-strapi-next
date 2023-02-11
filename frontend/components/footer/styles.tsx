@@ -3,7 +3,26 @@ import StyleGuide from "@/styles/style-guide";
 
 import styled from "@emotion/styled";
 
-export const FooterStyled = styled.footer`
+export const FooterMobileStyled = styled.footer`
+  display: flex;
+  grid-area: footer;
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  flax-direction: row;
+  transform: translate(-50%, 0%);
+  padding: 10px 10px 10px 10px;
+  border-radius: 90px;
+  border: 0.5px solid ${({ theme }) => theme.components.shadow2};
+  background: ${({ theme }) => theme.background};
+  ${({ theme }) =>
+    boxShadow(theme.components.shadow1, theme.components.shadow2)};
+  @media screen and (min-width: 769px) {
+    display: none;
+  }
+`;
+
+export const FooterDesktopStyled = styled.footer`
   grid-area: footer;
   padding: 30px 96px 30px 96px;
   border-radius: 90px;
@@ -11,7 +30,9 @@ export const FooterStyled = styled.footer`
   background: ${({ theme }) => theme.background};
   ${({ theme }) =>
     boxShadow(theme.components.shadow1, theme.components.shadow2)};
-
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
   & div {
     width: 100%;
     transform: translateY();
@@ -48,7 +69,7 @@ export const FooterStyled = styled.footer`
           transition: color 0.1s ease-in-out, background-color 0.1s ease-in-out;
         }
         & a:hover {
-          color: #9e279b;
+          color: #0a84ff;
         }
       }
     }
@@ -146,7 +167,7 @@ export const StyleEmail = styled.div`
     transition: color 0.1s ease-in-out, background-color 0.1s ease-in-out;
   }
   & a:hover {
-    color: #9e279b;
+    color: #0a84ff;
   }
   @media screen and (min-width: 320px) and (max-width: 770px) {
     width: 40%;

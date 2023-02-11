@@ -6,28 +6,84 @@ import { StyledLink } from "../StyledLink";
 
 export const ProductStyled = styled.section`
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  padding: 2vmin;
-  margin: 2vmin;
+  padding: 10px;
+  margin: 10px 10px;
   width: 100%;
   background: ${({ theme }) => theme.background};
   color: ${({ theme }) => theme.font.regular};
   ${borderRadius};
   ${({ theme }) =>
     boxShadow(theme.components.shadow1, theme.components.shadow2)};
+  img {
+    width: 100px;
+    height: 100%;
+    border-radius: 30px;
+  }
+  @media screen and (min-width: 320px) and (max-width: 768px) {
+    width: 100%;
+    .wrapperDescriptionProduct {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .wrapperButtonProduct {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      margin: 10px 0px;
+    }
+    .wrapperInput {
+      // margin: 10px;
+    }
     img {
-        width: 200px;
-        height: 100%;
-        border-radius: 10px;
-    }  
+      width: 100%;
+      height: 100%;
+    }
+  }
+  @media screen and (min-width: 768px) {
+    max-width: 1000px;
+    flex-direction: row;
+    max-height: 120px;
+    align-items: center;
+    justify-content: space-around;
+
+    .wrapperDescriptionProduct {
+      width: 50%;
+      margin-left: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .wrapperButtonProduct {
+      width: 60%;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+    }
+    .wrapperInput {
+      margin: 5px;
+    }
+    img {
+      width: 100%;
+      max-height: 100px;
+      border-radius: 20px;
+    }
+  }
 `;
 
 export const ProductLink = styled(StyledLink)`
   display: flex;
-  width: 94vw;
-  @media (min-width: 900px) {
-    width: 46vw;
+  width: 100%;
+  @media (min-width: 768px) {
+    width: 40%;
   }
 `;
 
@@ -36,7 +92,5 @@ export const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-    margin: 0 auto;
- 
- 
+  // margin: 0 auto;
 `;
