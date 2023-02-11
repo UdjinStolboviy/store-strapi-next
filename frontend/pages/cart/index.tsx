@@ -9,7 +9,7 @@ import { ApiService } from "@/api/apiServices";
 import { Product as ProductType } from "@/types";
 import { Product } from "@/components/Product";
 import { SecondaryButton, PrimaryButton } from "@/components/Button/Button";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { TextArea } from "@/components/TextArea";
 import { IOrder } from "@/api/types";
 import { clearCart } from "@/services/cartSlice";
@@ -20,6 +20,7 @@ export type LoginForm = {
   password: string;
 };
 const strapi_url = process.env.NEXT_PUBLIC_STRAPI_URL;
+let numberOrder = "";
 const Cart: NextPage = () => {
   const dataCart = useSelector((state: RootState) => state.cart.cart);
   const dispatch = useDispatch<AppDispatch>();
@@ -27,6 +28,7 @@ const Cart: NextPage = () => {
   const [dataInputArea, setDataInputArea] = React.useState<string | null>("");
   const orderId = "TFS" + Math.floor(1000000 * Math.random());
   const dateOrder = moment().format("DD.MM.YYYY HH:mm");
+  const [addOrder, setAddOrder] = useState<boolean>(false);
 
   //console.log("dataInputArea", infoOrderLocal);
 
@@ -48,8 +50,11 @@ const Cart: NextPage = () => {
   };
 
   const clearStorage = () => {
+    alert(`\n\nДЯКУЮ ЗА ПОКУПКУ !!!
+    \nВаше замовлення № ${orderId} прийнято`);
+    numberOrder = orderId;
     dispatch(clearCart());
-    alert("ДЯКУЮ ЗА ПОКУПКУ !!!");
+    setAddOrder(true);
   };
 
   const textOrder = `Замовлення ${orderId} 
@@ -133,25 +138,44 @@ const Cart: NextPage = () => {
     return userUpdate.message.from.id;
   };
 
+  const shoveProduct = () => {
+    if (dataCart.length === 0 && !addOrder) {
+      return (
+        <div>
+          <h1>Ваш кошик порожній</h1>
+        </div>
+      );
+    }
+    if (dataCart.length === 0 && addOrder) {
+      return (
+        <div>
+          <h1>{`\n\nДЯКУЮ ЗА ПОКУПКУ !!!
+    \nВаше замовлення № ${numberOrder} прийнято`}</h1>
+        </div>
+      );
+    }
+
+    return dataCart.map((product: ProductType) => (
+      <Product
+        key={product.id}
+        header={product.attributes.header}
+        link={`/product/${product.id}`}
+        subtitle={product.attributes.subtitle}
+        product={product}
+        showRemoveToCart
+        imageProps={{
+          width: product.attributes.cover.data.attributes.formats.small.width,
+          height: product.attributes.cover.data.attributes.formats.small.height,
+          alt: `Cover for ${product.attributes.header}`,
+          src: `${strapi_url}${product.attributes.cover.data.attributes.formats.small.url}`,
+        }}
+      />
+    ));
+  };
+
   return (
     <StyledCart>
-      {dataCart.map((product: ProductType) => (
-        <Product
-          key={product.id}
-          header={product.attributes.header}
-          link={`/product/${product.id}`}
-          subtitle={product.attributes.subtitle}
-          product={product}
-          showRemoveToCart
-          imageProps={{
-            width: product.attributes.cover.data.attributes.formats.small.width,
-            height:
-              product.attributes.cover.data.attributes.formats.small.height,
-            alt: `Cover for ${product.attributes.header}`,
-            src: `${strapi_url}${product.attributes.cover.data.attributes.formats.small.url}`,
-          }}
-        />
-      ))}
+      {shoveProduct()}
       <div className="info-order">
         <TextArea
           placeholder={"*Будь ласка залиште тут данні як з вами звязатися..."}
