@@ -9,6 +9,9 @@ import { AppDispatch, RootState } from "@/store";
 import { ApiService } from "@/api/apiServices";
 import WrapperAbout, { ImageContainerAbout } from "./styled-about";
 import "animate.css";
+import { IconButton } from "@/components/IconButton";
+import { StyleSocialList } from "@/components/footer/styles";
+import { imageLoader } from "@/components/ImageLoader";
 const strapi_url = process.env.NEXT_PUBLIC_STRAPI_URL;
 
 export async function getStaticProps() {
@@ -39,7 +42,16 @@ const AboutPage: NextPage = ({ abouts }: any) => {
   const width = dataAbout.logo.data.attributes.width;
 
   const url = dataAbout.logo.data.attributes.url;
-  console.log("dataAbout", url);
+  const socialLinks = [
+    {
+      link: `${dataAbout.link_instogram ? dataAbout.link_instogram : "#"}`,
+      src: "/images/instagram.svg",
+    },
+    {
+      link: `${dataAbout.link_fb ? dataAbout.link_fb : "#"}`,
+      src: "/images/facebook.svg",
+    },
+  ];
 
   if (!dataAbout) {
     return <div></div>;
@@ -52,7 +64,7 @@ const AboutPage: NextPage = ({ abouts }: any) => {
         <meta name="description" content="fish tropical for everyone" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <CenteredTile header={"FishStore"}>
+      <CenteredTile header={"Tropical Fish Store"}>
         <WrapperAbout>
           <ImageContainerAbout maxWidth={`${width}px`}>
             <Image
@@ -62,8 +74,67 @@ const AboutPage: NextPage = ({ abouts }: any) => {
               objectFit="contain"
             />
           </ImageContainerAbout>
-          <a href={`tel:${dataAbout.phone1}`}>{dataAbout.phone1}</a>
-          <a href={`tel:${dataAbout.phone2}`}>{dataAbout.phone2}</a>
+          <h1>Номер телефону:</h1>
+          <div className="wrapperTelephone">
+            <a href={`tel:${dataAbout.phone1}`}>
+              {dataAbout.phone1}
+              <div className="gepTelephone"></div>
+              <IconButton
+                name={"Phone"}
+                size={1.5}
+                onClick={() => console.log("onPressPhone")}
+              />
+            </a>
+
+            <a href={`tel:${dataAbout.phone2}`}>
+              {dataAbout.phone2}
+              <div className="gepTelephone"></div>
+              <IconButton
+                name={"Phone"}
+                size={1.5}
+                onClick={() => console.log("onPressPhone")}
+              />
+            </a>
+          </div>
+          <div className="gepHeightAbout"></div>
+          <h1>Електрона пошта:</h1>
+          <div className="wrapperTelephone">
+            <a href={`mailto:${dataAbout.email}`}>
+              {dataAbout.email}
+              <div className="gepTelephone"></div>
+              <IconButton
+                name={"Message"}
+                size={1.5}
+                onClick={() => console.log("onPressPhone")}
+              />
+            </a>
+          </div>
+          <div className="gepHeightAbout"></div>
+          <h1>Пронас:</h1>
+          <p>{dataAbout.description_company}</p>
+          <div className="gepHeightAbout"></div>
+          <h1>Адреса:</h1>
+          <p>{dataAbout.address}</p>
+          <StyleSocialList>
+            {socialLinks.map((navItem, index) => (
+              <li key={navItem.link + index}>
+                <a
+                  href={navItem.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Image
+                    src={navItem.src}
+                    unoptimized={true}
+                    width={28}
+                    height={28}
+                    loader={imageLoader}
+                    alt={""}
+                  ></Image>
+                </a>
+              </li>
+            ))}
+          </StyleSocialList>
         </WrapperAbout>
       </CenteredTile>
     </div>

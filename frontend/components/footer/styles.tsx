@@ -69,7 +69,7 @@ export const FooterDesktopStyled = styled.footer`
           transition: color 0.1s ease-in-out, background-color 0.1s ease-in-out;
         }
         & a:hover {
-          color: #9e279b;
+          color: #0a84ff;
         }
       }
     }
@@ -167,7 +167,7 @@ export const StyleEmail = styled.div`
     transition: color 0.1s ease-in-out, background-color 0.1s ease-in-out;
   }
   & a:hover {
-    color: #9e279b;
+    color: #0a84ff;
   }
   @media screen and (min-width: 320px) and (max-width: 770px) {
     width: 40%;

@@ -12,6 +12,7 @@ import { SecondaryButton, PrimaryButton } from "@/components/Button/Button";
 import React, { useEffect } from "react";
 import { TextArea } from "@/components/TextArea";
 import { IOrder } from "@/api/types";
+import { clearCart } from "@/services/cartSlice";
 import moment from "moment";
 
 export type LoginForm = {
@@ -36,6 +37,7 @@ const Cart: NextPage = () => {
   }, []);
 
   const submitOrder = () => {
+    console.log("dataInputArea", dataInputArea);
     if (dataInputArea === "") {
       alert("Будь ласка залиште данні для звязку");
       return;
@@ -43,6 +45,10 @@ const Cart: NextPage = () => {
     sentMessageTelegram();
     setupInfoToLocalStorage(dataInputArea ? dataInputArea : "");
     onOrder();
+  };
+
+  const clearStorage = () => {
+    dispatch(clearCart());
   };
 
   const textOrder = `Замовлення ${orderId} 
@@ -80,6 +86,7 @@ const Cart: NextPage = () => {
         date_created: dateOrder,
       };
       const respons = await apiService.setOrder(deteil);
+      // clearStorage();
     } catch (error) {
       console.log(error);
     }
