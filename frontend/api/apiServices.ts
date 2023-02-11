@@ -67,7 +67,7 @@ export class ApiService {
         );
     }
     public sendNotification(details: any): Promise<any> {
-        console.log('details', process.env.TZ)
+        console.log('details', details)
         return this.makeRequest<any>(
             `https://api.telegram.org/bot${AAHv2b}/sendMessage`,
             "POST",
@@ -171,10 +171,10 @@ export class ApiService {
     private async makeRequest<TResponse>(
         url: string,
         method?: FetchMethod,
-        requestBody?: object | string,
+        requestBody?: object | FormData,
         headerOptions?: object
     ): Promise<TResponse> {
-        const body = !(requestBody)
+        const body = !(requestBody instanceof FormData)
             ? JSON.stringify(requestBody)
             : requestBody;
         const requestHeaders = headerOptions || {};
@@ -184,7 +184,7 @@ export class ApiService {
             ...requestHeaders,
         };
 
-        if (!(requestBody)) {
+        if (!(requestBody instanceof FormData)) {
             headers["Content-Type"] = "application/json";
         }
 

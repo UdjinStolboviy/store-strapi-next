@@ -49,6 +49,7 @@ const Cart: NextPage = () => {
 
   const clearStorage = () => {
     dispatch(clearCart());
+    alert("ДЯКУЮ ЗА ПОКУПКУ !!!");
   };
 
   const textOrder = `Замовлення ${orderId} 
@@ -86,7 +87,7 @@ const Cart: NextPage = () => {
         date_created: dateOrder,
       };
       const respons = await apiService.setOrder(deteil);
-      // clearStorage();
+      clearStorage();
     } catch (error) {
       console.log(error);
     }
@@ -94,7 +95,6 @@ const Cart: NextPage = () => {
 
   const sentMessageTelegram = async () => {
     try {
-      console.log("dataCart", dataCart);
       const deteil = {
         text: textOrder,
         parse_mode: "html",
