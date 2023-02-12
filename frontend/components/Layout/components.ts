@@ -90,7 +90,7 @@ export const MainNav = styled.nav`
   display: flex;
   justify-content: space-around;
   align-items: center;
-  margin: 0 2vmin;
+  margin: 1vmin 1vmin;
   
 `;
 
