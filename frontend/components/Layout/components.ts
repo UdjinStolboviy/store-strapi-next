@@ -5,7 +5,7 @@ import { Logo } from "@/components/Logo";
 import { Input } from "@/components/Input";
 
 export const Wrapper = styled.div`
-  display: grid;
+  //display: grid;
   gap: 0.1rem;
   color: ${({ theme }) => theme.font.regular};
   background-color: ${({ theme }) => theme.background};
@@ -22,6 +22,10 @@ export const Wrapper = styled.div`
     flex-direction: row;
     justify-content: flex-end;
     gap: 2vmin;
+    .warraperIndicator {
+      display: flex;
+      flex-direction: row;
+  }
   }
   @media (min-width: 500px) {
     grid-template-columns: 1fr 2fr;
@@ -40,10 +44,11 @@ export const LogoLink = styled(StyledLink)`
 `;
 
 export const StyledBottomIndicator = styled.div`
-    position: absolute;
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-left: -20px;
+    margin-bottom: -10px;
     top: 3px;
     width: 30px;
     height: 30px;
@@ -70,7 +75,7 @@ export const StyledLogo = styled(Logo)`
   & .logo_full {
     display: none;
   }
-  @media (min-width: 560px) {
+  @media (min-width: 591px) {
     & .logo_short {
       display: none;
     }
@@ -86,6 +91,7 @@ export const MainNav = styled.nav`
   justify-content: space-around;
   align-items: center;
   margin: 0 2vmin;
+  
 `;
 
 export const SearchInput = styled(Input)`

@@ -22,9 +22,65 @@ export const ProductStyled = styled.section`
     height: 100%;
     border-radius: 30px;
   }
-  @media screen and (min-width: 320px) and (max-width: 768px) {
+  @media screen and (min-width: 319px) and (max-width: 437px) {
+    .wrapperButtonProduct {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      margin: 10px 0px;
+    }
+    width: 100%;
+    .wrapperDescriptionProductPrice {
+      display: none;
+    }
+    .showeDiscriptionProduct {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .wrapperDescriptionProduct {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .wrapperInput {
+      // width: 40px;
+    }
+    .wrapperFunctionButton {
+      display: flex;
+      width: 100%;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+    }
+    .wrapperAddCartButton {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+    }
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+  @media screen and (min-width: 437px) and (max-width: 768px) {
     width: 100%;
     .wrapperDescriptionProduct {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .showeDiscriptionProduct {
+      display: none;
+    }
+    .wrapperDescriptionProductPrice {
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -39,7 +95,19 @@ export const ProductStyled = styled.section`
       margin: 10px 0px;
     }
     .wrapperInput {
-      // margin: 10px;
+      // width: 40px;
+    }
+    .wrapperFunctionButton {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+    }
+    .wrapperAddCartButton {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
     }
     img {
       width: 100%;
@@ -53,6 +121,10 @@ export const ProductStyled = styled.section`
     align-items: center;
     justify-content: space-around;
 
+    .showeDiscriptionProduct {
+      display: none;
+    }
+
     .wrapperDescriptionProduct {
       width: 50%;
       margin-left: 10px;
@@ -63,6 +135,18 @@ export const ProductStyled = styled.section`
     }
     .wrapperButtonProduct {
       width: 60%;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+    }
+    .wrapperFunctionButton {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+    }
+    .wrapperAddCartButton {
       display: flex;
       flex-direction: row;
       align-items: center;
