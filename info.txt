@@ -7,6 +7,15 @@ yarn install --network-timeout 600000
 -------------------------------------
 
 
+
+npx create-strapi-app@latest my-project
+npm install cross-env
+"build:win": "cross-env NODE_ENV=production npm run build",
+npm run build:win
+"start:win": "cross-env NODE_ENV=production npm start",
+npm run start:win
+
+
 Done! Congratulations on your new bot. You will find it at t.me/fishKyivStolbovyiBot. You can now add a description, about section and profile picture for your bot, see /help for a list of commands. By the way, when you've finished creating your cool bot, ping our Bot Support if you want a better username for it. Just make sure the bot is fully operational before you do this.
 
 Use this token to access the HTTP API:
