@@ -91,8 +91,8 @@ export const Layout: FC = ({ children }) => {
         <Link href="/" passHref legacyBehavior>
           <LogoLink>
             <StyledLogo size={3}>
-              <span className="logo_short">Fish</span>
-              <span className="logo_full">TropicalFish</span>
+              <span className="logo_short">Store Fish</span>
+              <span className="logo_full">Tropical Fish Store</span>
             </StyledLogo>
           </LogoLink>
         </Link>
@@ -107,17 +107,19 @@ export const Layout: FC = ({ children }) => {
           />
 
           <Link href={"/cart"} passHref legacyBehavior>
-            <IconButton
-              name={"Cart"}
-              size={1.5}
-              onClick={() => console.log("onPressCar")}
-            />
+            <div className="warraperIndicator">
+              <IconButton
+                name={"Cart"}
+                size={1.5}
+                onClick={() => console.log("onPressCar")}
+              />
+              {dataCart.length > 0 && (
+                <StyledBottomIndicator>
+                  <span className="bobble">{dataCart.length}</span>
+                </StyledBottomIndicator>
+              )}
+            </div>
           </Link>
-          {dataCart.length > 0 && (
-            <StyledBottomIndicator>
-              <span className="bobble">{dataCart.length}</span>
-            </StyledBottomIndicator>
-          )}
         </MainNav>
         <SearchInput
           icon="Search"

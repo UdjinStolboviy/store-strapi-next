@@ -110,41 +110,51 @@ export const Product: FC<ProductProps> = ({
           <Image {...imageProps} alt={header} />
         </ProductLink>
       </Link>
-      <div className="wrapperDescriptionProduct">
-        <h3>{header}</h3>
-        <h3>{subtitle}</h3>
-      </div>
+      <div className="wrapperDescription">
+        <div className="wrapperDescriptionProduct">
+          <h3>{header}</h3>
+          <h3>{subtitle}</h3>
+        </div>
 
-      <div className="wrapperDescriptionProduct">
-        <h3>{`${product.attributes.price} грн / шт`}</h3>
-        {showeAllPrice()}
+        <div className="wrapperDescriptionProductPrice">
+          <h3>{`${product.attributes.price} грн / шт`}</h3>
+          {showeAllPrice()}
+        </div>
       </div>
 
       <div className="wrapperButtonProduct">
-        <IconButton
-          name={"LinkProduct"}
-          size={1.5}
-          onClick={() => console.log("onPressCar")}
-        />
-        <Link legacyBehavior href={link} passHref>
+        <div className="wrapperFunctionButton">
           <IconButton
-            name={"InProduct"}
+            name={"LinkProduct"}
             size={1.5}
             onClick={() => console.log("onPressCar")}
           />
-        </Link>
-        <IconButton name={"MinusProduct"} size={1.5} onClick={minusProduct} />
-        <div className="wrapperInput">
-          <Input
-            placeholder={"шт"}
-            width={7}
-            height={4}
-            value={valueProduct ? valueProduct : productValue.quantity}
-            onChange={onChangeProduct}
-          />
+          <Link legacyBehavior href={link} passHref>
+            <IconButton
+              name={"InProduct"}
+              size={1.5}
+              onClick={() => console.log("onPressCar")}
+            />
+          </Link>
+          <div className="showeDiscriptionProduct">
+            <h3>{`${product.attributes.price} грн / шт`}</h3>
+            {showeAllPrice()}
+          </div>
         </div>
-        <IconButton name={"PluseProduct"} size={1.5} onClick={plusProduct} />
-        {viewRemoveToCart()}
+        <div className="wrapperAddCartButton">
+          <IconButton name={"MinusProduct"} size={1.5} onClick={minusProduct} />
+          <div className="wrapperInput">
+            <Input
+              placeholder={"шт"}
+              width={7}
+              height={4}
+              value={valueProduct ? valueProduct : productValue.quantity}
+              onChange={onChangeProduct}
+            />
+          </div>
+          <IconButton name={"PluseProduct"} size={1.5} onClick={plusProduct} />
+          {viewRemoveToCart()}
+        </div>
       </div>
       {children}
     </ProductStyled>

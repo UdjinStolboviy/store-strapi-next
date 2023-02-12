@@ -13,12 +13,17 @@ export const FooterMobileStyled = styled.footer`
   transform: translate(-50%, 0%);
   padding: 10px 10px 10px 10px;
   border-radius: 90px;
+  margin-bottom: 10px;
   border: 0.5px solid ${({ theme }) => theme.components.shadow2};
   background: ${({ theme }) => theme.background};
   ${({ theme }) =>
     boxShadow(theme.components.shadow1, theme.components.shadow2)};
   @media screen and (min-width: 769px) {
     display: none;
+  }
+  .warraperIndicator {
+    display: flex;
+    flex-direction: row;
   }
 `;
 
