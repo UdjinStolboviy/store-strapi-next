@@ -120,7 +120,10 @@ export const ProductStyled = styled.section`
     max-height: 120px;
     align-items: center;
     justify-content: space-around;
-
+    .wrapperDescription {
+      width: 100%;
+      display: flex;
+    }
     .showeDiscriptionProduct {
       display: none;
     }

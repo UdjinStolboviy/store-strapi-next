@@ -110,14 +110,16 @@ export const Product: FC<ProductProps> = ({
           <Image {...imageProps} alt={header} />
         </ProductLink>
       </Link>
-      <div className="wrapperDescriptionProduct">
-        <h3>{header}</h3>
-        <h3>{subtitle}</h3>
-      </div>
+      <div className="wrapperDescription">
+        <div className="wrapperDescriptionProduct">
+          <h3>{header}</h3>
+          <h3>{subtitle}</h3>
+        </div>
 
-      <div className="wrapperDescriptionProductPrice">
-        <h3>{`${product.attributes.price} грн / шт`}</h3>
-        {showeAllPrice()}
+        <div className="wrapperDescriptionProductPrice">
+          <h3>{`${product.attributes.price} грн / шт`}</h3>
+          {showeAllPrice()}
+        </div>
       </div>
 
       <div className="wrapperButtonProduct">
