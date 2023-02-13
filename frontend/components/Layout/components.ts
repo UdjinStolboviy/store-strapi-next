@@ -12,7 +12,6 @@ export const Wrapper = styled.div`
   padding: 0.5rem;
  // border: 4px solid #000;
 
-
   grid-template-areas:
     "header  nav"
     "search  search"
@@ -30,12 +29,19 @@ export const Wrapper = styled.div`
   @media (min-width: 500px) {
     grid-template-columns: 1fr 2fr;
   }
-  @media (min-width: 960px) {
-    grid-template-columns: 1fr 4fr 2fr;
+  @media (min-width: 1008px) {
+    /* grid-template-columns: 1fr 4fr 2fr;
     grid-template-areas:
       "header  search  nav"
       "content content content"
-      "footer  footer  footer";
+      "footer  footer  footer"; */
+       .wrapperNav {
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: center;
+       align-items: center;
+     
+       }
   }
 `;
 

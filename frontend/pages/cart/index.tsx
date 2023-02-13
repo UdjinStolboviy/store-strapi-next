@@ -10,10 +10,13 @@ import { Product as ProductType } from "@/types";
 import { Product } from "@/components/Product";
 import { SecondaryButton, PrimaryButton } from "@/components/Button/Button";
 import React, { useEffect, useState } from "react";
-import { TextArea } from "@/components/TextArea";
+import { ConditionalFeedback, TextArea } from "@/components/TextArea";
 import { IOrder } from "@/api/types";
+import { useForm } from "react-hook-form";
 import { clearCart } from "@/services/cartSlice";
 import moment from "moment";
+import StyledInputRegistration from "../registration/styled-registration";
+import { Input } from "@/components/Input";
 
 export type LoginForm = {
   identifier: string;
@@ -22,10 +25,14 @@ export type LoginForm = {
 const strapi_url = process.env.NEXT_PUBLIC_STRAPI_URL;
 let numberOrder = "";
 const Cart: NextPage = () => {
+  const { username, email, error } = useSelector<RootState, RootState["user"]>(
+    selectUser
+  );
   const dataCart = useSelector((state: RootState) => state.cart.cart);
   const dispatch = useDispatch<AppDispatch>();
   const apiService = new ApiService();
   const [dataInputArea, setDataInputArea] = React.useState<string | null>("");
+  const [emailOrder, setEmailOrder] = React.useState<string>("user@gmail.com");
   const orderId = "TFS" + Math.floor(1000000 * Math.random());
   const dateOrder = moment().format("DD.MM.YYYY HH:mm");
   const [addOrder, setAddOrder] = useState<boolean>(false);
@@ -42,6 +49,10 @@ const Cart: NextPage = () => {
     console.log("dataInputArea", dataInputArea);
     if (dataInputArea === "") {
       alert("Будь ласка залиште данні для звязку");
+      return;
+    }
+    if (emailOrder && !validEmail(emailOrder)) {
+      alert("Будь ласка введіть коректний email");
       return;
     }
     sentMessageTelegram();
@@ -81,7 +92,7 @@ const Cart: NextPage = () => {
       const deteil: IOrder = {
         orderid: orderId,
         name: "string",
-        email: "vlad@gmail.com",
+        email: emailOrder,
         products: JSON.stringify(dataCart),
         address: dataInputArea ? dataInputArea : "",
         phone: "string",
@@ -119,6 +130,11 @@ const Cart: NextPage = () => {
     localStorage.setItem("info", result);
   };
 
+  const validEmail = (email: string) => {
+    const re = /^\S+@\S+\.\S+$/;
+    return re.test(String(email).toLowerCase());
+  };
+
   const getBotUpdates = () =>
     fetch("https://api.telegram.org/bot{token}/getUpdates").then((response) =>
       response.json()
@@ -138,6 +154,13 @@ const Cart: NextPage = () => {
     return userUpdate.message.from.id;
   };
 
+  const onChangeEmail = (e: any) => {
+    if (!email) {
+      setEmailOrder(email);
+    }
+    e.target.value && setEmailOrder(e.target.value);
+  };
+
   const shoveProduct = () => {
     if (dataCart.length === 0 && !addOrder) {
       return (
@@ -154,6 +177,8 @@ const Cart: NextPage = () => {
         </div>
       );
     }
+
+    //
 
     return dataCart.map((product: ProductType) => (
       <Product
@@ -176,9 +201,22 @@ const Cart: NextPage = () => {
   return (
     <StyledCart>
       {shoveProduct()}
+      <div className="hr-cart"></div>
+      <h2>Ваш Еmail:</h2>
+      <Input
+        placeholder={"email"}
+        width={"100%"}
+        height={4}
+        value={email ? email : emailOrder}
+        onChange={onChangeEmail}
+      />
+      <div className="hr-cart"></div>
+      <h2>Ваші коментарі до заказу:</h2>
       <div className="info-order">
         <TextArea
-          placeholder={"*Будь ласка залиште тут данні як з вами звязатися..."}
+          placeholder={
+            "*Будь ласка залиште тут ваші коментарі або данні доставки або як з вами звязатися це може бути номер телефону або посилання на ваш профіль в соціальній мережі. "
+          }
           width={"25"}
           height={"15"}
           cols={33}
@@ -188,9 +226,9 @@ const Cart: NextPage = () => {
           onChange={(item) => setDataInputArea(item.target.value)}
         />
       </div>
-      <div className="order">
+      <div className="order-button">
         <PrimaryButton onClick={() => submitOrder()}>
-          {"створити заказ"}
+          {"Замовити"}
         </PrimaryButton>
       </div>
     </StyledCart>

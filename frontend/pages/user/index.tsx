@@ -1,4 +1,3 @@
-
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
@@ -30,10 +29,10 @@ const User: NextPage = () => {
   };
 
   return username && email ? (
-    <CenteredTile header="Profile">
-      <h3>username: {username}</h3>
+    <CenteredTile header="Ваш акаунт">
+      <h3>Імя: {username}</h3>
       <h3>email: {email}</h3>
-      <Button onClick={logoutHandler}>Logout</Button>
+      <Button onClick={logoutHandler}>Вихід з акаунту</Button>
     </CenteredTile>
   ) : null;
 };

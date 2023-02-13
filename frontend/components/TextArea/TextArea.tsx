@@ -25,13 +25,6 @@ type WrapperProps = {
 };
 
 const Wrapper = styled.label<WrapperProps>`
-  display: grid;
-  gap: 0.1rem;
-
-  grid-template-areas:
-    "label"
-    "input"
-    "feedback";
   grid-template-rows: ${({ isLabelVisible, isFeedbackVisible }) => {
     if (isLabelVisible && isFeedbackVisible) {
       return "1fr 3fr 1fr";

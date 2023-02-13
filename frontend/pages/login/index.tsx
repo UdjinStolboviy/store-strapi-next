@@ -40,13 +40,13 @@ const Login: NextPage = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <CenteredTile header="Login">
+      <CenteredTile header="Логін">
         <h3>
           <ConditionalFeedback>{error?.message}</ConditionalFeedback>
         </h3>
         <StyledInputLogin
           label="Identifier"
-          placeholder="username or email"
+          placeholder="Імя або email"
           feedback={
             <ConditionalFeedback>
               {errors.identifier?.message}
@@ -54,14 +54,14 @@ const Login: NextPage = () => {
           }
           height={8}
           {...register("identifier", {
-            required: "Required field!",
-            minLength: { value: 6, message: "Min length 6!" },
+            required: "Обовязкове поле!",
+            minLength: { value: 6, message: "Мінімум символів 6!" },
           })}
         />
         <StyledInputLogin
           label="Password"
           type="password"
-          placeholder="password"
+          placeholder="Пароль"
           role="textbox"
           feedback={
             <ConditionalFeedback>
@@ -70,14 +70,14 @@ const Login: NextPage = () => {
           }
           height={8}
           {...register("password", {
-            required: "Required field!",
-            minLength: { value: 8, message: "Min length 8!" },
+            required: "Обовязкове поле!",
+            minLength: { value: 8, message: "Мінімум символів 8!" },
           })}
         />
-        <Button type="submit">Sign In</Button>
+        <Button type="submit">Зайти в акаунт</Button>
         <h3>
           <Link href="/registration" passHref legacyBehavior>
-            <StyledLink underline>Create account</StyledLink>
+            <StyledLink underline>СТВОРИТИ АКАУНТ</StyledLink>
           </Link>
         </h3>
       </CenteredTile>

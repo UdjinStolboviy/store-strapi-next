@@ -96,43 +96,45 @@ export const Layout: FC = ({ children }) => {
             </StyledLogo>
           </LogoLink>
         </Link>
-        <MainNav>
-          <Link href={username ? "/user" : "/login"} passHref legacyBehavior>
-            <IconButton name={username ? "User" : "Login"} size={1.5} />
-          </Link>
-          <IconButton
-            name={!isDark ? "Moon" : "Sun"}
-            size={1.5}
-            onClick={toggleDark}
-          />
-          <Link href={"/about"} passHref legacyBehavior>
-            <IconButton name={"Message"} size={1.5} />
-          </Link>
+        <div className="wrapperNav">
+          <MainNav>
+            <Link href={username ? "/user" : "/login"} passHref legacyBehavior>
+              <IconButton name={username ? "User" : "Login"} size={1.5} />
+            </Link>
+            <IconButton
+              name={!isDark ? "Moon" : "Sun"}
+              size={1.5}
+              onClick={toggleDark}
+            />
+            <Link href={"/about"} passHref legacyBehavior>
+              <IconButton name={"Message"} size={1.5} />
+            </Link>
 
-          <Link href={"/cart"} passHref legacyBehavior>
-            <div className="warraperIndicator">
-              <IconButton
-                name={"Cart"}
-                size={1.5}
-                onClick={() => console.log("onPressCar")}
-              />
-              {dataCart.length > 0 && (
-                <StyledBottomIndicator>
-                  <span className="bobble">{dataCart.length}</span>
-                </StyledBottomIndicator>
-              )}
-            </div>
-          </Link>
-          <Link href={"/"} passHref legacyBehavior>
-            <IconButton name={"Home"} size={1.5} />
-          </Link>
-        </MainNav>
-        <SearchInput
-          icon="Search"
-          placeholder="Search"
-          value={query}
-          onChange={searchChange}
-        />
+            <Link href={"/cart"} passHref legacyBehavior>
+              <div className="warraperIndicator">
+                <IconButton
+                  name={"Cart"}
+                  size={1.5}
+                  onClick={() => console.log("onPressCar")}
+                />
+                {dataCart.length > 0 && (
+                  <StyledBottomIndicator>
+                    <span className="bobble">{dataCart.length}</span>
+                  </StyledBottomIndicator>
+                )}
+              </div>
+            </Link>
+            <Link href={"/"} passHref legacyBehavior>
+              <IconButton name={"Home"} size={1.5} />
+            </Link>
+          </MainNav>
+          <SearchInput
+            icon="Search"
+            placeholder="Пошук"
+            value={query}
+            onChange={searchChange}
+          />
+        </div>
         <Content>{children}</Content>
         <FooterMobile
           dataCart={dataCart}

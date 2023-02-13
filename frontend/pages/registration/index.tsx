@@ -44,18 +44,18 @@ const Registration: NextPage = () => {
         </h3>
         <StyledInputRegistration
           label="username"
-          placeholder="username"
+          placeholder="Ваше імя"
           feedback={
             <ConditionalFeedback>
               {errors.username?.message}
             </ConditionalFeedback>
           }
           {...register("username", {
-            required: "Required field!",
-            minLength: { value: 6, message: "Min length 6!" },
+            required: "Обов'язкове поле!",
+            minLength: { value: 6, message: "Мінімальна дожина 6!" },
             pattern: {
               value: /^[\w\d\s]+$/,
-              message: "Only letters, numbers and spaces!",
+              message: "Тільки літери, цифри та пробіли!",
             },
           })}
         />
@@ -67,10 +67,10 @@ const Registration: NextPage = () => {
           placeholder="email"
           type="email"
           {...register("email", {
-            required: "Required field!",
+            required: "Обов'язкове поле!",
             pattern: {
               value: /^\S+@\S+$/,
-              message: "Invalid email!",
+              message: "Неправильно ведений email!",
             },
           })}
         />
@@ -83,16 +83,16 @@ const Registration: NextPage = () => {
               {errors.password?.message}
             </ConditionalFeedback>
           }
-          placeholder="password"
+          placeholder="Пароль"
           {...register("password", {
-            required: "Required field!",
-            minLength: { value: 8, message: "Min length 8!" },
+            required: "Обов'язкове поле!",
+            minLength: { value: 8, message: "Мінімум символів 8!" },
           })}
         />
-        <Button type="submit">Sign Up</Button>
+        <Button type="submit">Зареєструватися</Button>
         <h3>
           <Link href="/login" passHref legacyBehavior>
-            <StyledLink underline>Login</StyledLink>
+            <StyledLink underline>Логін</StyledLink>
           </Link>
         </h3>
       </CenteredTile>

@@ -6,9 +6,17 @@ const StyledCart = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  .hr-cart {
+    width: 100%;
+    height: 10px;
+  }
   .info-order {
     margin-top: 1rem;
     margin-bottom: 1rem;
+  }
+  .order-button {
+    // margin-top: 1rem;
+    margin-bottom: 4rem;
   }
 `;
 
