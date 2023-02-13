@@ -16,7 +16,7 @@ type WrapperProps = {
   /** Input height */
   height?: number;
   /** Input width */
-  width?: number;
+  width?: number | string;
   /** Label visibilty */
   isLabelVisible?: boolean;
   /** Feedback visibilty */
