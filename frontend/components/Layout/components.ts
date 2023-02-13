@@ -96,7 +96,9 @@ export const MainNav = styled.nav`
 
 export const SearchInput = styled(Input)`
   grid-area: search;
-  width: 100%;
+  width: 96%;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
   height: 4rem;
 `;
 

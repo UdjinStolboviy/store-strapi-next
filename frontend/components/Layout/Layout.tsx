@@ -105,6 +105,9 @@ export const Layout: FC = ({ children }) => {
             size={1.5}
             onClick={toggleDark}
           />
+          <Link href={"/about"} passHref legacyBehavior>
+            <IconButton name={"Message"} size={1.5} />
+          </Link>
 
           <Link href={"/cart"} passHref legacyBehavior>
             <div className="warraperIndicator">
@@ -119,6 +122,9 @@ export const Layout: FC = ({ children }) => {
                 </StyledBottomIndicator>
               )}
             </div>
+          </Link>
+          <Link href={"/"} passHref legacyBehavior>
+            <IconButton name={"Home"} size={1.5} />
           </Link>
         </MainNav>
         <SearchInput
