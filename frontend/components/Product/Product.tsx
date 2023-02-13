@@ -8,6 +8,7 @@ import { Input } from "../Input/Input";
 import { AppDispatch, RootState } from "@/store";
 import { useDispatch, useSelector } from "react-redux";
 import { addCart, removeProduct } from "@/services/cartSlice";
+import { RWebShare } from "react-web-share";
 
 export type ProductProps = {
   /** Header string */
@@ -124,11 +125,20 @@ export const Product: FC<ProductProps> = ({
 
       <div className="wrapperButtonProduct">
         <div className="wrapperFunctionButton">
-          <IconButton
-            name={"LinkProduct"}
-            size={1.5}
-            onClick={() => console.log("onPressCar")}
-          />
+          <RWebShare
+            data={{
+              text: `${header}`,
+              url: `${link}`,
+              title: `${header}`,
+            }}
+            onClick={() => console.log("shared successfully!")}
+          >
+            <IconButton
+              name={"LinkProduct"}
+              size={1.5}
+              onClick={() => console.log("onPressCar")}
+            />
+          </RWebShare>
           <Link legacyBehavior href={link} passHref>
             <IconButton
               name={"InProduct"}
