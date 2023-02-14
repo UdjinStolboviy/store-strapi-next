@@ -116,11 +116,7 @@ export const Product: FC<ProductProps> = ({
   };
   return (
     <ProductStyled
-      className={
-        addCartProdгсе
-          ? "animate__animated animate__zoomOut animate__flipOutX"
-          : ""
-      }
+      className={addCartProdгсе ? "animate__animated animate__zoomOut" : ""}
     >
       <Link legacyBehavior href={link} passHref>
         <ProductLink>
