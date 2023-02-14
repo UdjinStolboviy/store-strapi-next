@@ -9,6 +9,7 @@ import { AppDispatch, RootState } from "@/store";
 import { useDispatch, useSelector } from "react-redux";
 import { addCart, removeProduct } from "@/services/cartSlice";
 import { RWebShare } from "react-web-share";
+import "animate.css";
 
 export type ProductProps = {
   /** Header string */
@@ -40,6 +41,7 @@ export const Product: FC<ProductProps> = ({
   const [valueProduct, setValueProduct] = useState(
     productValue.quantity ? productValue.quantity.toString() : ""
   );
+  const [addCartProdгсе, setAddCartProdгсе] = useState<boolean>(false);
 
   const dispatch = useDispatch<AppDispatch>();
 
@@ -49,7 +51,11 @@ export const Product: FC<ProductProps> = ({
         ...productValue,
         quantity: Number(valueProduct),
       };
-      dispatch(addCart(product));
+      setAddCartProdгсе(true);
+      setTimeout(() => {
+        setAddCartProdгсе(false);
+        dispatch(addCart(product));
+      }, 1000);
     }
   };
 
@@ -59,7 +65,11 @@ export const Product: FC<ProductProps> = ({
         ...productValue,
         quantity: Number(valueProduct),
       };
-      dispatch(removeProduct(product));
+      setAddCartProdгсе(true);
+      setTimeout(() => {
+        setAddCartProdгсе(false);
+        dispatch(removeProduct(product));
+      }, 1000);
     }
   };
 
@@ -105,7 +115,9 @@ export const Product: FC<ProductProps> = ({
     return null;
   };
   return (
-    <ProductStyled>
+    <ProductStyled
+      className={addCartProdгсе ? "animate__animated animate__zoomOutUp" : ""}
+    >
       <Link legacyBehavior href={link} passHref>
         <ProductLink>
           <Image {...imageProps} alt={header} />
@@ -114,6 +126,7 @@ export const Product: FC<ProductProps> = ({
       <div className="wrapperDescription">
         <div className="wrapperDescriptionProduct">
           <h3>{header}</h3>
+          <div className="gepText"></div>
           <h3>{subtitle}</h3>
         </div>
 

@@ -43,11 +43,15 @@ export const ProductStyled = styled.section`
     }
     .wrapperDescriptionProduct {
       display: flex;
-      flex-direction: column;
+      width: 100%;
+      flex-direction: row;
       align-items: center;
-      justify-content: center;
+      justify-content: space-between;
     }
-
+    .gepText {
+      height: 10px;
+      width: 10px;
+    }
     .wrapperInput {
       // width: 40px;
     }
@@ -73,13 +77,15 @@ export const ProductStyled = styled.section`
     width: 100%;
     .wrapperDescriptionProduct {
       display: flex;
-      flex-direction: column;
+      width: 100%;
+      flex-direction: row;
       align-items: center;
-      justify-content: center;
+      justify-content: space-between;
     }
     .showeDiscriptionProduct {
       display: none;
     }
+
     .wrapperDescriptionProductPrice {
       display: flex;
       flex-direction: column;
@@ -102,6 +108,10 @@ export const ProductStyled = styled.section`
       flex-direction: row;
       align-items: center;
       justify-content: center;
+      .gepText {
+        height: 20px;
+        width: 20px;
+      }
     }
     .wrapperAddCartButton {
       display: flex;
