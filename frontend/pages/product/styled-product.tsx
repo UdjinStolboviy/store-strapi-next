@@ -10,7 +10,7 @@ const ImageContainerProduct = styled.div<{ maxWidth: string }>`
 
 export const CustomLinkProduct = styled(StyledLink)`
   text-decoration: underline;
-  font-size: 2rem;
+  font-size: 15px;
 `;
 
 export default ImageContainerProduct;

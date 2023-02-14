@@ -70,5 +70,7 @@ export type Product = Data<{
   size: number;
   price: number;
   availableProd: number;
+  price_wholesale: number;
+  link_video: string;
   quantity?: number;
 }>;

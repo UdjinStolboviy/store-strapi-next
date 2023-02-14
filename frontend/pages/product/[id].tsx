@@ -105,6 +105,7 @@ const ProductPage: NextPage<{
         link,
         description,
         publishedAt,
+
         cover: {
           data: {
             attributes: { url, width, height },
@@ -128,15 +129,25 @@ const ProductPage: NextPage<{
               objectFit="contain"
             />
           </ImageContainerProduct>
-          <Link href={link} passHref legacyBehavior>
-            <CustomLinkProduct>
-              Це посилання на стороній ресурс для детальної інформації
-            </CustomLinkProduct>
-          </Link>
+
           <div
             style={{ maxWidth: width }}
             dangerouslySetInnerHTML={{ __html: description }}
           />
+          <Link href={link} passHref legacyBehavior>
+            <CustomLinkProduct>посилання на ресурс</CustomLinkProduct>
+          </Link>
+          <ImageContainerProduct maxWidth={`${width}px`}>
+            <iframe
+              width="100%"
+              height="100%"
+              src={product.attributes.link_video}
+              title="YouTube video player"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen
+            ></iframe>
+          </ImageContainerProduct>
           <h2>{new Date(publishedAt).toDateString()}</h2>
         </CenteredTile>
       </>
