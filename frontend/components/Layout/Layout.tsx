@@ -35,13 +35,7 @@ export const Layout: FC = ({ children }) => {
   const [isDark, setIsDark] = useState(true);
   const dispatch = useDispatch<AppDispatch>();
 
-  // const startAnimation = () => {
-  //   const indicator = document.querySelector(".bobble");
-  //   indicator?.classList.add("pulse");
-  //   indicator?.classList.add("animated");
-  // };
   const dataCart = useSelector((state: RootState) => {
-    // startAnimation();
     return state.cart.cart;
   });
 

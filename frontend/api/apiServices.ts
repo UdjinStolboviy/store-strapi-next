@@ -1,3 +1,4 @@
+import { Order } from './../types';
 
 
 import {
@@ -11,12 +12,13 @@ import {
     IOrder,
 } from "./types";
 import qs from "qs";
-import { IAbout, Product as ProductType, Response } from "@/types";
+import { IAbout, Product as ProductType, Response, Order as OrderType } from "@/types";
 
 
 import { Any } from "@react-spring/types";
 
 type ProductsResponce = Response<ProductType[]>;
+type OrdersResponce = Response<OrderType[]>;
 
 const api_url = process.env.NEXT_PUBLIC_STRAPI_API_URL
 const AAHv2b = "5871846479:AAHv2bidoQhKbpNXzF11O-gzBkTnRKe-Ud4"
@@ -137,6 +139,56 @@ export class ApiService {
             return result;
         } else {
             return {} as ProductsResponce
+        }
+
+
+    }
+
+    public async searchOrder(q: string): Promise<OrdersResponce> {
+
+        const query = qs.stringify(
+            {
+                populate: "*",
+                filters: {
+                    $or: [
+                        {
+                            header: {
+                                $containsi: q,
+                            },
+                        },
+                        {
+                            subtitle: {
+                                $containsi: q,
+                            },
+                        },
+                        {
+                            description: {
+                                $containsi: q,
+                            },
+                        },
+                    ],
+                },
+            },
+            {
+                encodeValuesOnly: true,
+            }
+        );
+
+        const res = await fetch(`${api_url}/orders?${query}`, {
+            method: "GET",
+            // // mode: 'no-cors',
+            headers: {
+                "Content-Type": "application/json"
+            },
+
+        });
+
+        if (res.statusText === 'OK') {
+            const result: OrdersResponce = res && await res.json();
+
+            return result;
+        } else {
+            return {} as OrdersResponce
         }
 
 

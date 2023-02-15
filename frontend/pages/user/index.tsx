@@ -7,7 +7,12 @@ import { selectUser, logout } from "@/services/userSlice";
 
 import { CenteredTile } from "@/components/Tile";
 import { Button } from "@/components/Button";
-import { NextPage } from "next";
+import { NextPage, GetServerSideProps } from "next";
+import { Order as OrderType, Response } from "@/types";
+
+import { ApiService } from "@/api/apiServices";
+
+type OrdersResponce = Response<OrderType[]>;
 
 const User: NextPage = () => {
   const router = useRouter();
@@ -15,12 +20,20 @@ const User: NextPage = () => {
     selectUser
   );
   const dispatch = useDispatch<AppDispatch>();
+  const apiService = new ApiService();
+
+  // const getOrders = async (email: string) => {
+  //   const { data, error }: OrdersResponce = await apiService.searchOrder(email);
+  // };
 
   useEffect(() => {
     if (!username || Boolean(error)) {
       dispatch(logout());
       router.push("/login");
     }
+    //  if (email) {
+    //    getOrders(email);
+    //  }
   }, []);
 
   const logoutHandler = () => {

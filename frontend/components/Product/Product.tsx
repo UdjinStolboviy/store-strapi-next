@@ -55,7 +55,7 @@ export const Product: FC<ProductProps> = ({
       setTimeout(() => {
         setAddCartProdгсе(false);
         dispatch(addCart(product));
-      }, 600);
+      }, 500);
     }
   };
 
@@ -69,7 +69,7 @@ export const Product: FC<ProductProps> = ({
       setTimeout(() => {
         setAddCartProdгсе(false);
         dispatch(removeProduct(product));
-      }, 600);
+      }, 500);
     }
   };
 

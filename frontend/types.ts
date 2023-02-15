@@ -74,3 +74,23 @@ export type Product = Data<{
   link_video: string;
   quantity?: number;
 }>;
+
+
+export type Order = Data<{
+  header: string;
+  link: string;
+  subtitle: string;
+  url: string;
+  description: string;
+  publishedAt: string;
+  cover: {
+    data: Image;
+  };
+  slug: string;
+  size: number;
+  price: number;
+  availableProd: number;
+  price_wholesale: number;
+  link_video: string;
+  quantity?: number;
+}>;

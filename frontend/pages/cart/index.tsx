@@ -40,6 +40,9 @@ const Cart: NextPage = () => {
   //console.log("dataInputArea", infoOrderLocal);
 
   useEffect(() => {
+    if (email) {
+      setEmailOrder(email);
+    }
     if (localStorage.getItem("info")) {
       setDataInputArea(localStorage.getItem("info"));
     }
@@ -85,6 +88,7 @@ const Cart: NextPage = () => {
     )
     .toFixed(2)} грн
     \n
+email: ${emailOrder} \n
 Данні для звязку:\n${dataInputArea}`;
 
   const onOrder = async () => {
