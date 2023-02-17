@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import { RootState, AppDispatch } from "@/store";
@@ -21,20 +21,26 @@ const User: NextPage = () => {
   );
   const dispatch = useDispatch<AppDispatch>();
   const apiService = new ApiService();
-
-  // const getOrders = async (email: string) => {
-  //   const { data, error }: OrdersResponce = await apiService.searchOrder(email);
-  // };
+  const [orders, setOrders] = useState<any>([]);
+  console.log("---------------", orders);
 
   useEffect(() => {
     if (!username || Boolean(error)) {
       dispatch(logout());
       router.push("/login");
     }
-    //  if (email) {
-    //    getOrders(email);
-    //  }
+    if (email) {
+      // getOrders(email);
+    }
   }, []);
+
+  // const getOrders = async (email: string) => {
+  //   const datares = await apiService
+  //     .getOrder()
+  //     .then((res) => setOrders(res.data));
+
+  //   //const { data, error }: OrdersResponce = await apiService.searchOrder(email);
+  // };
 
   const logoutHandler = () => {
     dispatch(logout());
@@ -45,6 +51,7 @@ const User: NextPage = () => {
     <CenteredTile header="Ваш акаунт">
       <h3>Імя: {username}</h3>
       <h3>email: {email}</h3>
+      <div className="hr-login"></div>
       <Button onClick={logoutHandler}>Вихід з акаунту</Button>
     </CenteredTile>
   ) : null;

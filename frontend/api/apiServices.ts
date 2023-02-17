@@ -86,6 +86,13 @@ export class ApiService {
         );
     }
 
+    public getOrder(): Promise<any> {
+        return this.makeRequest<any>(
+            `${api_url}/orders`,
+            "GET",
+        );
+    }
+
     // public setOrder(body: IOrder): Promise<any> {
     //     const rawResponse = fetch(`${api_url}/orders/pretransaction`, {
     //         method: 'POST',
@@ -148,22 +155,11 @@ export class ApiService {
 
         const query = qs.stringify(
             {
-                populate: "*",
                 filters: {
                     $or: [
                         {
-                            header: {
-                                $containsi: q,
-                            },
-                        },
-                        {
-                            subtitle: {
-                                $containsi: q,
-                            },
-                        },
-                        {
-                            description: {
-                                $containsi: q,
+                            email: {
+                                $containsi: "jenyjenyy",
                             },
                         },
                     ],

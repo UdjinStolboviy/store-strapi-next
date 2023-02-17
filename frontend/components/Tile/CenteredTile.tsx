@@ -12,6 +12,10 @@ const CommonStyles = css`
 
 const Wrapper = styled.div`
   ${CommonStyles};
+  & .hr-login {
+    width: 100%;
+    height: 20px;
+  }
 `;
 
 const StyledTile = styled(Tile)`

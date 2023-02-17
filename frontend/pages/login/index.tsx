@@ -45,7 +45,7 @@ const Login: NextPage = () => {
           <ConditionalFeedback>{error?.message}</ConditionalFeedback>
         </h3>
         <StyledInputLogin
-          label="Identifier"
+          label="Імя або email"
           placeholder="Імя або email"
           feedback={
             <ConditionalFeedback>
@@ -53,6 +53,7 @@ const Login: NextPage = () => {
             </ConditionalFeedback>
           }
           height={8}
+          width={"100%"}
           {...register("identifier", {
             required: "Обовязкове поле!",
             minLength: { value: 6, message: "Мінімум символів 6!" },
@@ -63,6 +64,7 @@ const Login: NextPage = () => {
           type="password"
           placeholder="Пароль"
           role="textbox"
+          width={"100%"}
           feedback={
             <ConditionalFeedback>
               {errors.password?.message}
@@ -75,11 +77,15 @@ const Login: NextPage = () => {
           })}
         />
         <Button type="submit">Зайти в акаунт</Button>
-        <h3>
-          <Link href="/registration" passHref legacyBehavior>
-            <StyledLink underline>СТВОРИТИ АКАУНТ</StyledLink>
-          </Link>
-        </h3>
+        <div className="hr-login"></div>
+
+        <Button
+          onClick={() => {
+            router.push("/registration");
+          }}
+        >
+          Зареєструватися
+        </Button>
       </CenteredTile>
     </form>
   );

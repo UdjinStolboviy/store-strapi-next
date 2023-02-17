@@ -38,13 +38,14 @@ const Registration: NextPage = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <CenteredTile header="Create an account">
+      <CenteredTile header="Зареєструватися">
         <h3>
           <ConditionalFeedback>{error?.message}</ConditionalFeedback>
         </h3>
         <StyledInputRegistration
-          label="username"
+          label="Ваше імя"
           placeholder="Ваше імя"
+          width={"100%"}
           feedback={
             <ConditionalFeedback>
               {errors.username?.message}
@@ -65,6 +66,7 @@ const Registration: NextPage = () => {
             <ConditionalFeedback>{errors.email?.message}</ConditionalFeedback>
           }
           placeholder="email"
+          width={"100%"}
           type="email"
           {...register("email", {
             required: "Обов'язкове поле!",
@@ -75,7 +77,7 @@ const Registration: NextPage = () => {
           })}
         />
         <StyledInputRegistration
-          label="password"
+          label="Пароль"
           type="password"
           role="textbox"
           feedback={
@@ -90,11 +92,16 @@ const Registration: NextPage = () => {
           })}
         />
         <Button type="submit">Зареєструватися</Button>
-        <h3>
-          <Link href="/login" passHref legacyBehavior>
-            <StyledLink underline>Логін</StyledLink>
-          </Link>
-        </h3>
+
+        <div className="hr-login"></div>
+
+        <Button
+          onClick={() => {
+            router.push("/login");
+          }}
+        >
+          Зайти в акаунт
+        </Button>
       </CenteredTile>
     </form>
   );

@@ -23,6 +23,10 @@ export const getColors = (theme: AppTheme, color?: Color): SerializedStyles => {
         color: ${theme.font.regular};
       `;
     case "primary":
+      return css`
+        background: ${theme.components.background};
+        color: ${theme.font.regular};
+      `;
     case "danger":
       return css`
         background: ${theme.components[color]};
