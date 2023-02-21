@@ -8,6 +8,7 @@ export const mockUser = {
     provider: "local",
     confirmed: true,
     blocked: false,
+    wholesale_user: false,
     createdAt: "2022-04-20T12:58:41.661Z",
     updatedAt: "2022-04-20T12:58:41.661Z",
   },

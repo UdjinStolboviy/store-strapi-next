@@ -12,6 +12,7 @@ const store = configureStore({
       jwt: mockUser.jwt,
       username: mockUser.user.username,
       email: mockUser.user.email,
+      wholesale_user: mockUser.user.wholesale_user,
     },
   },
 });

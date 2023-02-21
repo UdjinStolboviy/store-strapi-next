@@ -88,7 +88,7 @@ export class ApiService {
 
     public getOrder(): Promise<any> {
         return this.makeRequest<any>(
-            `${api_url}/orders`,
+            `${api_url}/orders?populate=*`,
             "GET",
         );
     }

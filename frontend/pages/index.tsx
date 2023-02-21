@@ -42,6 +42,7 @@ export async function getStaticProps() {
     revalidate: 60,
   };
 }
+
 let showe = false;
 const Home: NextPage = ({ products, abouts }: any) => {
   const dataCart = useSelector((state: RootState) => state.cart.cart);

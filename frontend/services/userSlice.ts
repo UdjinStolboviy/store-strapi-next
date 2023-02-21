@@ -13,6 +13,7 @@ export type UserState = {
   jwt: string;
   username: string;
   email: string;
+  wholesale_user: boolean;
   requestState?: RequestState;
   error?: SerializedError;
 };
@@ -28,12 +29,13 @@ export type RegistrationData = {
   password: string;
 };
 
-type UserPayload = { jwt: string; user: { username: string; email: string } };
+type UserPayload = { jwt: string; user: { username: string; email: string, wholesale_user: boolean } };
 
 export const initialState: UserState = {
   jwt: "",
   username: "",
   email: "",
+  wholesale_user: false,
 };
 
 export const userSlice = createSlice({
@@ -53,6 +55,7 @@ export const userSlice = createSlice({
           state.jwt = payload.jwt;
           state.username = payload.user.username;
           state.email = payload.user.email;
+          state.wholesale_user = payload.user.wholesale_user;
           state.error = undefined;
         }
       )
@@ -83,12 +86,14 @@ const clearUserInfoFromLocalStorage = () => {
   localStorage.removeItem("jwt");
   localStorage.removeItem("username");
   localStorage.removeItem("email");
+  localStorage.removeItem("wholesale_user");
 };
 
 const setupUserInfoToLocalStorage = (result: UserPayload) => {
   localStorage.setItem("jwt", result.jwt);
   localStorage.setItem("username", result?.user?.username);
   localStorage.setItem("email", result?.user?.email);
+  localStorage.setItem("wholesale_user", result?.user?.wholesale_user.toString());
 };
 
 const createRequest = (
