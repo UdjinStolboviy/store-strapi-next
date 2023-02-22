@@ -84,7 +84,7 @@ const User: NextPage = ({ orders }: any) => {
           {ordersResult.map((order: OrderType, index) => {
             return (
               <Collapse title={order.attributes.orderid} key={index}>
-                <Text css={{ color: `${({ theme }) => theme.font.regular}` }}>
+                <Text css={{ color: `${({ theme }: any) => theme.font.regular}` }}>
                   {order.attributes.text_order}
                 </Text>
               </Collapse>
