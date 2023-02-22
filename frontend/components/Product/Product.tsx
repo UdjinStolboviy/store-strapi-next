@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addCart, removeProduct } from "@/services/cartSlice";
 import { RWebShare } from "react-web-share";
 import "animate.css";
+import { selectUser } from "@/services/userSlice";
 
 export type ProductProps = {
   /** Header string */
@@ -26,6 +27,8 @@ export type ProductProps = {
   quantity?: number;
 
   showRemoveToCart?: boolean;
+
+  wholesale?: boolean;
 };
 
 export const Product: FC<ProductProps> = ({
@@ -36,12 +39,17 @@ export const Product: FC<ProductProps> = ({
   subtitle,
   product,
   showRemoveToCart,
+  wholesale,
 }) => {
   const [productValue, setProductValue] = useState<ProductType>(product);
   const [valueProduct, setValueProduct] = useState(
     productValue.quantity ? productValue.quantity.toString() : ""
   );
   const [addCartProdгсе, setAddCartProdгсе] = useState<boolean>(false);
+
+  const price = wholesale
+    ? product.attributes.price_wholesale
+    : product.attributes.price;
 
   const dispatch = useDispatch<AppDispatch>();
 
@@ -107,9 +115,7 @@ export const Product: FC<ProductProps> = ({
   const showeAllPrice = () => {
     if (valueProduct) {
       return (
-        <h3>{`${valueProduct} шт = ${
-          product.attributes.price * Number(valueProduct)
-        } грн`}</h3>
+        <h3>{`${valueProduct} шт = ${price * Number(valueProduct)} грн`}</h3>
       );
     }
     return null;
@@ -131,7 +137,7 @@ export const Product: FC<ProductProps> = ({
         </div>
 
         <div className="wrapperDescriptionProductPrice">
-          <h3>{`${product.attributes.price} грн / шт`}</h3>
+          <h3>{`${price} грн / шт`}</h3>
           {showeAllPrice()}
         </div>
       </div>
@@ -160,7 +166,7 @@ export const Product: FC<ProductProps> = ({
             />
           </Link>
           <div className="showeDiscriptionProduct">
-            <h3>{`${product.attributes.price} грн / шт`}</h3>
+            <h3>{`${price} грн / шт`}</h3>
             {showeAllPrice()}
           </div>
         </div>
@@ -188,11 +194,16 @@ export const Products: FC<{ products: ProductType[]; strapi_url: string }> = ({
   products,
   strapi_url,
 }) => {
+  const { wholesale_user } = useSelector<RootState, RootState["user"]>(
+    selectUser
+  );
+
   return (
     <Wrapper>
       {products.map((product: ProductType) => (
         <Product
           key={product.id}
+          wholesale={wholesale_user}
           header={product.attributes.header}
           link={`/product/${product.id}`}
           subtitle={product.attributes.subtitle}

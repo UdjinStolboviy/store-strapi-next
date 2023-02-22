@@ -25,9 +25,11 @@ export type LoginForm = {
 const strapi_url = process.env.NEXT_PUBLIC_STRAPI_URL;
 let numberOrder = "";
 const Cart: NextPage = () => {
-  const { username, email, error } = useSelector<RootState, RootState["user"]>(
-    selectUser
-  );
+  const { username, email, error, wholesale_user } = useSelector<
+    RootState,
+    RootState["user"]
+  >(selectUser);
+
   const dataCart = useSelector((state: RootState) => state.cart.cart);
   const dispatch = useDispatch<AppDispatch>();
   const apiService = new ApiService();
@@ -75,15 +77,22 @@ const Cart: NextPage = () => {
 Час створення ${dateOrder}
   \n${dataCart
     .map((item: ProductType) => {
-      return `${item.attributes.header} - ${item.quantity}(шт)*${
-        item.attributes.price
-      } грн = ${item.quantity * item.attributes.price} грн\n`;
+      const price = wholesale_user
+        ? item.attributes.price_wholesale
+        : item.attributes.price;
+      return `${item.attributes.header} - ${item.quantity}(шт)*${price} грн = ${
+        item.quantity * price
+      } грн\n`;
     })
     .join("")}
 Всього: ${dataCart
     .reduce(
       (acc: number, item: ProductType) =>
-        acc + item.quantity * item.attributes.price,
+        acc +
+        item.quantity *
+          (wholesale_user
+            ? item.attributes.price_wholesale
+            : item.attributes.price),
       0
     )
     .toFixed(2)} грн
@@ -182,11 +191,10 @@ email: ${emailOrder} \n
       );
     }
 
-    //
-
     return dataCart.map((product: ProductType) => (
       <Product
         key={product.id}
+        wholesale={wholesale_user}
         header={product.attributes.header}
         link={`/product/${product.id}`}
         subtitle={product.attributes.subtitle}
@@ -202,9 +210,31 @@ email: ${emailOrder} \n
     ));
   };
 
+  const shoveTotal = () => {
+    if (dataCart.length === 0) {
+      return null;
+    }
+
+    return (
+      <h2>{`Всього: ${dataCart
+        .reduce(
+          (acc: number, item: ProductType) =>
+            acc +
+            item.quantity *
+              (wholesale_user
+                ? item.attributes.price_wholesale
+                : item.attributes.price),
+          0
+        )
+        .toFixed(2)} грн`}</h2>
+    );
+  };
+
   return (
     <StyledCart>
       {shoveProduct()}
+      <div className="hr-cart"></div>
+      {shoveTotal()}
       <div className="hr-cart"></div>
       <h2>Ваш Еmail:</h2>
       <Input
@@ -214,6 +244,7 @@ email: ${emailOrder} \n
         value={email ? email : emailOrder}
         onChange={onChangeEmail}
       />
+
       <div className="hr-cart"></div>
       <h2>Ваші коментарі до заказу:</h2>
       <div className="info-order">

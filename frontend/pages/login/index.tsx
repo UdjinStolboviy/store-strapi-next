@@ -37,10 +37,10 @@ const Login: NextPage = () => {
     router.push("/user");
   }
 
-  if (error) {
-    console.log("error", error);
-    setShowLoading(false);
-  }
+  // if (error) {
+  //   console.log("error", error);
+  //   setShowLoading(false);
+  // }
 
   const onSubmit = (data: LoginForm) => {
     setShowLoading(true);
