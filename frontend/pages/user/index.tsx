@@ -84,7 +84,9 @@ const User: NextPage = ({ orders }: any) => {
           {ordersResult.map((order: OrderType, index) => {
             return (
               <Collapse title={order.attributes.orderid} key={index}>
-                <Text>{order.attributes.text_order}</Text>
+                <Text css={{ color: `${({ theme }) => theme.font.regular}` }}>
+                  {order.attributes.text_order}
+                </Text>
               </Collapse>
             );
           })}
@@ -92,7 +94,9 @@ const User: NextPage = ({ orders }: any) => {
       </div>
     </CenteredTile>
   ) : (
+    <div className="positionCenter">
     <Loading size="lg" />
+    </div>
   );
 };
 

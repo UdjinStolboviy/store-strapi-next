@@ -2,6 +2,7 @@ import { NextPage } from "next";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useSelector, useDispatch } from "react-redux";
+import React from "react";
 
 import { useForm } from "react-hook-form";
 
@@ -13,6 +14,7 @@ import { Input, ConditionalFeedback } from "@/components/Input";
 import { Button } from "@/components/Button";
 import { StyledLink } from "@/components/StyledLink";
 import StyledInputLogin from "./styled-login";
+import { Loading } from "@nextui-org/react";
 
 export type LoginForm = {
   identifier: string;
@@ -29,12 +31,19 @@ const Login: NextPage = () => {
 
   const { jwt, error } = useSelector<RootState, RootState["user"]>(selectUser);
   const dispatch = useDispatch<AppDispatch>();
+  const [showLoading, setShowLoading] = React.useState(false);
 
   if (Boolean(jwt) && !error) {
     router.push("/user");
   }
 
+  if (error) {
+    console.log("error", error);
+    setShowLoading(false);
+  }
+
   const onSubmit = (data: LoginForm) => {
+    setShowLoading(true);
     dispatch(login(data));
   };
 
@@ -76,7 +85,11 @@ const Login: NextPage = () => {
             minLength: { value: 8, message: "Мінімум символів 8!" },
           })}
         />
-        <Button type="submit">Зайти в акаунт</Button>
+        {showLoading ? (
+          <Loading size="lg" />
+        ) : (
+          <Button type="submit">Зайти в акаунт</Button>
+        )}
         <div className="hr-login"></div>
 
         <Button

@@ -1,4 +1,3 @@
-
 import { Global } from "@emotion/react";
 
 import { GlobalStyles } from "@/styles/global";
@@ -24,7 +23,7 @@ export default function Document() {
       <Head>
         <link
           rel="stylesheet"
-          href="https://fonts.googleapis.com/css?family=Poppins|Monoton&display=swap"
+          href="https://fonts.googleapis.com/css?family=Poppins|Monoton|Rowdies|OleoScript&display=swap"
         />
         <script dangerouslySetInnerHTML={{ __html: setInitialTheme }} />
         <Global styles={GlobalStyles} />

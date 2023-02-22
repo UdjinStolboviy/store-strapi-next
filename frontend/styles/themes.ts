@@ -47,10 +47,11 @@ const light: AppTheme = {
     warning: "#504e55e6",
     valid: "#1F784E",
     invalid: "#BF3845",
-    logo: "#ffffff",
+    logo: "#6295d9",
     logoShadow1: "#000000",
     logoShadow2: "#6d5dfc",
   },
+
 };
 
 export const Themes: Record<string, AppTheme> = { dark, light };

@@ -21,6 +21,13 @@ const Wrapper = styled.div`
 const StyledTile = styled(Tile)`
   ${CommonStyles};
   flex-flow: column;
+  & .positionCenter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+  }
 `;
 
 export const CenteredTile: FC<Props> = ({ children, header, ...rest }) => (
