@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from "react";
+import { FC, useEffect, useState, useCallback } from "react";
 import Link from "next/link";
 import Image, { ImageProps } from "next/image";
 import { Product as ProductType } from "@/types";
@@ -7,7 +7,7 @@ import { IconButton } from "../IconButton";
 import { Input } from "../Input/Input";
 import { AppDispatch, RootState } from "@/store";
 import { useDispatch, useSelector } from "react-redux";
-import { addCart, removeProduct } from "@/services/cartSlice";
+import { addCart, removeProduct, changQuantity } from "@/services/cartSlice";
 import { RWebShare } from "react-web-share";
 import "animate.css";
 import { selectUser } from "@/services/userSlice";
@@ -29,6 +29,8 @@ export type ProductProps = {
   showRemoveToCart?: boolean;
 
   wholesale?: boolean;
+
+  cart?: boolean;
 };
 
 export const Product: FC<ProductProps> = ({
@@ -40,6 +42,7 @@ export const Product: FC<ProductProps> = ({
   product,
   showRemoveToCart,
   wholesale,
+  cart,
 }) => {
   const [productValue, setProductValue] = useState<ProductType>(product);
   const [valueProduct, setValueProduct] = useState(
@@ -52,6 +55,16 @@ export const Product: FC<ProductProps> = ({
     : product.attributes.price;
 
   const dispatch = useDispatch<AppDispatch>();
+
+  useEffect(() => {
+    if (cart) {
+      const product = {
+        ...productValue,
+        quantity: Number(valueProduct),
+      };
+      dispatch(changQuantity(product));
+    }
+  }, [valueProduct]);
 
   const handleAddToCart = () => {
     if (productValue) {

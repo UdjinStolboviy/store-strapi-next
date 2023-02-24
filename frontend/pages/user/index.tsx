@@ -78,7 +78,6 @@ const User: NextPage = ({ orders }: any) => {
       <h3>Імя: {username}</h3>
       <h3>Email: {email}</h3>
       <div className="hr-login"></div>
-      <Button onClick={logoutHandler}>Вихід з акаунту</Button>
       <div>
         <Collapse.Group>
           {ordersResult.map((order: OrderType, index) => {
@@ -94,6 +93,8 @@ const User: NextPage = ({ orders }: any) => {
           })}
         </Collapse.Group>
       </div>
+      <div className="hr-login"></div>
+      <Button onClick={logoutHandler}>Вихід з акаунту</Button>
     </CenteredTile>
   ) : (
     <div className="positionCenter">

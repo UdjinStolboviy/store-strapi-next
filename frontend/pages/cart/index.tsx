@@ -200,6 +200,7 @@ email: ${emailOrder} \n
         subtitle={product.attributes.subtitle}
         product={product}
         showRemoveToCart
+        cart
         imageProps={{
           width: product.attributes.cover.data.attributes.formats.small.width,
           height: product.attributes.cover.data.attributes.formats.small.height,
