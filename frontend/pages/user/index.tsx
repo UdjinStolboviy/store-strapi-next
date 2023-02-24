@@ -50,7 +50,7 @@ const User: NextPage = ({ orders }: any) => {
     return order.attributes.email === email;
   });
 
-  console.log("---------------", ordersResult, email);
+  // console.log("---------------",ordersResult, email);
 
   useEffect(() => {
     if (!username || Boolean(error)) {
@@ -84,7 +84,9 @@ const User: NextPage = ({ orders }: any) => {
           {ordersResult.map((order: OrderType, index) => {
             return (
               <Collapse title={order.attributes.orderid} key={index}>
-                <Text css={{ color: `${({ theme }: any) => theme.font.regular}` }}>
+                <Text
+                  css={{ color: `${({ theme }: any) => theme.font.regular}` }}
+                >
                   {order.attributes.text_order}
                 </Text>
               </Collapse>
@@ -95,7 +97,7 @@ const User: NextPage = ({ orders }: any) => {
     </CenteredTile>
   ) : (
     <div className="positionCenter">
-    <Loading size="lg" />
+      <Loading size="lg" />
     </div>
   );
 };
