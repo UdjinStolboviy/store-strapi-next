@@ -189,8 +189,8 @@ email: ${emailOrder} \n
     if (dataCart.length === 0 && addOrder) {
       return (
         <div>
-          <h1>{`\n\nДЯКУЮ ЗА ПОКУПКУ !!!
-    \nВаше замовлення № ${numberOrder} прийнято`}</h1>
+          <h1>{`ДЯКУЮ ЗА ПОКУПКУ !!!`}</h1>
+          <h1>{`Ваше замовлення № ${numberOrder} прийнято`}</h1>
         </div>
       );
     }
