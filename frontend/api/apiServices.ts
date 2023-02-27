@@ -93,13 +93,7 @@ export class ApiService {
         );
     }
 
-    // public setOrder(body: IOrder): Promise<any> {
-    //     const rawResponse = fetch(`${api_url}/orders/pretransaction`, {
-    //         method: 'POST',
-    //         body: JSON.stringify(body)
-    //     });
-    //     return rawResponse
-    // }
+
 
     public async searchProduct(q: string): Promise<ProductsResponce> {
 
@@ -186,34 +180,7 @@ export class ApiService {
         } else {
             return {} as OrdersResponce
         }
-
-
     }
-
-    // public createLoginRequest = (
-    //     jwt: string | null,
-    //     loginData: LoginData | undefined
-    // ) => {
-    //     if (jwt && !loginData) {
-    //         return fetch(`${api_url}/users/me`, {
-    //             method: "GET",
-    //             headers: {
-    //                 Authorization: `Bearer ${jwt}`,
-    //             },
-    //         });
-    //     }
-    //     if (loginData) {
-    //         return fetch(`${api_url}/auth/local`, {
-    //             method: "POST",
-    //             headers: {
-    //                 "Content-Type": "application/json",
-    //             },
-    //             body: JSON.stringify(loginData),
-    //         });
-    //     }
-    //     throw { error: "Invalid login request" };
-    // };
-
 
 
     private async makeRequest<TResponse>(
@@ -254,8 +221,48 @@ export class ApiService {
             throw await response;
         }
     }
-
-
-
-
 }
+
+
+  // const getBotUpdates = () =>
+  //   fetch("https://api.telegram.org/bot{token}/getUpdates").then((response) =>
+  //     response.json()
+  //   );
+
+  // const getUserTelegramId = async (uniqueString: string) => {
+  //   const { result } = await getBotUpdates();
+
+  //   const messageUpdates = result.filter(
+  //     ({ message }: any) => message?.text !== undefined
+  //   );
+
+  //   const userUpdate = messageUpdates.find(
+  //     ({ message }: any) => message.text === `/start ${uniqueString}`
+  //   );
+
+  //   return userUpdate.message.from.id;
+  // };
+
+      // public createLoginRequest = (
+    //     jwt: string | null,
+    //     loginData: LoginData | undefined
+    // ) => {
+    //     if (jwt && !loginData) {
+    //         return fetch(`${api_url}/users/me`, {
+    //             method: "GET",
+    //             headers: {
+    //                 Authorization: `Bearer ${jwt}`,
+    //             },
+    //         });
+    //     }
+    //     if (loginData) {
+    //         return fetch(`${api_url}/auth/local`, {
+    //             method: "POST",
+    //             headers: {
+    //                 "Content-Type": "application/json",
+    //             },
+    //             body: JSON.stringify(loginData),
+    //         });
+    //     }
+    //     throw { error: "Invalid login request" };
+    // };

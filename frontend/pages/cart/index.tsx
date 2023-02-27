@@ -44,8 +44,6 @@ const Cart: NextPage = () => {
   const dateOrder = moment().format("DD.MM.YYYY HH:mm");
   const [addOrder, setAddOrder] = useState<boolean>(false);
 
-  //console.log("dataInputArea", infoOrderLocal);
-
   useEffect(() => {
     if (email) {
       setEmailOrder(email);
@@ -57,7 +55,6 @@ const Cart: NextPage = () => {
 
   const submitOrder = () => {
     setShowLoading(true);
-    console.log("dataInputArea--------", showLoading);
     if (dataInputArea === "") {
       setTextModal("Будь ласка залиште данні для звязку!");
       setVisibleModal(true);
@@ -153,10 +150,6 @@ email: ${emailOrder} \n
     }
   };
 
-  // const clearInfoLocalStorage = () => {
-  //   localStorage.removeItem("info");
-  // };
-
   const setupInfoToLocalStorage = (result: string) => {
     localStorage.setItem("info", result);
   };
@@ -165,25 +158,6 @@ email: ${emailOrder} \n
     const re = /^\S+@\S+\.\S+$/;
     return re.test(String(email).toLowerCase());
   };
-
-  // const getBotUpdates = () =>
-  //   fetch("https://api.telegram.org/bot{token}/getUpdates").then((response) =>
-  //     response.json()
-  //   );
-
-  // const getUserTelegramId = async (uniqueString: string) => {
-  //   const { result } = await getBotUpdates();
-
-  //   const messageUpdates = result.filter(
-  //     ({ message }: any) => message?.text !== undefined
-  //   );
-
-  //   const userUpdate = messageUpdates.find(
-  //     ({ message }: any) => message.text === `/start ${uniqueString}`
-  //   );
-
-  //   return userUpdate.message.from.id;
-  // };
 
   const onChangeEmail = (e: any) => {
     if (!email) {
