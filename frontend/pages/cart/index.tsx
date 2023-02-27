@@ -17,6 +17,7 @@ import { clearCart } from "@/services/cartSlice";
 import moment from "moment";
 import StyledInputRegistration from "../registration/styled-registration";
 import { Input } from "@/components/Input";
+import { Loading } from "@nextui-org/react";
 
 export type LoginForm = {
   identifier: string;
@@ -35,6 +36,7 @@ const Cart: NextPage = () => {
   const apiService = new ApiService();
   const [dataInputArea, setDataInputArea] = React.useState<string | null>("");
   const [emailOrder, setEmailOrder] = React.useState<string>("user@gmail.com");
+  const [showLoading, setShowLoading] = useState(false);
   const orderId = "TFS" + Math.floor(1000000 * Math.random());
   const dateOrder = moment().format("DD.MM.YYYY HH:mm");
   const [addOrder, setAddOrder] = useState<boolean>(false);
@@ -51,7 +53,8 @@ const Cart: NextPage = () => {
   }, []);
 
   const submitOrder = () => {
-    console.log("dataInputArea", dataInputArea);
+    setShowLoading(true);
+    console.log("dataInputArea--------", showLoading);
     if (dataInputArea === "") {
       alert("Будь ласка залиште данні для звязку");
       return;
@@ -71,6 +74,7 @@ const Cart: NextPage = () => {
     numberOrder = orderId;
     dispatch(clearCart());
     setAddOrder(true);
+    setShowLoading(false);
   };
 
   const textOrder = `Замовлення ${orderId} 
@@ -263,9 +267,13 @@ email: ${emailOrder} \n
         />
       </div>
       <div className="order-button">
-        <PrimaryButton onClick={() => submitOrder()}>
-          {"Замовити"}
-        </PrimaryButton>
+        {showLoading ? (
+          <Loading size="lg" />
+        ) : (
+          <PrimaryButton onClick={() => submitOrder()}>
+            {"Замовити"}
+          </PrimaryButton>
+        )}
       </div>
     </StyledCart>
   );

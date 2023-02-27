@@ -128,7 +128,7 @@ export const Product: FC<ProductProps> = ({
   const showeAllPrice = () => {
     if (valueProduct) {
       return (
-        <h3>{`${valueProduct} шт = ${price * Number(valueProduct)} грн`}</h3>
+        <h3>{`${valueProduct} шт = ${(price * Number(valueProduct)).toFixed(2)} грн`}</h3>
       );
     }
     return null;
