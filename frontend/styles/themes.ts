@@ -47,7 +47,7 @@ const light: AppTheme = {
     warning: "#504e55e6",
     valid: "#1F784E",
     invalid: "#BF3845",
-    logo: "#6295d9",
+    logo: "#a8c2e6",
     logoShadow1: "#000000",
     logoShadow2: "#6d5dfc",
   },

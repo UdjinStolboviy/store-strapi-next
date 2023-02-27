@@ -69,7 +69,6 @@ export const StyledBottomIndicator = styled.div`
       text-align: center;
       line-height: 30px;
     }
-  
   `;
 
 export const StyledLogo = styled(Logo)`

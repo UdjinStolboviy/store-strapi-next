@@ -18,6 +18,7 @@ import moment from "moment";
 import StyledInputRegistration from "../registration/styled-registration";
 import { Input } from "@/components/Input";
 import { Loading } from "@nextui-org/react";
+import ModalTypeOne from "@/components/modal/modalTypeOne";
 
 export type LoginForm = {
   identifier: string;
@@ -37,6 +38,8 @@ const Cart: NextPage = () => {
   const [dataInputArea, setDataInputArea] = React.useState<string | null>("");
   const [emailOrder, setEmailOrder] = React.useState<string>("user@gmail.com");
   const [showLoading, setShowLoading] = useState(false);
+  const [visibleModal, setVisibleModal] = React.useState(false);
+  const [textModal, setTextModal] = React.useState<string>(" ");
   const orderId = "TFS" + Math.floor(1000000 * Math.random());
   const dateOrder = moment().format("DD.MM.YYYY HH:mm");
   const [addOrder, setAddOrder] = useState<boolean>(false);
@@ -56,11 +59,21 @@ const Cart: NextPage = () => {
     setShowLoading(true);
     console.log("dataInputArea--------", showLoading);
     if (dataInputArea === "") {
-      alert("Будь ласка залиште данні для звязку");
+      setTextModal("Будь ласка залиште данні для звязку!");
+      setVisibleModal(true);
+      setShowLoading(false);
       return;
     }
     if (emailOrder && !validEmail(emailOrder)) {
-      alert("Будь ласка введіть коректний email");
+      setTextModal("Будь ласка введіть коректний email!");
+      setVisibleModal(true);
+      setShowLoading(false);
+      return;
+    }
+    if (dataCart.length === 0) {
+      setTextModal("Ваш кошик порожній!");
+      setVisibleModal(true);
+      setShowLoading(false);
       return;
     }
     sentMessageTelegram();
@@ -69,9 +82,10 @@ const Cart: NextPage = () => {
   };
 
   const clearStorage = () => {
-    alert(`\n\nДЯКУЮ ЗА ПОКУПКУ !!!
-    \nВаше замовлення № ${orderId} прийнято`);
+    setTextModal(`\n\nДЯКУЮ ЗА ПОКУПКУ !!!
+    \nВаше замовлення № ${orderId} прийнято!`);
     numberOrder = orderId;
+    setVisibleModal(true);
     dispatch(clearCart());
     setAddOrder(true);
     setShowLoading(false);
@@ -84,9 +98,9 @@ const Cart: NextPage = () => {
       const price = wholesale_user
         ? item.attributes.price_wholesale
         : item.attributes.price;
-      return `${item.attributes.header} - ${item.quantity}(шт)*${price} грн = ${
-        item.quantity * price
-      } грн\n`;
+      return `${item.attributes.header} - ${
+        item.quantity
+      }(шт)*${price} грн = ${(item.quantity * price).toFixed(2)} грн\n`;
     })
     .join("")}
 Всього: ${dataCart
@@ -139,9 +153,9 @@ email: ${emailOrder} \n
     }
   };
 
-  const clearInfoLocalStorage = () => {
-    localStorage.removeItem("info");
-  };
+  // const clearInfoLocalStorage = () => {
+  //   localStorage.removeItem("info");
+  // };
 
   const setupInfoToLocalStorage = (result: string) => {
     localStorage.setItem("info", result);
@@ -152,24 +166,24 @@ email: ${emailOrder} \n
     return re.test(String(email).toLowerCase());
   };
 
-  const getBotUpdates = () =>
-    fetch("https://api.telegram.org/bot{token}/getUpdates").then((response) =>
-      response.json()
-    );
+  // const getBotUpdates = () =>
+  //   fetch("https://api.telegram.org/bot{token}/getUpdates").then((response) =>
+  //     response.json()
+  //   );
 
-  const getUserTelegramId = async (uniqueString: string) => {
-    const { result } = await getBotUpdates();
+  // const getUserTelegramId = async (uniqueString: string) => {
+  //   const { result } = await getBotUpdates();
 
-    const messageUpdates = result.filter(
-      ({ message }: any) => message?.text !== undefined
-    );
+  //   const messageUpdates = result.filter(
+  //     ({ message }: any) => message?.text !== undefined
+  //   );
 
-    const userUpdate = messageUpdates.find(
-      ({ message }: any) => message.text === `/start ${uniqueString}`
-    );
+  //   const userUpdate = messageUpdates.find(
+  //     ({ message }: any) => message.text === `/start ${uniqueString}`
+  //   );
 
-    return userUpdate.message.from.id;
-  };
+  //   return userUpdate.message.from.id;
+  // };
 
   const onChangeEmail = (e: any) => {
     if (!email) {
@@ -187,12 +201,7 @@ email: ${emailOrder} \n
       );
     }
     if (dataCart.length === 0 && addOrder) {
-      return (
-        <div>
-          <h1>{`ДЯКУЮ ЗА ПОКУПКУ !!!`}</h1>
-          <h1>{`Ваше замовлення № ${numberOrder} прийнято`}</h1>
-        </div>
-      );
+      return null;
     }
 
     return dataCart.map((product: ProductType) => (
@@ -249,7 +258,6 @@ email: ${emailOrder} \n
         value={email ? email : emailOrder}
         onChange={onChangeEmail}
       />
-
       <div className="hr-cart"></div>
       <h2>Ваші коментарі до заказу:</h2>
       <div className="info-order">
@@ -275,6 +283,11 @@ email: ${emailOrder} \n
           </PrimaryButton>
         )}
       </div>
+      <ModalTypeOne
+        visibleMod={visibleModal}
+        onClickCloses={() => setVisibleModal(false)}
+        textModal={textModal}
+      />
     </StyledCart>
   );
 };
