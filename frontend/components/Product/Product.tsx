@@ -132,9 +132,9 @@ export const Product: FC<ProductProps> = ({
   const showeAllPrice = () => {
     if (valueProduct) {
       return (
-        <h3>{`${valueProduct} шт = ${(price * Number(valueProduct)).toFixed(
+        <h4>{`${valueProduct} шт = ${(price * Number(valueProduct)).toFixed(
           2
-        )} грн`}</h3>
+        )} грн`}</h4>
       );
     }
     return null;
@@ -150,13 +150,13 @@ export const Product: FC<ProductProps> = ({
       </Link>
       <div className="wrapperDescription">
         <div className="wrapperDescriptionProduct">
-          <h3>{header}</h3>
+          <h4>{header}</h4>
           <div className="gepText"></div>
-          <h3>{subtitle}</h3>
+          <h4>{subtitle}</h4>
         </div>
 
         <div className="wrapperDescriptionProductPrice">
-          <h3>{`${price} грн / шт`}</h3>
+          <h4>{`${price} грн / шт`}</h4>
           {showeAllPrice()}
         </div>
       </div>
@@ -185,7 +185,7 @@ export const Product: FC<ProductProps> = ({
             />
           </Link>
           <div className="showeDiscriptionProduct">
-            <h3>{`${price} грн / шт`}</h3>
+            <h4>{`${price} грн / шт`}</h4>
             {showeAllPrice()}
           </div>
         </div>
