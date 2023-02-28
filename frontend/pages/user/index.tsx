@@ -13,32 +13,53 @@ import { Order as OrderType, Response } from "@/types";
 import { ApiService } from "@/api/apiServices";
 import { Collapse, Text, Loading } from "@nextui-org/react";
 
-export async function getStaticProps() {
+type OrdersResponce = Response<OrderType[]>;
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
   const apiServes = new ApiService();
-  const orders = await apiServes.getOrder();
 
-  const status = orders?.error?.status;
-
-  if (status && (status < 200 || status >= 300)) {
+  const myOrder = (context?.query?.email as string) || null;
+  if (!myOrder) {
     return {
       props: {
         orders: [],
       },
-      revalidate: 10,
+    };
+  }
+  const { data, error }: OrdersResponce = await apiServes.searchOrder(myOrder);
+
+  const status = error?.status;
+
+  if (status && (status < 200 || status >= 300)) {
+    return {
+      props: {
+        error: error?.message,
+      },
     };
   }
 
   return {
     props: {
-      orders,
+      orders: data,
     },
-    revalidate: 60,
   };
-}
+};
 
-const User: NextPage = ({ orders }: any) => {
+const User: NextPage<{ orders: OrderType[]; error?: string }> = ({
+  orders: ssrOrders,
+  error: ssrError,
+}) => {
   const router = useRouter();
-  const { username, email, error, wholesale_user } = useSelector<
+  const { email } = router.query;
+  const [orders, setOrders] = useState<OrderType[] | undefined>(ssrOrders);
+  const [error, setError] = useState<string | undefined>(ssrError);
+
+  useEffect(() => {
+    setOrders(ssrOrders);
+    setError(ssrError);
+  }, [email]);
+
+  const { username, wholesale_user } = useSelector<
     RootState,
     RootState["user"]
   >(selectUser);
@@ -46,9 +67,9 @@ const User: NextPage = ({ orders }: any) => {
 
   const [ordersList, setOrdersList] = useState<OrderType[]>([]);
 
-  const ordersResult: OrderType[] = orders.data.filter((order: OrderType) => {
-    return order.attributes.email === email;
-  });
+  // const ordersResult: OrderType[] = orders.data.filter((order: OrderType) => {
+  //   return order.attributes.email === email;
+  // });
 
   // console.log("---------------",ordersResult, email);
 
@@ -73,14 +94,14 @@ const User: NextPage = ({ orders }: any) => {
     router.push("/");
   };
 
-  return username && email && ordersResult.length > 0 ? (
+  return username && email && orders ? (
     <CenteredTile header="Ваш акаунт">
       <h3>Імя: {username}</h3>
       <h3>Email: {email}</h3>
       <div className="hr-login"></div>
       <div>
         <Collapse.Group>
-          {ordersResult.map((order: OrderType, index) => {
+          {orders.map((order: OrderType, index) => {
             return (
               <Collapse title={order.attributes.orderid} key={index}>
                 <Text

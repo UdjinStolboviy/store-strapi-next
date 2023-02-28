@@ -25,11 +25,18 @@ const Registration: NextPage = () => {
   } = useForm<RegistrationData>();
   const router = useRouter();
 
-  const { jwt, error } = useSelector<RootState, RootState["user"]>(selectUser);
+  const { jwt, error, email } = useSelector<RootState, RootState["user"]>(
+    selectUser
+  );
   const dispatch = useDispatch<AppDispatch>();
 
   if (Boolean(jwt) && !error) {
-    router.push("/user");
+    router.push({
+      pathname: "/user",
+      query: {
+        email,
+      },
+    });
   }
 
   const onSubmit = (data: RegistrationData) => {

@@ -16,7 +16,6 @@ const strapi_url = process.env.NEXT_PUBLIC_STRAPI_URL;
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const apiService = new ApiService();
   const q = (context?.query?.q as string) || null;
-
   if (!q) {
     return {
       props: {

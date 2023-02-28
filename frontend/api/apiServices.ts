@@ -125,6 +125,8 @@ export class ApiService {
             }
         );
 
+
+
         const res = await fetch(`${api_url}/products?${query}`, {
             method: "GET",
             // // mode: 'no-cors',
@@ -145,15 +147,16 @@ export class ApiService {
 
     }
 
-    public async searchOrder(q: string): Promise<OrdersResponce> {
+    public async searchOrder(myemail: string): Promise<OrdersResponce> {
 
         const query = qs.stringify(
             {
+                populate: "*",
                 filters: {
                     $or: [
                         {
                             email: {
-                                $containsi: "jenyjenyy",
+                                $containsi: myemail,
                             },
                         },
                     ],

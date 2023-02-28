@@ -14,6 +14,8 @@ interface IFooterMobileProps {
   username: string;
   isDark: boolean;
   toggleDark: () => void;
+  onLogin: () => void;
+  onUserAcaunt: () => void;
 }
 
 const FooterMobile = ({
@@ -21,11 +23,16 @@ const FooterMobile = ({
   username,
   isDark,
   toggleDark,
+  onLogin,
+  onUserAcaunt,
 }: IFooterMobileProps) => (
   <FooterMobileStyled>
-    <Link href={username ? "/user" : "/login"} passHref legacyBehavior>
-      <IconButton name={username ? "User" : "Login"} size={1.5} />
-    </Link>
+    <IconButton
+      name={username ? "User" : "Login"}
+      size={1.5}
+      onClick={username ? onUserAcaunt : onLogin}
+    />
+
     <IconButton
       name={!isDark ? "Moon" : "Sun"}
       size={1.5}

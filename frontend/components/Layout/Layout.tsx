@@ -31,7 +31,9 @@ export const Layout: FC = ({ children }) => {
   const { q } = router.query;
   const [query, setQuery] = useState(q);
 
-  const { username } = useSelector<RootState, RootState["user"]>(selectUser);
+  const { username, email } = useSelector<RootState, RootState["user"]>(
+    selectUser
+  );
   const [isDark, setIsDark] = useState(true);
   const dispatch = useDispatch<AppDispatch>();
 
@@ -70,6 +72,19 @@ export const Layout: FC = ({ children }) => {
     }
   };
 
+  const onLogin = () => {
+    router.push("/login");
+  };
+
+  const onUserAcaunt = () => {
+    router.push({
+      pathname: "/user",
+      query: {
+        email,
+      },
+    });
+  };
+
   useEffect(() => {
     q && setQuery(q);
     if (query && !q) {
@@ -92,9 +107,12 @@ export const Layout: FC = ({ children }) => {
         </Link>
         <div className="wrapperNav">
           <MainNav>
-            <Link href={username ? "/user" : "/login"} passHref legacyBehavior>
-              <IconButton name={username ? "User" : "Login"} size={1.5} />
-            </Link>
+            <IconButton
+              name={username ? "User" : "Login"}
+              size={1.5}
+              onClick={username ? onUserAcaunt : onLogin}
+            />
+
             <IconButton
               name={!isDark ? "Moon" : "Sun"}
               size={1.5}
@@ -134,6 +152,8 @@ export const Layout: FC = ({ children }) => {
           dataCart={dataCart}
           isDark={isDark}
           username={username}
+          onLogin={() => onLogin()}
+          onUserAcaunt={() => onUserAcaunt()}
           toggleDark={() => toggleDark()}
         />
         <FooterDesktop />

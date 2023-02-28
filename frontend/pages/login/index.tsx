@@ -29,12 +29,19 @@ const Login: NextPage = () => {
   } = useForm<LoginForm>();
   const router = useRouter();
 
-  const { jwt, error } = useSelector<RootState, RootState["user"]>(selectUser);
+  const { jwt, error, email } = useSelector<RootState, RootState["user"]>(
+    selectUser
+  );
   const dispatch = useDispatch<AppDispatch>();
   const [showLoading, setShowLoading] = React.useState(false);
 
   if (Boolean(jwt) && !error) {
-    router.push("/user");
+    router.push({
+      pathname: "/user",
+      query: {
+        email,
+      },
+    });
   }
 
   // if (error) {

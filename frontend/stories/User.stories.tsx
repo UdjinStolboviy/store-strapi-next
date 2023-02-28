@@ -23,7 +23,5 @@ export default {
 };
 
 export const UserPage = () => (
-  <Provider store={store}>
-    <User />
-  </Provider>
+  <Provider store={store}>{/* <User /> */}</Provider>
 );
