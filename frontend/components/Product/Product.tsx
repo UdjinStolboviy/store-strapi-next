@@ -45,9 +45,7 @@ export const Product: FC<ProductProps> = ({
   cart,
 }) => {
   const [productValue, setProductValue] = useState<ProductType>(product);
-  const [valueProduct, setValueProduct] = useState(
-    productValue.quantity ? productValue.quantity.toString() : ""
-  );
+  const [valueProduct, setValueProduct] = useState("");
   const [addCartProdгсе, setAddCartProdгсе] = useState<boolean>(false);
 
   const price = wholesale
@@ -65,6 +63,12 @@ export const Product: FC<ProductProps> = ({
       dispatch(changQuantity(product));
     }
   }, [valueProduct]);
+
+  useEffect(() => {
+    setValueProduct(
+      productValue.quantity ? productValue.quantity.toString() : ""
+    );
+  }, []);
 
   const handleAddToCart = () => {
     if (productValue) {
@@ -128,7 +132,9 @@ export const Product: FC<ProductProps> = ({
   const showeAllPrice = () => {
     if (valueProduct) {
       return (
-        <h3>{`${valueProduct} шт = ${(price * Number(valueProduct)).toFixed(2)} грн`}</h3>
+        <h3>{`${valueProduct} шт = ${(price * Number(valueProduct)).toFixed(
+          2
+        )} грн`}</h3>
       );
     }
     return null;
@@ -190,7 +196,7 @@ export const Product: FC<ProductProps> = ({
               placeholder={"шт"}
               width={7}
               height={4}
-              value={valueProduct ? valueProduct : productValue.quantity}
+              value={valueProduct}
               onChange={onChangeProduct}
             />
           </div>
