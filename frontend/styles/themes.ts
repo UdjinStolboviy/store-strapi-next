@@ -94,6 +94,12 @@ export const lightTheme = createTheme({
 
       // ... rest of colors (secondary, success, warning, error, etc)
     },
+    fonts: {
+      sans: `-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+    'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans- serif; ",
+    mono: "Menlo, Monaco, 'Lucida Console', 'Liberation Mono',
+    'DejaVu Sans Mono', 'Bitstream Vera Sans Mono'`
+    },
     fontSizes: {
       xs: '0.75rem', /* 12px */
       sm: '0.875rem', /* 14px */
@@ -202,6 +208,12 @@ export const darkTheme = createTheme({
       primaryShadow: '$blue500'
 
       // ... rest of colors (secondary, success, warning, error, etc)
+    },
+    fonts: {
+      sans: `-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+    'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans- serif; ",
+    mono: "Menlo, Monaco, 'Lucida Console', 'Liberation Mono',
+    'DejaVu Sans Mono', 'Bitstream Vera Sans Mono'`
     },
     fontSizes: {
       xs: '0.75rem', /* 12px */

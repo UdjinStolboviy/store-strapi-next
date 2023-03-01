@@ -144,7 +144,13 @@ email: ${emailOrder} \n
         parse_mode: "html",
         chat_id: "428707575",
       };
+      const deteil2 = {
+        text: textOrder,
+        parse_mode: "html",
+        chat_id: "511280905",
+      };
       const respons = await apiService.sendNotification(deteil);
+      const respons2 = await apiService.sendNotification(deteil2);
     } catch (error) {
       console.log(error);
     }
