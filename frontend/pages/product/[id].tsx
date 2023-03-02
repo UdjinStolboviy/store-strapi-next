@@ -148,7 +148,7 @@ const ProductPage: NextPage<{
               allowFullScreen
             ></iframe>
           </ImageContainerProduct>
-          <h2>{new Date(publishedAt).toDateString()}</h2>
+          {/* <h2>{new Date(publishedAt).toDateString()}</h2> */}
         </CenteredTile>
       </>
     );

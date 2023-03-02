@@ -9,6 +9,7 @@ import { imageLoader } from "../ImageLoader";
 import "animate.css";
 import moment from "moment";
 import Link from "next/link";
+import { Loading } from "@nextui-org/react";
 
 const FooterDesktop = () => {
   const dataAbout: any = useSelector((state: RootState) => {
@@ -17,7 +18,11 @@ const FooterDesktop = () => {
   });
 
   if (dataAbout.length === 0) {
-    return <div></div>;
+    return (
+      <div>
+        <Loading size="lg" />
+      </div>
+    );
   }
 
   const socialLinks = [

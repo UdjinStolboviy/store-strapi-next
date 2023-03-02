@@ -35,10 +35,7 @@ export const Layout: FC = ({ children }) => {
   const { username, email } = useSelector<RootState, RootState["user"]>(
     selectUser
   );
-  const dataAbout: any = useSelector((state: RootState) => {
-    const res = state.about.about.flat() ?? null;
-    return res.flat();
-  });
+
   const [isDark, setIsDark] = useState(true);
   const dispatch = useDispatch<AppDispatch>();
 
@@ -127,18 +124,6 @@ export const Layout: FC = ({ children }) => {
               <Link href={"/about"} passHref legacyBehavior>
                 <IconButton name={"Message"} size={1.5} />
               </Link>
-              <a
-                href={`tel:${dataAbout[0].attributes?.phone1}`}
-                className="poneWrapper"
-              >
-                <div className="gepTelephone"></div>
-                <IconButton
-                  name={"Phone2"}
-                  size={1.5}
-                  onClick={() => console.log("onPressPhone")}
-                />
-              </a>
-
               <Link href={"/cart"} passHref legacyBehavior>
                 <div className="warraperIndicator">
                   <IconButton

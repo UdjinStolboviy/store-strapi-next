@@ -9,6 +9,7 @@ import { IconButton } from "../IconButton";
 import { StyledBottomIndicator } from "../Layout/components";
 import { Product } from "@/types";
 import { RootState } from "@/store";
+import { Loading } from "@nextui-org/react";
 
 interface IFooterMobileProps {
   dataCart: Product[];
@@ -31,6 +32,11 @@ const FooterMobile = ({
     const res = state.about.about.flat() ?? null;
     return res.flat();
   });
+   if (dataAbout.length === 0) {
+    return <div>
+        <Loading size="lg" />
+    </div>;
+  }
   return (
     <FooterMobileStyled>
       <IconButton
@@ -50,7 +56,7 @@ const FooterMobile = ({
         <IconButton name={"Message"} size={1.5} />
       </Link>
       <a
-        href={`tel:${dataAbout[0].attributes?.phone1}`}
+        href={`tel:${dataAbout[0]?.attributes?.phone1}`}
         className="poneWrapper"
       >
         <div className="gepTelephone"></div>
