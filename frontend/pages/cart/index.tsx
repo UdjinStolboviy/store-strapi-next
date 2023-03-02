@@ -53,8 +53,6 @@ const Cart: NextPage = () => {
     }
   }, []);
 
-  console.log("dataCart", emailOrder.toLowerCase());
-
   const submitOrder = () => {
     setShowLoading(true);
     if (dataInputArea === "") {
@@ -146,13 +144,13 @@ email: ${emailOrder} \n
         parse_mode: "html",
         chat_id: "428707575",
       };
-      const deteil2 = {
+      const deteilVlad = {
         text: textOrder,
         parse_mode: "html",
         chat_id: "511280905",
       };
       const respons = await apiService.sendNotification(deteil);
-      //const respons2 = await apiService.sendNotification(deteil2);
+      const responsVlad = await apiService.sendNotification(deteilVlad);
     } catch (error) {
       console.log(error);
     }
