@@ -92,15 +92,6 @@ const FooterDesktop = () => {
               </Link>
             </li>
           </ul>
-          <a href={`tel:${dataAbout.phone1}`} className="poneWrapper">
-            {dataAbout.phone1}
-            <div className="gepTelephone"></div>
-            <IconButton
-              name={"Phone2"}
-              size={1.5}
-              onClick={() => console.log("onPressPhone")}
-            />
-          </a>
         </div>
       </div>
     </FooterDesktopStyled>

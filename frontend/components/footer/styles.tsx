@@ -9,11 +9,12 @@ export const FooterMobileStyled = styled.footer`
   position: fixed;
   bottom: 0;
   left: 50%;
-  flax-direction: row;
+
   transform: translate(-50%, 0%);
   padding: 10px 10px 10px 10px;
   border-radius: 90px;
   margin-bottom: 10px;
+  flex-direction: row;
   border: 0.5px solid ${({ theme }) => theme.components.shadow2};
   background: ${({ theme }) => theme.background};
   ${({ theme }) =>
@@ -25,8 +26,8 @@ export const FooterMobileStyled = styled.footer`
     display: flex;
     flex-direction: row;
   }
-  & .poneWrapper {
-    @media screen and (min-width: 320px) and (max-width: 421px) {
+  & .isDark {
+    @media screen and (min-width: 320px) and (max-width: 378px) {
       display: none;
     }
   }

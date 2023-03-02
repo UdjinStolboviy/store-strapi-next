@@ -39,12 +39,14 @@ const FooterMobile = ({
         onClick={username ? onUserAcaunt : onLogin}
       />
 
-      <IconButton
-        name={!isDark ? "Moon" : "Sun"}
-        size={1.5}
-        onClick={() => toggleDark()}
-      />
-      <Link href={"/about"} passHref legacyBehavior>
+      <div className="isDark">
+        <IconButton
+          name={!isDark ? "Moon" : "Sun"}
+          size={1.5}
+          onClick={() => toggleDark()}
+        />
+      </div>
+      <Link href={"/about"} passHref legacyBehavior className="aboutButton">
         <IconButton name={"Message"} size={1.5} />
       </Link>
       <a href={`tel:${dataAbout.phone1}`} className="poneWrapper">
