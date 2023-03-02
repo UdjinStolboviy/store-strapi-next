@@ -49,8 +49,10 @@ const FooterMobile = ({
       <Link href={"/about"} passHref legacyBehavior className="aboutButton">
         <IconButton name={"Message"} size={1.5} />
       </Link>
-      <a href={`tel:${dataAbout.phone1}`} className="poneWrapper">
-        {dataAbout.phone1}
+      <a
+        href={`tel:${dataAbout[0].attributes?.phone1}`}
+        className="poneWrapper"
+      >
         <div className="gepTelephone"></div>
         <IconButton
           name={"Phone2"}
