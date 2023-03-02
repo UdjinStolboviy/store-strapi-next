@@ -25,6 +25,11 @@ export const FooterMobileStyled = styled.footer`
     display: flex;
     flex-direction: row;
   }
+  & .poneWrapper {
+    @media screen and (min-width: 320px) and (max-width: 421px) {
+      display: none;
+    }
+  }
 `;
 
 export const FooterDesktopStyled = styled.footer`

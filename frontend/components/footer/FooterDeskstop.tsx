@@ -4,6 +4,7 @@ import Image from "next/image";
 import { AppDispatch, RootState } from "@/store";
 import { useDispatch, useSelector } from "react-redux";
 import { FooterDesktopStyled, StyleEmail, StyleSocialList } from "./styles";
+import { IconButton } from "@/components/IconButton";
 import { imageLoader } from "../ImageLoader";
 import "animate.css";
 import moment from "moment";
@@ -46,13 +47,16 @@ const FooterDesktop = () => {
         <nav>
           <StyleEmail>
             <a
-              href="mailto:hello@icoe.com"
+              href={`mailto:${
+                dataAbout[0].attributes?.email ?? "email@gmail.com"
+              }`}
               target="_blank"
               rel="noopener noreferrer"
             >
               {dataAbout[0].attributes?.email ?? "email@gmail.com"}
             </a>
           </StyleEmail>
+
           <StyleSocialList>
             {socialLinks.map((navItem, index) => (
               <li key={navItem.link + index}>
@@ -88,6 +92,15 @@ const FooterDesktop = () => {
               </Link>
             </li>
           </ul>
+          <a href={`tel:${dataAbout.phone1}`} className="poneWrapper">
+            {dataAbout.phone1}
+            <div className="gepTelephone"></div>
+            <IconButton
+              name={"Phone2"}
+              size={1.5}
+              onClick={() => console.log("onPressPhone")}
+            />
+          </a>
         </div>
       </div>
     </FooterDesktopStyled>

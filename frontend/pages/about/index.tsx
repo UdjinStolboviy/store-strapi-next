@@ -80,7 +80,7 @@ const AboutPage: NextPage = ({ abouts }: any) => {
               {dataAbout.phone1}
               <div className="gepTelephone"></div>
               <IconButton
-                name={"Phone"}
+                name={"Phone2"}
                 size={1.5}
                 onClick={() => console.log("onPressPhone")}
               />
@@ -90,7 +90,7 @@ const AboutPage: NextPage = ({ abouts }: any) => {
               {dataAbout.phone2}
               <div className="gepTelephone"></div>
               <IconButton
-                name={"Phone"}
+                name={"Phone2"}
                 size={1.5}
                 onClick={() => console.log("onPressPhone")}
               />

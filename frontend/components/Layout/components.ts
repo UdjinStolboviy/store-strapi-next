@@ -96,7 +96,11 @@ export const MainNav = styled.nav`
   justify-content: space-around;
   align-items: center;
   margin: 1vmin 1vmin;
-  
+  & .poneWrapper {
+    @media screen and (min-width: 320px) and (max-width: 421px) {
+    display: none;
+  }
+  }
 `;
 
 export const SearchInput = styled(Input)`

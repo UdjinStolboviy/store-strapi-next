@@ -13,6 +13,7 @@ const Button = styled.button<ButtonProps>`
   justify-content: center;
   align-items: center;
   margin: 5px;
+
   cursor: pointer;
   ${({ size }) => css`
     width: ${size};

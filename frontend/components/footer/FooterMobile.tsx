@@ -1,13 +1,14 @@
 import React from "react";
-import Image from "next/legacy/image";
 
 // Styles
-import { FooterMobileStyled, StyleEmail } from "./styles";
-import { imageLoader } from "../ImageLoader";
+import { FooterMobileStyled } from "./styles";
+
+import { useSelector } from "react-redux";
 import Link from "next/link";
 import { IconButton } from "../IconButton";
 import { StyledBottomIndicator } from "../Layout/components";
 import { Product } from "@/types";
+import { RootState } from "@/store";
 
 interface IFooterMobileProps {
   dataCart: Product[];
@@ -25,39 +26,54 @@ const FooterMobile = ({
   toggleDark,
   onLogin,
   onUserAcaunt,
-}: IFooterMobileProps) => (
-  <FooterMobileStyled>
-    <IconButton
-      name={username ? "User" : "Login"}
-      size={1.5}
-      onClick={username ? onUserAcaunt : onLogin}
-    />
+}: IFooterMobileProps) => {
+  const dataAbout: any = useSelector((state: RootState) => {
+    const res = state.about.about.flat() ?? null;
+    return res.flat();
+  });
+  return (
+    <FooterMobileStyled>
+      <IconButton
+        name={username ? "User" : "Login"}
+        size={1.5}
+        onClick={username ? onUserAcaunt : onLogin}
+      />
 
-    <IconButton
-      name={!isDark ? "Moon" : "Sun"}
-      size={1.5}
-      onClick={() => toggleDark()}
-    />
-    <Link href={"/about"} passHref legacyBehavior>
-      <IconButton name={"Message"} size={1.5} />
-    </Link>
-    <Link href={"/cart"} passHref legacyBehavior>
-      <div className="warraperIndicator">
+      <IconButton
+        name={!isDark ? "Moon" : "Sun"}
+        size={1.5}
+        onClick={() => toggleDark()}
+      />
+      <Link href={"/about"} passHref legacyBehavior>
+        <IconButton name={"Message"} size={1.5} />
+      </Link>
+      <a href={`tel:${dataAbout.phone1}`} className="poneWrapper">
+        {dataAbout.phone1}
+        <div className="gepTelephone"></div>
         <IconButton
-          name={"Cart"}
+          name={"Phone2"}
           size={1.5}
-          onClick={() => console.log("onPressCar")}
+          onClick={() => console.log("onPressPhone")}
         />
-        {dataCart.length > 0 && (
-          <StyledBottomIndicator>
-            <span className="bobble">{dataCart.length}</span>
-          </StyledBottomIndicator>
-        )}
-      </div>
-    </Link>
-    <Link href={"/"} passHref legacyBehavior>
-      <IconButton name={"Home"} size={1.5} />
-    </Link>
-  </FooterMobileStyled>
-);
+      </a>
+      <Link href={"/cart"} passHref legacyBehavior>
+        <div className="warraperIndicator">
+          <IconButton
+            name={"Cart"}
+            size={1.5}
+            onClick={() => console.log("onPressCar")}
+          />
+          {dataCart.length > 0 && (
+            <StyledBottomIndicator>
+              <span className="bobble">{dataCart.length}</span>
+            </StyledBottomIndicator>
+          )}
+        </div>
+      </Link>
+      <Link href={"/"} passHref legacyBehavior>
+        <IconButton name={"Home"} size={1.5} />
+      </Link>
+    </FooterMobileStyled>
+  );
+};
 export default FooterMobile;

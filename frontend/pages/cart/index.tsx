@@ -53,6 +53,8 @@ const Cart: NextPage = () => {
     }
   }, []);
 
+  console.log("dataCart", emailOrder.toLowerCase());
+
   const submitOrder = () => {
     setShowLoading(true);
     if (dataInputArea === "") {
@@ -61,7 +63,7 @@ const Cart: NextPage = () => {
       setShowLoading(false);
       return;
     }
-    if (emailOrder && !validEmail(emailOrder)) {
+    if (!emailOrder || !validEmail(emailOrder)) {
       setTextModal("Будь ласка введіть коректний email!");
       setVisibleModal(true);
       setShowLoading(false);
@@ -150,7 +152,7 @@ email: ${emailOrder} \n
         chat_id: "511280905",
       };
       const respons = await apiService.sendNotification(deteil);
-      const respons2 = await apiService.sendNotification(deteil2);
+      //const respons2 = await apiService.sendNotification(deteil2);
     } catch (error) {
       console.log(error);
     }
