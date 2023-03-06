@@ -1,4 +1,26 @@
 {
+    "files.exclude": {
+    "**/.yarn/cache": true,
+     "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "**/tmp": true,
+        "**/node_modules": true,
+        "**/bower_components": true,
+        "**/dist": true,
+  },
+  "files.watcherExclude": {
+    "**/.yarn/cache/**": true,
+    "**/.expo/**": true,
+     "**/.git/objects/**": true,
+        "**/.git/subtree-cache/**": true,
+        "**/node_modules/**": true,
+        "**/tmp/**": true,
+        "**/bower_components/**": true,
+        "**/dist/**": true
+  },
     "sqltools.connections": [
         {
             "mysqlOptions": {
