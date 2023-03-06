@@ -6,7 +6,8 @@ sudo yarn start
 yarn install --network-timeout 600000
 -------------------------------------
 
-
+docker-compose up  -d
+http://localhost:8080/
 
 npx create-strapi-app@latest my-project
 npm install cross-env

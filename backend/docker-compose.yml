@@ -8,18 +8,14 @@ services:
     restart: unless-stopped
     environment:
       # - MARIADB_MASTER_HOST=172.19.0.1
-      - MARIADB_ROOT_PASSWORD=root
+      MARIADB_ROOT_PASSWORD: 1111
       # - MARIADB_USER=strapi
       # - MARIADB_PASSWORD=strapi
       # - MARIADB_DATABASE=strapi
-    volumes:
-      - ./mariadb/data:/bitnami/mariadb/data
-      - ./mariadb/my.cnf:/opt/bitnami/mariadb/conf/my.cnf:ro
     ports:
       - "3306:3306"
   adminer:
     image: "adminer:latest"
-    container_name: "adminer"
     restart: always
     ports:
         - "8080:8080"
