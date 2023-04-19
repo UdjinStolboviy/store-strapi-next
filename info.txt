@@ -6,6 +6,9 @@ sudo yarn start
 yarn install --network-timeout 600000
 -------------------------------------
 
+yarn strapi export -f dateShop
+
+yarn strapi import -f dateShop.tar.gz.enc
 
 
 npx create-strapi-app@latest my-project
