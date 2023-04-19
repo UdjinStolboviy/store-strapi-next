@@ -1,0 +1,65 @@
+{
+  "kind": "collectionType",
+  "collectionName": "products",
+  "info": {
+    "singularName": "product",
+    "pluralName": "products",
+    "displayName": "Product",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "header": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "uid"
+    },
+    "description": {
+      "type": "text"
+    },
+    "cover": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": true
+    },
+    "category": {
+      "type": "enumeration",
+      "enum": [
+        "хижаки",
+        "мирні",
+        "аксесуари",
+        "корма"
+      ]
+    },
+    "size": {
+      "type": "string"
+    },
+    "price": {
+      "type": "decimal"
+    },
+    "availableProd": {
+      "type": "integer"
+    },
+    "link": {
+      "type": "string"
+    },
+    "subtitle": {
+      "type": "text"
+    },
+    "price_wholesale": {
+      "type": "decimal"
+    },
+    "link_video": {
+      "type": "string"
+    }
+  }
+}
