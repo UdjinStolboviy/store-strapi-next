@@ -5,6 +5,7 @@ sudo yarn start
 ./ngrok http 8082
 yarn install --network-timeout 600000
 -------------------------------------
+Backup
 
 yarn strapi export -f dateShop
 
