@@ -5,6 +5,22 @@ sudo yarn start
 ./ngrok http 8082
 yarn install --network-timeout 600000
 -------------------------------------
+
+Start Server
+
+./start-andronix.sh
+
+vncserver-start
+
+cd store-strapi-next/
+
+cd backend/
+
+sudo yarn start
+
+./ngrok http 8082
+
+--------------------------------------
 Backup
 
 yarn strapi export -f dateShop

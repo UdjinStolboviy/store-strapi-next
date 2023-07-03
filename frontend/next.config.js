@@ -6,8 +6,8 @@ const nextConfig = {
     domains: [
       "localhost:8082",
       "localhost",
-      "https://559c-88-18-249-250.ngrok-free.app",
-      "559c-88-18-249-250.ngrok-free.app",
+      "https://91d5-88-18-255-208.ngrok-free.app",
+      "91d5-88-18-255-208.ngrok-free.app",
     ],
   },
 };
